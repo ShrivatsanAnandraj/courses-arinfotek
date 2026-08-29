@@ -42,8 +42,13 @@ export default async function handler(req, res) {
     script = `class Program { static void Main() { ${code} } }`
   }
 
-  if (language === 'kotlin' && !code.includes('fun main') && !code.includes('class ')) {
-    script = `fun main() { ${code} }`
+  if (language === 'kotlin') {
+    if (code.includes('class ')) {
+      script = code
+    } else {
+      const body = code.replace(/fun main\s*\([^)]*\)\s*\{/, '').replace(/\}\s*$/, '').trim()
+      script = `class JDoodle {\n  companion object {\n    @JvmStatic\n    fun main(args: Array<String>) {\n      ${body}\n    }\n  }\n}`
+    }
   }
 
   try {
