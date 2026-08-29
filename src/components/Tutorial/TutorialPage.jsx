@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Editor from '@monaco-editor/react'
-import { Play, ChevronRight, ChevronDown, BookOpen, ArrowLeft, CheckCircle, Terminal, X, RotateCcw, Loader2 } from 'lucide-react'
+import { Play, ChevronRight, ChevronDown, BookOpen, ArrowLeft, CheckCircle, Terminal, X, RotateCcw, Loader2, Eye } from 'lucide-react'
 import { languages } from '../Languages/languages'
 import { topicContent } from '../Languages/content'
 import LanguageLogo from '../Languages/LanguageLogos'
 import { defaultCode } from '../Languages/defaultCode'
+import { executeCode, isBrowserLanguage } from './codeExecutor'
 
 function getDefaultCode(lang, topicId) {
   return defaultCode[lang]?.[topicId] || defaultCode[lang]?.intro || `// ${lang} code\nconsole.log("Hello!")`
@@ -21,6 +22,9 @@ export default function TutorialPage() {
   const [code, setCode] = useState('')
   const [output, setOutput] = useState('')
   const [isRunning, setIsRunning] = useState(false)
+  const [htmlPreview, setHtmlPreview] = useState('')
+  const [showPreview, setShowPreview] = useState(false)
+  const previewRef = useRef(null)
   const [completedTopics, setCompletedTopics] = useState(() => {
     const saved = localStorage.getItem(`codelearn_progress_${language}`)
     return saved ? JSON.parse(saved) : []
@@ -78,31 +82,21 @@ export default function TutorialPage() {
   }
 
   const runCode = async () => {
-    if (language === 'html') {
-      const w = window.open('', '_blank')
-      w.document.write(code)
-      w.document.close()
-      setOutput('HTML preview opened in new tab.')
-      return
-    }
-    if (language === 'css') {
-      setOutput('CSS is a styling language. Apply it to HTML to see results.')
-      return
-    }
     setIsRunning(true)
     setOutput('Running...')
+    setHtmlPreview('')
+    setShowPreview(false)
     try {
-      const res = await fetch('/api/execute', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ language, code })
-      })
-      const result = await res.json()
-      if (!res.ok) {
-        throw new Error(result.error || `API error (${res.status})`)
+      const result = await executeCode(language, code)
+      if (result.html) {
+        setHtmlPreview(result.html)
+        setShowPreview(true)
+        setOutput('Preview rendered on the right panel.')
+      } else if (result.error) {
+        setOutput(result.error)
+      } else {
+        setOutput(result.output || 'No output')
       }
-      const output = result.output || result.error || 'No output'
-      setOutput(output)
     } catch (e) {
       setOutput(`Error: ${e.message}`)
     } finally {
@@ -330,20 +324,34 @@ export default function TutorialPage() {
                   options={{ minimap: { enabled: false }, fontSize: 13, padding: { top: 8 }, scrollBeyondLastLine: false, automaticLayout: true }}
                 />
               </div>
-              <div className="border-t border-slate-700">
+              <div className="border-t border-slate-700 flex-1 min-h-0 flex flex-col">
                 <div className="flex items-center justify-between px-4 py-1.5 bg-slate-800">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Output</span>
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    {showPreview ? <><Eye size={12} /> Preview</> : 'Output'}
+                  </span>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => setOutput('')} className="text-[10px] text-slate-500 hover:text-white">Clear</button>
+                    {showPreview && <button onClick={() => setShowPreview(false)} className="text-[10px] text-slate-500 hover:text-white">Hide Preview</button>}
+                    <button onClick={() => { setOutput(''); setHtmlPreview(''); setShowPreview(false) }} className="text-[10px] text-slate-500 hover:text-white">Clear</button>
                     <button onClick={runCode} disabled={isRunning} className="flex items-center gap-1 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded hover:bg-green-500 disabled:opacity-50">
                       {isRunning ? <Loader2 size={12} className="animate-spin" /> : <Play size={12} />}
                       {isRunning ? 'Running...' : 'Run'}
                     </button>
                   </div>
                 </div>
-                <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950" style={{ height: '180px' }}>
-                  {output || 'Click Run to execute your code...'}
-                </pre>
+                {showPreview && htmlPreview ? (
+                  <div className="flex-1 min-h-0 flex flex-col">
+                    <div className="flex-1 min-h-0 bg-white">
+                      <iframe ref={previewRef} srcDoc={htmlPreview} title="Preview" className="w-full h-full border-0" style={{ height: '100%', minHeight: '160px' }} />
+                    </div>
+                    <pre className="p-2 text-[10px] text-green-400 font-mono overflow-auto bg-slate-950 border-t border-slate-700" style={{ maxHeight: '60px' }}>
+                      {output}
+                    </pre>
+                  </div>
+                ) : (
+                  <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 flex-1">
+                    {output || 'Click Run to execute your code...'}
+                  </pre>
+                )}
               </div>
             </div>
           )}
