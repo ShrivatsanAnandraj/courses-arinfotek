@@ -17,16 +17,16 @@ export default async function handler(req, res) {
   }
 
   const languageMap = {
-    python: { language: 'python3', versionIndex: '3' },
-    javascript: { language: 'nodejs', versionIndex: '4' },
+    python: { language: 'python3', versionIndex: '0' },
+    javascript: { language: 'nodejs', versionIndex: '5' },
     java: { language: 'java', versionIndex: '4' },
     c: { language: 'c', versionIndex: '5' },
     cpp: { language: 'cpp', versionIndex: '5' },
     csharp: { language: 'csharp', versionIndex: '4' },
-    ruby: { language: 'ruby', versionIndex: '3' },
+    ruby: { language: 'ruby', versionIndex: '4' },
     go: { language: 'go', versionIndex: '3' },
-    kotlin: { language: 'kotlin', versionIndex: '2' },
-    typescript: { language: 'typescript', versionIndex: '4' },
+    kotlin: { language: 'kotlin', versionIndex: '4' },
+    typescript: { language: 'typescript', versionIndex: '1' },
     html: { language: 'html', versionIndex: '0' },
     css: { language: 'css', versionIndex: '0' },
   }
