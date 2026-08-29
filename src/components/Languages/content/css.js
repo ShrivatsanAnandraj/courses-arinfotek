@@ -1,8 +1,8 @@
 const css = {
   intro: {
-    definition: 'CSS (Cascading Style Sheets) is a styling language used to describe the presentation and visual layout of HTML documents. It controls colors, fonts, spacing, positioning, and responsive design of web pages.',
-    whyUse: 'CSS separates content from presentation, allowing developers to style multiple pages from a single stylesheet. It enables responsive design, animations, and consistent visual branding across a website.',
-    whereUse: 'CSS is used in every web page to style headings, paragraphs, buttons, forms, navigation, layouts, and any visual aspect of a website. It is essential for creating professional-looking web applications.',
+    definition: 'CSS (Cascading Style Sheets) is a styling language used to describe the presentation and visual layout of HTML documents.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'CSS uses rule sets consisting of a selector and declaration blocks. The selector targets HTML elements, and declarations inside curly braces define properties and values. Each declaration ends with a semicolon.',
     examples: [
@@ -12,28 +12,23 @@ const css = {
       { title: 'Class and ID Selectors', code: `.button {\n  background-color: blue;\n  color: white;\n}\n\n#header {\n  background-color: navy;\n}`, output: 'Class selectors use a dot prefix and target elements with a class attribute. ID selectors use a hash prefix and target a unique element with an id attribute.' }
     ],
     keyPoints: [
-      'CSS uses selectors to target HTML elements for styling',
-      'Declarations consist of property-value pairs separated by colons',
-      'Multiple declarations are separated by semicolons inside curly braces',
-      'CSS can be applied inline, in style tags, or in external stylesheets',
-      'Cascading rules determine which styles apply when conflicts exist'
+      'CSS uses selectors to target HTML elements for styling.',
+      'Declarations consist of property-value pairs separated by colons.',
+      'Cascading rules determine which styles apply when conflicts exist.'
     ],
     commonMistakes: [
-      'Forgetting semicolons after CSS declarations which breaks the rule',
-      'Confusing class selectors with ID selectors in specificity',
-      'Not using external stylesheets which leads to repeated code',
-      'Missing curly braces or mismatched braces in rule sets'
+      'Forgetting semicolons after CSS declarations which breaks the rule.',
+      'Confusing class selectors with ID selectors in specificity.'
     ],
     proTips: [
-      'Use external stylesheets for better organization and caching',
-      'Follow a consistent naming convention like BEM for class names',
-      'Use CSS custom properties for reusable values throughout your stylesheet'
+      'Use external stylesheets for better organization and caching.',
+      'Follow a consistent naming convention like BEM for class names.'
     ]
   },
   selectors: {
-    definition: 'CSS selectors are patterns used to target and select HTML elements for styling. They range from simple element selectors to complex combinations that target elements based on relationships, attributes, and state.',
-    whyUse: 'Selectors give you precise control over which elements receive specific styles. Understanding selectors allows you to write efficient, maintainable CSS that targets exactly the elements you need.',
-    whereUse: 'Selectors are used in every CSS rule to identify which elements to style. They are essential for creating component-based designs, responsive layouts, and interactive states.',
+    definition: 'CSS selectors are patterns used to target and select HTML elements for styling. They range from simple element selectors to complex combinations.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Selectors can target elements by type, class, id, attribute, or relationship. Combinators like spaces, greater than signs, and plus signs create complex selection patterns based on element hierarchy and adjacency.',
     examples: [
@@ -44,28 +39,23 @@ const css = {
       { title: 'Sibling and Combined Selectors', code: `h2 + p {\n  margin-top: 0;\n}\n\nh2 ~ p {\n  color: gray;\n}\n\nul li:nth-child(even) {\n  background-color: #f0f0f0;\n}`, output: 'The plus combinator selects the immediately following sibling. The tilde selects all following siblings. Nth-child targets elements at specific positions in a group.' }
     ],
     keyPoints: [
-      'Element selectors target all instances of a type like p or h1',
-      'Class selectors with dot are reusable across multiple elements',
-      'ID selectors with hash are unique and should be used sparingly',
-      'Combinators define relationships between elements like descendant or sibling',
-      'Pseudo-classes target elements in specific states without extra HTML'
+      'Element selectors target all instances of a type like p or h1.',
+      'Class selectors with dot are reusable across multiple elements.',
+      'Pseudo-classes target elements in specific states without extra HTML.'
     ],
     commonMistakes: [
-      'Overusing ID selectors which makes styles hard to override',
-      'Not understanding the difference between descendant and child selectors',
-      'Forgetting that pseudo-classes require a colon prefix',
-      'Creating overly specific selectors that are hard to maintain'
+      'Overusing ID selectors which makes styles hard to override.',
+      'Creating overly specific selectors that are hard to maintain.'
     ],
     proTips: [
-      'Prefer class selectors over ID selectors for better reusability',
-      'Use descendant selectors sparingly as they can create specificity issues',
-      'Keep selectors as simple as possible while still being specific enough'
+      'Prefer class selectors over ID selectors for better reusability.',
+      'Keep selectors as simple as possible while still being specific enough.'
     ]
   },
   specificity: {
-    definition: 'CSS specificity determines which styles are applied when multiple rules target the same element. It is a weight system calculated based on the types of selectors used in a rule. Higher specificity wins over lower specificity.',
-    whyUse: 'Understanding specificity prevents unexpected styling behavior. It helps you write CSS that is predictable and avoids the need for overly complex selectors or important declarations to override other styles.',
-    whereUse: 'Specificity applies to every CSS rule in a stylesheet. It is critical when multiple stylesheets are loaded, when inline styles are used, and when overriding third-party CSS frameworks.',
+    definition: 'CSS specificity determines which styles are applied when multiple rules target the same element. It is a weight system based on the types of selectors used.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Specificity is calculated as a three-part value: IDs, classes, and elements. Inline styles have the highest specificity. The important declaration overrides all other specificity. When specificity is equal, the last rule wins.',
     examples: [
@@ -75,28 +65,23 @@ const css = {
       { title: 'Equal Specificity', code: `.card {\n  background: white;\n}\n\n.card-content {\n  background: gray;\n}\n\n/* When specificity is equal, last rule wins */\n.card {\n  background: blue;\n}`, output: 'When two rules have equal specificity, the last rule in the stylesheet is applied. This is the cascade in action.' }
     ],
     keyPoints: [
-      'Specificity is calculated as IDs, classes, and elements in that order',
-      'Inline styles have higher specificity than external stylesheet rules',
-      'The !important declaration overrides all other specificity rules',
-      'When specificity is equal, the last rule in the source order wins',
-      'ID selectors have much higher specificity than class selectors'
+      'Specificity is calculated as IDs, classes, and elements in that order.',
+      'Inline styles have higher specificity than external stylesheet rules.',
+      'The !important declaration overrides all other specificity rules.'
     ],
     commonMistakes: [
-      'Using !important too often which creates a maintenance nightmare',
-      'Not understanding that specificity is calculated as a three-part number',
-      'Overriding styles by increasing specificity instead of using the cascade',
-      'Creating unnecessarily specific selectors that are hard to override'
+      'Using !important too often which creates a maintenance nightmare.',
+      'Creating unnecessarily specific selectors that are hard to override.'
     ],
     proTips: [
-      'Avoid using !important except as a last resort for utility classes',
-      'Use developer tools to inspect computed specificity when debugging',
-      'Keep your specificity low and consistent throughout your stylesheet'
+      'Avoid using !important except as a last resort for utility classes.',
+      'Keep your specificity low and consistent throughout your stylesheet.'
     ]
   },
   colors: {
     definition: 'CSS colors define the visual appearance of text, backgrounds, borders, and other elements. Colors can be specified using named colors, hex codes, RGB, RGBA, HSL, and HSLA values.',
-    whyUse: 'Colors are fundamental to web design. Proper color choices improve readability, establish visual hierarchy, create brand identity, and enhance user experience.',
-    whereUse: 'Colors are used in text color, background color, border color, box shadows, gradients, and any visual styling that involves chromatic appearance.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'CSS provides multiple color formats. Named colors use predefined names like red or blue. Hex codes use hash followed by six characters. RGB and HSL allow precise control over color values and transparency.',
     examples: [
@@ -106,29 +91,23 @@ const css = {
       { title: 'Current Color Keyword', code: `.button {\n  color: white;\n  border: 2px solid currentColor;\n  background-color: blue;\n}\n\n.icon {\n  fill: currentColor;\n}`, output: 'The currentColor keyword inherits the computed value of the color property. It is useful for maintaining color consistency across related properties.' }
     ],
     keyPoints: [
-      'Named colors provide simple predefined color values',
-      'Hex codes use six characters to represent red, green, and blue values',
-      'RGB values specify colors using decimal numbers from 0 to 255',
-      'HSL provides an intuitive way to specify colors using hue, saturation, and lightness',
-      'RGBA and HSLA add transparency with an alpha channel value',
-      'The currentColor keyword inherits the element text color'
+      'Hex codes use six characters to represent red, green, and blue values.',
+      'HSL provides an intuitive way to specify colors using hue, saturation, and lightness.',
+      'The currentColor keyword inherits the element text color.'
     ],
     commonMistakes: [
-      'Using hex codes without understanding the order of red, green, and blue',
-      'Not providing fallback colors for older browsers that do not support HSL',
-      'Confusing opacity on elements with transparency on individual colors',
-      'Using low contrast colors that fail accessibility standards'
+      'Using hex codes without understanding the order of red, green, and blue.',
+      'Using low contrast colors that fail accessibility standards.'
     ],
     proTips: [
-      'Use CSS custom properties to define a color palette for your project',
-      'Test color contrast against WCAG guidelines for accessibility',
-      'Use HSL for easier color manipulation and variation of shades'
+      'Use CSS custom properties to define a color palette for your project.',
+      'Test color contrast against WCAG guidelines for accessibility.'
     ]
   },
   text: {
-    definition: 'CSS text properties control the appearance and behavior of text content including font family, size, weight, alignment, spacing, decoration, and transformation.',
-    whyUse: 'Text styling improves readability, establishes visual hierarchy, and creates the overall aesthetic of a website. Proper typography is essential for professional web design.',
-    whereUse: 'Text properties are used on headings, paragraphs, links, buttons, labels, and any element that contains text content. They are fundamental to web page styling.',
+    definition: 'CSS text properties control the appearance of text including font family, size, weight, alignment, spacing, decoration, and transformation.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'CSS text properties include font-family for typeface, font-size for size, font-weight for boldness, text-align for alignment, letter-spacing for character spacing, and text-transform for case transformations.',
     examples: [
@@ -139,28 +118,23 @@ const css = {
       { title: 'Web Fonts', code: `@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');\n\nbody {\n  font-family: 'Roboto', sans-serif;\n}`, output: 'Custom web fonts can be imported from font services. The font-family declaration uses the font name with fallback fonts. The swap value ensures text remains visible during font loading.' }
     ],
     keyPoints: [
-      'Always provide fallback fonts in font-family declarations',
-      'Use relative units like rem or em instead of pixels for font-size',
-      'Line-height of 1.5 to 1.6 provides comfortable reading experience',
-      'Use text-transform for consistent capitalization without changing content',
-      'Web fonts require importing the font file before using it in font-family'
+      'Always provide fallback fonts in font-family declarations.',
+      'Line-height of 1.5 to 1.6 provides comfortable reading experience.',
+      'Web fonts require importing the font file before using it in font-family.'
     ],
     commonMistakes: [
-      'Using only one font without providing fallback options',
-      'Setting font-size in pixels which does not respect user browser settings',
-      'Forgetting to set line-height which makes text hard to read',
-      'Not importing web fonts before referencing them in CSS'
+      'Using only one font without providing fallback options.',
+      'Forgetting to set line-height which makes text hard to read.'
     ],
     proTips: [
-      'Limit your design to two or three font families for visual consistency',
-      'Use font-display swap to prevent invisible text during font loading',
-      'Test text at different zoom levels to ensure readability'
+      'Limit your design to two or three font families for visual consistency.',
+      'Use font-display swap to prevent invisible text during font loading.'
     ]
   },
   units: {
-    definition: 'CSS units specify sizes for properties like width, height, margin, padding, and font-size. There are absolute units like pixels and relative units like percentages and em that adapt to context.',
-    whyUse: 'Choosing the right units is critical for responsive design. Relative units allow layouts to adapt to different screen sizes and user preferences, while absolute units provide precise control.',
-    whereUse: 'Units are used in every CSS property that defines size including dimensions, spacing, borders, fonts, and positioning. They determine how elements scale and adapt.',
+    definition: 'CSS units specify sizes for properties like width, height, margin, padding, and font-size. There are absolute units like pixels and relative units like percentages and em.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Absolute units like px are fixed and do not change. Relative units like rem, em, %, vw, and vh adapt based on context. Rem is relative to the root font-size, em is relative to the parent font-size, and viewport units are relative to the browser window.',
     examples: [
@@ -171,29 +145,23 @@ const css = {
       { title: 'Ch and Ex Units', code: `.code-block {\n  font-size: 14px;\n  width: 80ch;\n  line-height: 1.5ex;\n}`, output: 'Ch is relative to the width of the zero character. Ex is relative to the height of the lowercase x. Useful for sizing based on the current font metrics.' }
     ],
     keyPoints: [
-      'Pixels are absolute units that provide fixed sizes',
-      'Rem is relative to the root font-size and is preferred for consistency',
-      'Em is relative to the parent element font-size which can cause inheritance issues',
-      'Percentages are relative to the parent element dimensions',
-      'Viewport units vw vh vmin vmax are relative to the browser window',
-      'Use relative units for responsive designs that adapt to user preferences'
+      'Pixels are absolute units that provide fixed sizes.',
+      'Rem is relative to the root font-size and is preferred for consistency.',
+      'Viewport units vw vh vmin vmax are relative to the browser window.'
     ],
     commonMistakes: [
-      'Using px for font-size which does not respect user zoom preferences',
-      'Using em for padding and margin which can compound unexpectedly',
-      'Not setting a base font-size on the html element for rem calculations',
-      'Using viewport units for text which can become unreadable on small screens'
+      'Using px for font-size which does not respect user zoom preferences.',
+      'Not setting a base font-size on the html element for rem calculations.'
     ],
     proTips: [
-      'Use rem for font-size and em for padding and margin in most cases',
-      'Set the base font-size on html to 62.5% to make rem calculations easier',
-      'Use clamp function to set responsive font sizes with minimum and maximum bounds'
+      'Use rem for font-size and em for padding and margin in most cases.',
+      'Use clamp function to set responsive font sizes with minimum and maximum bounds.'
     ]
   },
   boxmodel: {
-    definition: 'The CSS box model describes how elements are sized and spaced. Every element is a rectangular box consisting of content, padding, border, and margin. Understanding the box model is essential for accurate layout and spacing.',
-    whyUse: 'The box model determines how much space elements take up on the page. Understanding it prevents layout issues and allows precise control over element dimensions and spacing.',
-    whereUse: 'The box model applies to every HTML element. It is fundamental to creating layouts, setting spacing, and ensuring elements fit properly within their containers.',
+    definition: 'The CSS box model describes how elements are sized and spaced. Every element is a rectangular box consisting of content, padding, border, and margin.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The content area holds the actual content. Padding adds space inside the border. Border surrounds the padding. Margin adds space outside the border. The box-sizing property controls how width and height are calculated.',
     examples: [
@@ -203,28 +171,23 @@ const css = {
       { title: 'Negative Margins', code: `.pull-quote {\n  margin-left: -20px;\n  margin-right: -20px;\n  padding: 20px;\n  background: #f0f0f0;\n}`, output: 'Negative margins pull elements outside their normal position. This technique extends the element beyond its parent container boundaries.' }
     ],
     keyPoints: [
-      'Box-sizing border-box makes width and height include padding and border',
-      'Padding adds space inside the element border',
-      'Margin adds space outside the element border',
-      'Vertical margins between adjacent elements collapse to the larger value',
-      'The shorthand property sets all four sides in one declaration'
+      'Box-sizing border-box makes width and height include padding and border.',
+      'Padding adds space inside the element border.',
+      'Vertical margins between adjacent elements collapse to the larger value.'
     ],
     commonMistakes: [
-      'Not using box-sizing border-box which makes sizing calculations difficult',
-      'Forgetting that margins can collapse which causes unexpected spacing',
-      'Confusing padding which is inside with margin which is outside',
-      'Not accounting for border width in element dimensions'
+      'Not using box-sizing border-box which makes sizing calculations difficult.',
+      'Confusing padding which is inside with margin which is outside.'
     ],
     proTips: [
-      'Always use box-sizing border-box with the universal selector for predictable sizing',
-      'Use dev tools to visualize the box model when debugging layout issues',
-      'Apply consistent spacing using a spacing scale with rem units'
+      'Always use box-sizing border-box with the universal selector for predictable sizing.',
+      'Use dev tools to visualize the box model when debugging layout issues.'
     ]
   },
   display: {
-    definition: 'The CSS display property controls how an element is rendered in the document layout. It determines whether an element is block-level, inline, inline-block, or uses modern layout modes like flexbox or grid.',
-    whyUse: 'Display property is fundamental to layout control. It determines how elements flow in the document, whether they take full width, and how they interact with other elements.',
-    whereUse: 'Display is used on virtually every element to control layout behavior. It is essential for creating navigation menus, card layouts, responsive grids, and any custom layout.',
+    definition: 'The CSS display property controls how an element is rendered in the document layout. It determines whether an element is block-level, inline, inline-block, or uses flexbox or grid.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Block elements start on new lines and take full width. Inline elements flow with text. Inline-block combines both behaviors. Flex and grid provide modern layout systems with powerful alignment and distribution capabilities.',
     examples: [
@@ -235,29 +198,23 @@ const css = {
       { title: 'None and Visibility', code: `.hidden {\n  display: none;\n}\n\n.invisible {\n  visibility: hidden;\n}`, output: 'Display none removes the element from the document completely. Visibility hidden hides the element but keeps its space in the layout.' }
     ],
     keyPoints: [
-      'Block elements take full width and start on new lines',
-      'Inline elements only take the width of their content',
-      'Inline-block combines inline flow with block-like sizing properties',
-      'Flex creates a flex container for one-dimensional layouts',
-      'Grid creates a grid container for two-dimensional layouts',
-      'Display none removes the element from the document flow entirely'
+      'Block elements take full width and start on new lines.',
+      'Inline elements only take the width of their content.',
+      'Display none removes the element from the document flow entirely.'
     ],
     commonMistakes: [
-      'Trying to set width and height on inline elements which are ignored',
-      'Confusing display none with visibility hidden which behave differently',
-      'Not understanding that display changes the element default behavior',
-      'Using display properties on flex or grid children expecting default behavior'
+      'Trying to set width and height on inline elements which are ignored.',
+      'Confusing display none with visibility hidden which behave differently.'
     ],
     proTips: [
-      'Use flexbox for one-dimensional layouts like rows or columns',
-      'Use grid for two-dimensional layouts with rows and columns',
-      'Use display none for responsive designs to hide elements on specific screen sizes'
+      'Use flexbox for one-dimensional layouts like rows or columns.',
+      'Use grid for two-dimensional layouts with rows and columns.'
     ]
   },
   position: {
-    definition: 'CSS position property controls how elements are positioned in the document. It determines whether an element follows the normal document flow or is positioned relative to its container, the viewport, or other elements.',
-    whyUse: 'Positioning is essential for creating overlays, sticky navigation, fixed sidebars, tooltips, modals, and any layout where elements need to be placed outside the normal document flow.',
-    whereUse: 'Positioning is used for fixed headers, sticky footers, absolute positioning of dropdown menus, relative positioning for transforms, and fixed elements like back-to-top buttons.',
+    definition: 'CSS position property controls how elements are positioned in the document. It determines whether an element follows the normal flow or is positioned relative to its container, the viewport, or other elements.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Static follows normal flow. Relative positions relative to its normal position. Absolute positions relative to the nearest positioned ancestor. Fixed positions relative to the viewport. Sticky toggles between relative and fixed based on scroll position.',
     examples: [
@@ -268,29 +225,23 @@ const css = {
       { title: 'Z-Index Layering', code: `.modal-overlay {\n  position: fixed;\n  z-index: 1000;\n}\n\n.modal {\n  position: fixed;\n  z-index: 1001;\n}\n\n.dropdown {\n  position: absolute;\n  z-index: 100;\n}`, output: 'Z-index controls the stacking order of positioned elements. Higher values appear in front of lower values. Only works on positioned elements with position other than static.' }
     ],
     keyPoints: [
-      'Static is the default and follows normal document flow',
-      'Relative positions relative to its normal position preserving space',
-      'Absolute positions relative to the nearest positioned ancestor',
-      'Fixed is always positioned relative to the viewport',
-      'Sticky toggles between relative and fixed based on scroll position',
-      'Z-index only works on elements with position other than static'
+      'Static is the default and follows normal document flow.',
+      'Absolute positions relative to the nearest positioned ancestor.',
+      'Z-index only works on elements with position other than static.'
     ],
     commonMistakes: [
-      'Using absolute without a positioned ancestor which positions relative to the viewport',
-      'Forgetting that fixed and absolute elements are removed from document flow',
-      'Not understanding z-index stacking contexts which can prevent layering',
-      'Using position fixed without accounting for the space it takes up in the layout'
+      'Using absolute without a positioned ancestor which positions relative to the viewport.',
+      'Forgetting that fixed and absolute elements are removed from document flow.'
     ],
     proTips: [
-      'Always set position relative on a parent when using absolute children',
-      'Use sticky for headers that need to stay visible while scrolling',
-      'Create stacking contexts deliberately to control z-index behavior'
+      'Always set position relative on a parent when using absolute children.',
+      'Use sticky for headers that need to stay visible while scrolling.'
     ]
   },
   flexbox: {
-    definition: 'Flexbox is a one-dimensional layout system in CSS that distributes space along a main axis. It provides powerful alignment, distribution, and ordering capabilities for laying out items in a row or column.',
-    whyUse: 'Flexbox simplifies complex layouts that previously required floats and positioning. It handles alignment, spacing, and ordering of elements with minimal code and maximum flexibility.',
-    whereUse: 'Flexbox is used for navigation bars, card layouts, form layouts, centering content, creating equal-height columns, and any one-dimensional layout challenge.',
+    definition: 'Flexbox is a one-dimensional layout system that distributes space along a main axis. It provides powerful alignment, distribution, and ordering capabilities for laying out items in a row or column.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Flexbox uses a container and items model. The container defines the layout direction and alignment. Items can grow, shrink, and align along the main and cross axes. The main axis can be horizontal or vertical.',
     examples: [
@@ -301,29 +252,23 @@ const css = {
       { title: 'Order and Alignment', code: `.container {\n  display: flex;\n  align-items: stretch;\n}\n\n.sidebar {\n  order: 2;\n  flex: 0 0 250px;\n}\n\n.main {\n  order: 1;\n  flex: 1;\n}`, output: 'Order property controls the visual order of flex items without changing the DOM order. Align-stretch makes items fill the cross axis height.' }
     ],
     keyPoints: [
-      'Display flex creates a flex container and flex items become flex children',
-      'Flex-direction sets the main axis as row or column',
-      'Justify-content distributes items along the main axis',
-      'Align-items aligns items along the cross axis',
-      'Flex shorthand combines grow, shrink, and basis in one declaration',
-      'Flex-wrap allows items to wrap onto multiple lines'
+      'Display flex creates a flex container and flex items become flex children.',
+      'Justify-content distributes items along the main axis.',
+      'Align-items aligns items along the cross axis.'
     ],
     commonMistakes: [
-      'Forgetting that flex items stretch by default on the cross axis',
-      'Not understanding the difference between justify-content and align-items',
-      'Using margins for spacing when gap is cleaner and more consistent',
-      'Overcomplicating layouts that could be solved with simple flex properties'
+      'Forgetting that flex items stretch by default on the cross axis.',
+      'Using margins for spacing when gap is cleaner and more consistent.'
     ],
     proTips: [
-      'Use gap instead of margins for consistent spacing between flex items',
-      'Combine flex-wrap with flex-basis for responsive layouts without media queries',
-      'Use flex shorthand to keep your CSS concise and readable'
+      'Use gap instead of margins for consistent spacing between flex items.',
+      'Combine flex-wrap with flex-basis for responsive layouts without media queries.'
     ]
   },
   grid: {
-    definition: 'CSS Grid is a two-dimensional layout system that handles both rows and columns simultaneously. It provides powerful control over complex layouts with precise placement of items in a grid structure.',
-    whyUse: 'Grid enables layouts that were previously impossible or very difficult with CSS. It handles two-dimensional layouts with minimal code and provides precise control over item placement.',
-    whereUse: 'Grid is used for page layouts, image galleries, dashboards, complex form layouts, magazine-style designs, and any layout that requires both rows and columns.',
+    definition: 'CSS Grid is a two-dimensional layout system that handles both rows and columns simultaneously. It provides powerful control over complex layouts with precise placement of items.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Grid uses a container with rows and columns defined by grid-template properties. Items are placed in grid cells using grid-column and grid-row properties. Grid lines define the boundaries of cells.',
     examples: [
@@ -334,29 +279,23 @@ const css = {
       { title: 'Implicit Grid', code: `.container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-auto-rows: 200px;\n  grid-auto-flow: dense;\n}`, output: 'Grid-auto-rows sets the height of implicitly created rows. Grid-auto-flow dense fills in gaps automatically. The implicit grid handles items not explicitly placed.' }
     ],
     keyPoints: [
-      'Display grid creates a grid container with rows and columns',
-      'The fr unit distributes available space proportionally',
-      'Grid-template-columns and grid-template-rows define the grid structure',
-      'Grid-template-areas provides a visual way to define layouts',
-      'Auto-fit and minmax create responsive grids without media queries',
-      'Items can span multiple rows and columns using grid-column and grid-row'
+      'Display grid creates a grid container with rows and columns.',
+      'The fr unit distributes available space proportionally.',
+      'Auto-fit and minmax create responsive grids without media queries.'
     ],
     commonMistakes: [
-      'Using grid for simple one-dimensional layouts where flexbox would be simpler',
-      'Not understanding the difference between explicit and implicit grid tracks',
-      'Forgetting that grid items stretch to fill their grid area by default',
-      'Overcomplicating grid layouts when simpler solutions exist'
+      'Using grid for simple one-dimensional layouts where flexbox would be simpler.',
+      'Forgetting that grid items stretch to fill their grid area by default.'
     ],
     proTips: [
-      'Use grid for two-dimensional layouts and flexbox for one-dimensional layouts',
-      'Combine grid with flexbox for maximum layout flexibility',
-      'Use the repeat function and fr unit to create responsive layouts easily'
+      'Use grid for two-dimensional layouts and flexbox for one-dimensional layouts.',
+      'Combine grid with flexbox for maximum layout flexibility.'
     ]
   },
   margins: {
-    definition: 'CSS margins create space outside an element border. Margins push other elements away and control the spacing between elements. They are transparent and do not have background color or border.',
-    whyUse: 'Margins control the spacing between elements and create visual separation. Proper margin use improves readability, creates balanced layouts, and establishes visual hierarchy.',
-    whereUse: 'Margins are used on headings, paragraphs, lists, cards, containers, and any element that needs spacing from its neighbors. They are fundamental to layout design.',
+    definition: 'CSS margins create space outside an element border. Margins push other elements away and control the spacing between elements.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Margins can be set individually for each side using margin-top, margin-right, margin-bottom, and margin-left. The margin shorthand property sets all four sides. Margins can be positive or negative values.',
     examples: [
@@ -366,28 +305,23 @@ const css = {
       { title: 'Margin Collapse', code: `.box1 {\n  margin-bottom: 40px;\n}\n\n.box2 {\n  margin-top: 20px;\n}\n\n/* Actual space is 40px not 60px */`, output: 'Vertical margins between adjacent elements collapse to the larger value. This is called margin collapse and only applies to vertical margins in normal document flow.' }
     ],
     keyPoints: [
-      'Margins create transparent space outside element borders',
-      'Auto margins center block elements when used with a set width',
-      'Negative margins can pull elements out of their normal position',
-      'Vertical margins between adjacent elements collapse to the larger value',
-      'The margin shorthand sets all four sides in one declaration'
+      'Margins create transparent space outside element borders.',
+      'Auto margins center block elements when used with a set width.',
+      'Vertical margins between adjacent elements collapse to the larger value.'
     ],
     commonMistakes: [
-      'Confusing margin which is outside with padding which is inside',
-      'Not accounting for margin collapse when calculating spacing',
-      'Using pixels for margins which do not scale with font-size',
-      'Applying margins to inline elements which only accept horizontal margins'
+      'Confusing margin which is outside with padding which is inside.',
+      'Applying margins to inline elements which only accept horizontal margins.'
     ],
     proTips: [
-      'Use a consistent spacing scale with rem units for margins throughout your project',
-      'Apply margins to only one side of elements to avoid collapse issues',
-      'Use the gap property in flexbox and grid for spacing without margin collapse'
+      'Use a consistent spacing scale with rem units for margins throughout your project.',
+      'Use the gap property in flexbox and grid for spacing without margin collapse.'
     ]
   },
   borders: {
     definition: 'CSS borders define the boundary around elements. They can be styled with width, style, and color properties. Borders are drawn between the margin and padding of an element.',
-    whyUse: 'Borders visually separate elements, create emphasis, define input fields, and add decorative effects. They are essential for card designs, form styling, and visual hierarchy.',
-    whereUse: 'Borders are used on buttons, input fields, cards, containers, dividers, images, and any element that needs a visible boundary or decorative edge.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Borders have three properties: width, style, and color. The border shorthand sets all three at once. Individual sides can be styled differently. Border-radius creates rounded corners.',
     examples: [
@@ -398,28 +332,23 @@ const css = {
       { title: 'Border Image', code: `.fancy-border {\n  border: 4px solid transparent;\n  border-image: linear-gradient(45deg, #ff6600, #007bff) 1;\n}`, output: 'Border-image replaces the border with an image or gradient. The value after the image defines how the image is sliced to fit the corners and edges.' }
     ],
     keyPoints: [
-      'Border shorthand sets width, style, and color in one declaration',
-      'Border-radius creates rounded corners on elements',
-      'Outline is similar to border but does not affect element layout',
-      'Outline-offset adds space between border and outline for focus indicators',
-      'Border-image allows using images or gradients as borders'
+      'Border shorthand sets width, style, and color in one declaration.',
+      'Border-radius creates rounded corners on elements.',
+      'Use outline for focus states instead of border to avoid layout shifts.'
     ],
     commonMistakes: [
-      'Not accounting for border width in element dimensions without box-sizing',
-      'Forgetting outline does not take space which can cause focus indicators to overlap content',
-      'Using border when outline would be more appropriate for focus states',
-      'Setting border-radius on non-rectangular elements which may not work as expected'
+      'Not accounting for border width in element dimensions without box-sizing.',
+      'Using border when outline would be more appropriate for focus states.'
     ],
     proTips: [
-      'Use border-radius: 50% to create perfect circles from square elements',
-      'Use outline for focus states instead of border to avoid layout shifts',
-      'Consider using box-shadow instead of borders for more customizable effects'
+      'Use border-radius: 50% to create perfect circles from square elements.',
+      'Consider using box-shadow instead of borders for more customizable effects.'
     ]
   },
   pseudo: {
-    definition: 'CSS pseudo-classes and pseudo-elements select elements based on their state or position without requiring additional HTML. They provide powerful ways to style interactive states, content, and document structure.',
-    whyUse: 'Pseudo-classes and pseudo-elements add visual effects and interactive feedback without extra HTML markup. They are essential for hover states, form validation, and decorative content.',
-    whereUse: 'Pseudo-selectors are used for hover effects, focus states, form validation styles, bullet customization, content insertion, and any styling based on element state or position.',
+    definition: 'CSS pseudo-classes and pseudo-elements select elements based on their state or position without requiring additional HTML.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Pseudo-classes use a single colon and select elements in specific states like hover or focus. Pseudo-elements use double colons and select specific parts of an element like the first line or before content.',
     examples: [
@@ -430,28 +359,23 @@ const css = {
       { title: 'Selection and Placeholder', code: `::selection {\n  background-color: #ff6600;\n  color: white;\n}\n\ninput::placeholder {\n  color: #999;\n  font-style: italic;\n}`, output: 'Selection styles the text when selected by the user. Placeholder styles the placeholder text in form inputs. Both use double colon syntax.' }
     ],
     keyPoints: [
-      'Pseudo-classes use a single colon and target element states',
-      'Pseudo-elements use double colons and target parts of elements',
-      'Hover, focus, and active are essential interactive states',
-      'First-child and nth-child target elements based on position',
-      'Before and after require the content property to insert content'
+      'Pseudo-classes use a single colon and target element states.',
+      'Pseudo-elements use double colons and target parts of elements.',
+      'Before and after require the content property to insert content.'
     ],
     commonMistakes: [
-      'Confusing pseudo-classes single colon with pseudo-elements double colon',
-      'Forgetting the content property on before and after pseudo-elements',
-      'Not providing focus styles for keyboard accessibility',
-      'Using nth-child with complex formulas when simpler selectors would work'
+      'Confusing pseudo-classes single colon with pseudo-elements double colon.',
+      'Not providing focus styles for keyboard accessibility.'
     ],
     proTips: [
-      'Always provide visible focus styles for keyboard navigation accessibility',
-      'Use before and after for decorative content that does not affect screen readers',
-      'Combine pseudo-classes for more specific targeting like hover on focus'
+      'Always provide visible focus styles for keyboard navigation accessibility.',
+      'Use before and after for decorative content that does not affect screen readers.'
     ]
   },
   variables: {
-    definition: 'CSS custom properties also known as CSS variables allow you to store reusable values in a property. They are defined with a double dash prefix and can be used throughout a stylesheet for consistent values.',
-    whyUse: 'CSS variables eliminate repetition, make stylesheets easier to maintain, enable dynamic theming with JavaScript, and provide a single source of truth for design values.',
-    whereUse: 'CSS variables are used for colors, spacing, font sizes, breakpoints, shadows, and any value that is repeated throughout a stylesheet. They are essential for design systems.',
+    definition: 'CSS custom properties (CSS variables) allow you to store reusable values in a property. They are defined with a double dash prefix and can be used throughout a stylesheet.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Variables are defined on a selector using double dash prefix and assigned a value. They are accessed using the var function. Variables inherit and can be overridden at any level in the cascade.',
     examples: [
@@ -462,28 +386,23 @@ const css = {
       { title: 'JavaScript Integration', code: `document.documentElement.style.setProperty('--primary-color', '#ff6600');`, output: 'CSS variables can be changed dynamically using JavaScript. This enables theme switching, dynamic customization, and interactive design changes.' }
     ],
     keyPoints: [
-      'Define variables on the root selector for global availability',
-      'Access variables using the var function with the variable name',
-      'Provide fallback values as the second argument to var',
-      'Variables can be overridden at any level in the cascade',
-      'Use descriptive names with double dash prefix for variable names'
+      'Define variables on the root selector for global availability.',
+      'Provide fallback values as the second argument to var.',
+      'Use descriptive names with double dash prefix for variable names.'
     ],
     commonMistakes: [
-      'Not defining a fallback value which can cause styles to break',
-      'Using inconsistent naming conventions for variables',
-      'Defining variables on the wrong selector scope',
-      'Not using variables for values that are repeated throughout the stylesheet'
+      'Not defining a fallback value which can cause styles to break.',
+      'Defining variables on the wrong selector scope.'
     ],
     proTips: [
-      'Create a design system using CSS variables for all reusable values',
-      'Use variables for responsive breakpoints to maintain consistent layouts',
-      'Combine variables with JavaScript for dynamic theme switching'
+      'Create a design system using CSS variables for all reusable values.',
+      'Combine variables with JavaScript for dynamic theme switching.'
     ]
   },
   transforms: {
-    definition: 'CSS transforms modify elements visually using 2D or 3D transformations. They can rotate, scale, skew, and translate elements without affecting the document flow or other elements.',
-    whyUse: 'Transforms create visual effects, animations, and interactive feedback. They are hardware-accelerated for smooth performance and do not cause layout reflows.',
-    whereUse: 'Transforms are used for hover effects, loading animations, image zoom, 3D card flips, icon rotations, and any visual manipulation of elements.',
+    definition: 'CSS transforms modify elements visually using 2D or 3D transformations. They can rotate, scale, skew, and translate elements without affecting document flow.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The transform property applies transformations to elements. Multiple transforms can be combined in one declaration. The transform-origin property sets the center point for transformations.',
     examples: [
@@ -494,28 +413,23 @@ const css = {
       { title: '3D Transforms', code: `.perspective {\n  perspective: 1000px;\n}\n\n.rotate-y {\n  transform: rotateY(45deg);\n}\n\n.translate-z {\n  transform: translateZ(50px);\n}`, output: 'Perspective creates a 3D viewing context. RotateY and rotateZ rotate in 3D space. TranslateZ moves elements toward or away from the viewer.' }
     ],
     keyPoints: [
-      'Transforms do not affect document flow or other element positions',
-      'Hardware acceleration makes transforms perform well for animations',
-      'Transform-origin sets the center point for rotation and scaling',
-      'Multiple transforms can be combined in one declaration',
-      '3D transforms require perspective on a parent element to be visible'
+      'Transforms do not affect document flow or other element positions.',
+      'Transform-origin sets the center point for rotation and scaling.',
+      '3D transforms require perspective on a parent element to be visible.'
     ],
     commonMistakes: [
-      'Not setting transform-origin which defaults to center and may cause unexpected behavior',
-      'Forgetting that transforms do not affect layout which can cause overlap',
-      'Using transforms for layout instead of positioning or flexbox',
-      'Not providing hardware acceleration hints for smooth animations'
+      'Not setting transform-origin which defaults to center and may cause unexpected behavior.',
+      'Using transforms for layout instead of positioning or flexbox.'
     ],
     proTips: [
-      'Use transforms for hover effects and animations as they are performant',
-      'Combine transforms with transitions for smooth animated effects',
-      'Use backface-visibility hidden for 3D card flip animations'
+      'Use transforms for hover effects and animations as they are performant.',
+      'Combine transforms with transitions for smooth animated effects.'
     ]
   },
   transitions: {
     definition: 'CSS transitions provide smooth animation between property values over a specified duration. They create gradual changes when element states change like hover, focus, or class toggling.',
-    whyUse: 'Transitions provide polished user feedback and smooth visual changes. They enhance user experience without requiring JavaScript animation libraries.',
-    whereUse: 'Transitions are used for hover effects, focus states, loading indicators, reveal animations, accordion expansions, and any gradual state change.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The transition property specifies which properties to animate, the duration, timing function, and optional delay. Multiple properties can be transitioned simultaneously or with different timings.',
     examples: [
@@ -526,28 +440,23 @@ const css = {
       { title: 'All Properties', code: `.element {\n  transition: all 0.3s ease;\n}\n\n/* Better performance */\n.optimized {\n  transition: transform 0.3s ease, opacity 0.3s ease;\n}`, output: 'Transition all animates every property that changes. Specifying individual properties is better for performance as the browser can optimize each animation.' }
     ],
     keyPoints: [
-      'Transition specifies which properties to animate and the duration',
-      'Duration determines how long the animation takes in seconds',
-      'Timing function controls the acceleration curve of the animation',
-      'Delay specifies when the animation starts after the state change',
-      'Specify individual properties instead of all for better performance'
+      'Duration determines how long the animation takes in seconds.',
+      'Specify individual properties instead of all for better performance.',
+      'Timing function controls the acceleration curve of the animation.'
     ],
     commonMistakes: [
-      'Not specifying a duration which defaults to 0 and makes the transition instant',
-      'Transitioning layout properties like width which cause performance issues',
-      'Using transition all which can cause unexpected animations on unrelated properties',
-      'Forgetting to transition back when the state reverts which can look jarring'
+      'Not specifying a duration which defaults to 0 and makes the transition instant.',
+      'Transitioning layout properties like width which cause performance issues.'
     ],
     proTips: [
-      'Only transition transform and opacity for the best performance',
-      'Use cubic-bezier for custom easing that matches your design personality',
-      'Test transitions at different speeds to find the right balance between snappy and smooth'
+      'Only transition transform and opacity for the best performance.',
+      'Use cubic-bezier for custom easing that matches your design personality.'
     ]
   },
   animations: {
-    definition: 'CSS animations provide keyframe-based animations that can cycle through multiple states with full control over timing, direction, and repetition. They are more powerful than transitions for complex animations.',
-    whyUse: 'Animations create engaging visual experiences, loading indicators, attention-grabbing effects, and storytelling elements. They bring interfaces to life with motion.',
-    whereUse: 'Animations are used for loading spinners, scroll-triggered effects, page transitions, character animations, logo animations, and any complex multi-step visual effect.',
+    definition: 'CSS animations provide keyframe-based animations that can cycle through multiple states with full control over timing, direction, and repetition.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Animations are defined using @keyframes rules that specify the states an element cycles through. The animation property applies the keyframe animation with duration, timing, and repetition settings.',
     examples: [
@@ -558,28 +467,23 @@ const css = {
       { title: 'Animation Play State', code: `.paused {\n  animation-play-state: paused;\n}\n\n.playing {\n  animation-play-state: running;\n}\n\n/* Pause on hover */\n.element:hover {\n  animation-play-state: paused;\n}`, output: 'Animation-play-state controls whether an animation is running or paused. This allows interactive control of animations based on user interaction.' }
     ],
     keyPoints: [
-      'Keyframes define the states an element cycles through during animation',
-      'Animation shorthand sets name, duration, timing, delay, count, and fill',
-      'Direction alternate plays the animation forward then backward',
-      'Fill-mode controls the element state before and after animation',
-      'Animation-play-state can pause and resume animations dynamically'
+      'Keyframes define the states an element cycles through during animation.',
+      'Direction alternate plays the animation forward then backward.',
+      'Animation-play-state can pause and resume animations dynamically.'
     ],
     commonMistakes: [
-      'Not specifying animation-fill-mode which causes the element to snap back after animation',
-      'Using animations for everything which can be distracting and overwhelming',
-      'Forgetting to set animation-iteration-count which defaults to 1',
-      'Animating layout properties which causes performance issues'
+      'Not specifying animation-fill-mode which causes the element to snap back after animation.',
+      'Animating layout properties which causes performance issues.'
     ],
     proTips: [
-      'Use will-change hint for elements that will be animated for better performance',
-      'Provide a reduced-motion media query to disable animations for accessibility',
-      'Keep animations subtle and purposeful to enhance rather than distract'
+      'Use will-change hint for elements that will be animated for better performance.',
+      'Provide a reduced-motion media query to disable animations for accessibility.'
     ]
   },
   responsive: {
-    definition: 'Responsive design uses CSS techniques to create layouts that adapt to different screen sizes and devices. Media queries, flexible units, and modern layout systems enable pages that work on any device.',
-    whyUse: 'Responsive design ensures your website works on all devices from mobile phones to large desktop monitors. It provides the best user experience regardless of screen size.',
-    whereUse: 'Responsive design is applied to every aspect of a website including layouts, typography, images, navigation, and any visual element that needs to adapt to different screen sizes.',
+    definition: 'Responsive design uses CSS techniques to create layouts that adapt to different screen sizes and devices.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Media queries check device characteristics like width, height, and orientation. They apply different styles based on breakpoints. Flexible units like percentages and viewport units create fluid layouts.',
     examples: [
@@ -590,28 +494,23 @@ const css = {
       { title: 'Container Queries', code: `.card-container {\n  container-type: inline-size;\n  container-name: card;\n}\n\n@container card (min-width: 400px) {\n  .card {\n    display: flex;\n  }\n}`, output: 'Container queries style elements based on their container size instead of viewport. This creates truly modular responsive components that work independently.' }
     ],
     keyPoints: [
-      'Mobile-first design starts with base styles for small screens',
-      'Media queries apply styles at specific breakpoints using min-width or max-width',
-      'Flexible units like percentages and viewport units create fluid layouts',
-      'Clamp function creates responsive values without media queries',
-      'Container queries respond to parent container size instead of viewport'
+      'Mobile-first design starts with base styles for small screens.',
+      'Media queries apply styles at specific breakpoints using min-width or max-width.',
+      'Container queries respond to parent container size instead of viewport.'
     ],
     commonMistakes: [
-      'Using max-width instead of min-width for mobile-first approach',
-      'Setting fixed pixel widths that do not adapt to different screen sizes',
-      'Not testing on real devices which can reveal issues not seen in dev tools',
-      'Forgetting to test landscape orientation on mobile devices'
+      'Using max-width instead of min-width for mobile-first approach.',
+      'Setting fixed pixel widths that do not adapt to different screen sizes.'
     ],
     proTips: [
-      'Start with mobile design and progressively enhance for larger screens',
-      'Use container queries for component-level responsiveness',
-      'Test on real devices to catch issues that emulators miss'
+      'Start with mobile design and progressively enhance for larger screens.',
+      'Use container queries for component-level responsiveness.'
     ]
   },
   calc: {
     definition: 'The CSS calc function performs mathematical calculations to compute property values. It allows mixing different units like pixels and percentages in a single calculation.',
-    whyUse: 'Calc enables dynamic sizing that would otherwise require JavaScript. It creates flexible layouts by combining fixed and fluid values in one declaration.',
-    whereUse: 'Calc is used for responsive widths, dynamic spacing, positioning elements based on other dimensions, and any calculation that needs to mix unit types.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The calc function takes a mathematical expression as its argument. It supports addition, subtraction, multiplication, and division. Spaces are required around the plus and minus operators.',
     examples: [
@@ -622,28 +521,23 @@ const css = {
       { title: 'Nested Calc', code: `.element {\n  width: calc(calc(100% / 3) - 20px);\n  margin: calc(calc(100vh - 500px) / 2);\n}`, output: 'Calc functions can be nested for complex calculations. The inner calc is evaluated first, then the outer calc uses that result.' }
     ],
     keyPoints: [
-      'Calc supports addition, subtraction, multiplication, and division',
-      'Spaces are required around plus and minus operators',
-      'Calc can mix different unit types in a single calculation',
-      'Spaces are not required around multiplication and division operators',
-      'Calc works with any CSS property that accepts numeric values'
+      'Calc supports addition, subtraction, multiplication, and division.',
+      'Spaces are required around plus and minus operators.',
+      'Calc can mix different unit types in a single calculation.'
     ],
     commonMistakes: [
-      'Forgetting spaces around plus and minus operators which breaks the calculation',
-      'Using calc for simple calculations where a static value would be clearer',
-      'Not considering browser support for calc in older browsers',
-      'Overcomplicating calculations when simpler alternatives exist'
+      'Forgetting spaces around plus and minus operators which breaks the calculation.',
+      'Using calc for simple calculations where a static value would be clearer.'
     ],
     proTips: [
-      'Use calc to create responsive layouts that combine fixed and fluid values',
-      'Combine calc with custom properties for dynamic design calculations',
-      'Test calc calculations in different browsers to ensure consistency'
+      'Use calc to create responsive layouts that combine fixed and fluid values.',
+      'Combine calc with custom properties for dynamic design calculations.'
     ]
   },
   overflow: {
-    definition: 'CSS overflow controls what happens when content exceeds the dimensions of its container. It determines whether content is visible, hidden, scrolled, or clipped when it overflows the element boundaries.',
-    whyUse: 'Overflow control prevents layout breaking from unexpected content. It enables scrollable areas, text truncation, and custom scroll behaviors for containers with dynamic content.',
-    whereUse: 'Overflow is used on text containers, code blocks, modals, scrollable panels, image galleries, and any container that might have more content than its allocated space.',
+    definition: 'CSS overflow controls what happens when content exceeds the dimensions of its container.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The overflow property accepts visible, hidden, scroll, and auto values. Overflow-x and overflow-y control horizontal and vertical overflow separately. Overflow-wrap controls how text wraps.',
     examples: [
@@ -654,28 +548,23 @@ const css = {
       { title: 'Scroll Behavior', code: `.scroll-container {\n  overflow-y: auto;\n  scroll-behavior: smooth;\n  scroll-snap-type: y mandatory;\n}\n\n.scroll-item {\n  scroll-snap-align: start;\n}`, output: 'Scroll-behavior smooth enables smooth scrolling animations. Scroll-snap creates snap points that align items when scrolling stops.' }
     ],
     keyPoints: [
-      'Visible is the default and allows content to overflow the container',
-      'Hidden clips content that exceeds the container boundaries',
-      'Scroll always shows scrollbars regardless of content overflow',
-      'Auto shows scrollbars only when content actually overflows',
-      'Overflow-wrap controls how text breaks when it exceeds container width'
+      'Hidden clips content that exceeds the container boundaries.',
+      'Auto shows scrollbars only when content actually overflows.',
+      'Overflow-wrap controls how text breaks when it exceeds container width.'
     ],
     commonMistakes: [
-      'Not setting overflow on containers with dynamic content which can break layout',
-      'Using overflow hidden when scroll would be more appropriate for user access',
-      'Forgetting that overflow creates a new block formatting context',
-      'Not testing overflow behavior with long content like URLs or code'
+      'Using overflow hidden when scroll would be more appropriate for user access.',
+      'Not testing overflow behavior with long content like URLs or code.'
     ],
     proTips: [
-      'Use overflow auto instead of overflow scroll to avoid unnecessary scrollbars',
-      'Combine overflow hidden with border-radius for rounded container clipping',
-      'Use scroll-snap for creating carousel-like scrolling experiences'
+      'Use overflow auto instead of overflow scroll to avoid unnecessary scrollbars.',
+      'Use scroll-snap for creating carousel-like scrolling experiences.'
     ]
   },
   filters: {
-    definition: 'CSS filters apply visual effects to elements like blur, brightness, contrast, and color manipulation. They can be used for image effects, hover states, and creating visual depth.',
-    whyUse: 'Filters provide GPU-accelerated visual effects without images or JavaScript. They create interesting visual treatments, loading states, and interactive feedback.',
-    whereUse: 'Filters are used on images, backgrounds, hover effects, loading states, glassmorphism effects, and any visual manipulation that benefits from real-time processing.',
+    definition: 'CSS filters apply visual effects to elements like blur, brightness, contrast, and color manipulation.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'The filter property applies one or more filter functions to an element. Filters can be combined for complex effects. The backdrop-filter applies filters to the area behind an element.',
     examples: [
@@ -686,22 +575,17 @@ const css = {
       { title: 'Backdrop Filter', code: `.glass {\n  background: rgba(255, 255, 255, 0.2);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}`, output: 'Backdrop-filter applies blur and other effects to the area behind the element. This creates glassmorphism effects with frosted glass appearance.' }
     ],
     keyPoints: [
-      'Filters apply visual effects without changing the element layout',
-      'Multiple filter functions can be chained for complex effects',
-      'Filters are GPU-accelerated for good performance',
-      'Backdrop-filter applies effects to the area behind the element',
-      'Filters can be animated with transitions for smooth visual changes'
+      'Filters apply visual effects without changing the element layout.',
+      'Multiple filter functions can be chained for complex effects.',
+      'Backdrop-filter applies effects to the area behind the element.'
     ],
     commonMistakes: [
-      'Using filters on large elements which can cause performance issues',
-      'Not providing a fallback for browsers that do not support backdrop-filter',
-      'Using filters for layout effects when transforms would be more appropriate',
-      'Overusing filters which can make text and content hard to read'
+      'Using filters on large elements which can cause performance issues.',
+      'Overusing filters which can make text and content hard to read.'
     ],
     proTips: [
-      'Use filters for quick image effects without loading additional image files',
-      'Combine backdrop-filter with transparency for glassmorphism effects',
-      'Test filter performance on lower-end devices to ensure smooth rendering'
+      'Use filters for quick image effects without loading additional image files.',
+      'Combine backdrop-filter with transparency for glassmorphism effects.'
     ]
   }
 }

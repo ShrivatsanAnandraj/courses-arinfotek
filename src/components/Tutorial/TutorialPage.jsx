@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Editor from '@monaco-editor/react'
 import { Play, ChevronRight, ChevronDown, BookOpen, ArrowLeft, CheckCircle, Terminal, X, RotateCcw, Loader2 } from 'lucide-react'
@@ -9,9 +9,16 @@ import { defaultCode } from '../Languages/defaultCode'
 
 const PISTON_LANG = { python: 'python', javascript: 'javascript', java: 'java', c: 'c', cpp: 'cpp', csharp: 'csharp', ruby: 'ruby', go: 'go', kotlin: 'kotlin', typescript: 'typescript', html: 'html', css: 'css' }
 
+function getDefaultCode(lang, topicId) {
+  return defaultCode[lang]?.[topicId] || defaultCode[lang]?.intro || `// ${lang} code\nconsole.log("Hello!")`
+}
+
 export default function TutorialPage() {
   const { language } = useParams()
-  const [activeTopic, setActiveTopic] = useState(null)
+  const lang = languages.find(l => l.id === language)
+  const content = topicContent[language]
+
+  const [activeTopic, setActiveTopic] = useState(() => lang?.topics?.[0] || null)
   const [showCompiler, setShowCompiler] = useState(false)
   const [code, setCode] = useState('')
   const [output, setOutput] = useState('')
@@ -20,10 +27,14 @@ export default function TutorialPage() {
     const saved = localStorage.getItem(`codelearn_progress_${language}`)
     return saved ? JSON.parse(saved) : []
   })
-  const [expandedCategories, setExpandedCategories] = useState({})
-
-  const lang = languages.find(l => l.id === language)
-  const content = topicContent[language]
+  const [expandedCategories, setExpandedCategories] = useState(() => {
+    const cats = {}
+    if (lang) {
+      const uniqueCats = [...new Set(lang.topics.map(t => t.category))]
+      uniqueCats.forEach(c => { cats[c] = false })
+    }
+    return cats
+  })
 
   if (!lang) {
     return (
@@ -36,22 +47,36 @@ export default function TutorialPage() {
     )
   }
 
-  const handleTryIt = (topic) => {
-    const topicData = content?.[topic.id]
-    const exampleCode = topicData?.examples?.[0]?.code || getDefaultCode(language, topic.id)
-    setCode(exampleCode)
+  const categories = {}
+  lang.topics.forEach(t => {
+    if (!categories[t.category]) categories[t.category] = []
+    categories[t.category].push(t)
+  })
+
+  const handleTryIt = (topicId, exCode) => {
+    setCode(exCode || getDefaultCode(language, topicId))
     setOutput('')
     setShowCompiler(true)
   }
 
   const markCompleted = (topicId) => {
-    const newCompleted = [...completedTopics, topicId]
+    const newCompleted = completedTopics.includes(topicId)
+      ? completedTopics.filter(id => id !== topicId)
+      : [...completedTopics, topicId]
     setCompletedTopics(newCompleted)
     localStorage.setItem(`codelearn_progress_${language}`, JSON.stringify(newCompleted))
   }
 
   const toggleCategory = (cat) => {
     setExpandedCategories(prev => ({ ...prev, [cat]: !prev[cat] }))
+  }
+
+  const goToTopic = (direction) => {
+    const idx = lang.topics.findIndex(t => t.id === activeTopic.id)
+    const nextIdx = direction === 'next' ? idx + 1 : idx - 1
+    if (nextIdx >= 0 && nextIdx < lang.topics.length) {
+      setActiveTopic(lang.topics[nextIdx])
+    }
   }
 
   const runCode = async () => {
@@ -72,11 +97,24 @@ export default function TutorialPage() {
       const res = await fetch('https://emkc.org/piston/api/execute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ language: PISTON_LANG[language] || 'javascript', version: 'latest', files: [{ content: code }] })
+        body: JSON.stringify({
+          language: PISTON_LANG[language] || 'javascript',
+          version: 'latest',
+          files: [{ content: code }]
+        })
       })
-      if (!res.ok) throw new Error('Execution failed')
+      if (!res.ok) {
+        const errText = await res.text()
+        throw new Error(`API error (${res.status}): ${errText.slice(0, 200)}`)
+      }
       const result = await res.json()
-      setOutput(result.run?.output || 'No output')
+      const runOutput = result.run?.output || ''
+      const compileErr = result.compile?.stderr || ''
+      if (compileErr && !runOutput) {
+        setOutput(`Compile Error:\n${compileErr}`)
+      } else {
+        setOutput(runOutput || 'No output')
+      }
     } catch (e) {
       setOutput(`Error: ${e.message}`)
     } finally {
@@ -86,15 +124,12 @@ export default function TutorialPage() {
 
   const progress = Math.round((completedTopics.length / lang.topics.length) * 100)
 
-  const categories = {}
-  lang.topics.forEach(t => {
-    if (!categories[t.category]) categories[t.category] = []
-    categories[t.category].push(t)
-  })
+  const topicData = activeTopic ? content?.[activeTopic.id] : null
 
   return (
     <div className="min-h-[calc(100vh-120px)] bg-slate-50">
-      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-4 px-4">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-3 px-4">
         <div className="max-w-7xl mx-auto">
           <Link to="/home" className="inline-flex items-center gap-1 text-blue-200 hover:text-white mb-2 transition text-sm">
             <ArrowLeft size={14} /> Back to Languages
@@ -116,32 +151,29 @@ export default function TutorialPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className={`grid gap-6 ${showCompiler ? 'lg:grid-cols-2' : ''}`}>
-
-          {/* LEFT: Topics + Content */}
-          <div className={`${showCompiler ? 'lg:col-span-1' : ''} space-y-4`}>
-            {/* Collapsible Topics */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <button onClick={() => toggleCategory('all')} className="w-full flex items-center justify-between p-4 hover:bg-slate-50">
-                <span className="font-bold text-slate-800 flex items-center gap-2">
-                  <BookOpen size={16} /> Topics ({lang.topics.length})
+        <div className="flex gap-6">
+          {/* LEFT SIDEBAR - Topics */}
+          <div className="w-64 flex-shrink-0 hidden lg:block">
+            <div className="bg-white rounded-xl shadow-md overflow-hidden sticky top-4">
+              <div className="p-3 border-b bg-slate-50">
+                <span className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                  <BookOpen size={14} /> {lang.name} Tutorial
                 </span>
-                <ChevronDown size={16} className={`transition-transform ${expandedCategories['all'] !== false ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`${expandedCategories['all'] === false ? 'hidden' : ''} border-t`}>
+              </div>
+              <div className="max-h-[calc(100vh-180px)] overflow-y-auto">
                 {Object.entries(categories).map(([cat, topics]) => (
                   <div key={cat}>
-                    <button onClick={() => toggleCategory(cat)} className="w-full flex items-center justify-between px-4 py-2 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <button onClick={() => toggleCategory(cat)} className="w-full flex items-center justify-between px-3 py-2 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-600 uppercase tracking-wider">
                       <span>{cat}</span>
                       <ChevronDown size={12} className={`transition-transform ${expandedCategories[cat] === false ? '-rotate-90' : ''}`} />
                     </button>
                     <div className={`${expandedCategories[cat] === false ? 'hidden' : ''}`}>
-                      {topics.map((topic, i) => (
-                        <button key={topic.id} onClick={() => { setActiveTopic(topic); if (!showCompiler) {} }} className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2 hover:bg-slate-50 ${activeTopic?.id === topic.id ? 'bg-primary/5 text-primary border-l-3 border-primary' : 'text-slate-700'}`}>
-                          <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${completedTopics.includes(topic.id) ? 'bg-green-500 text-white' : 'bg-slate-200 text-slate-600'}`}>
-                            {completedTopics.includes(topic.id) ? <CheckCircle size={10} /> : i + 1}
+                      {topics.map((topic) => (
+                        <button key={topic.id} onClick={() => setActiveTopic(topic)} className={`w-full text-left px-3 py-2 text-sm flex items-center gap-2 hover:bg-slate-50 transition ${activeTopic?.id === topic.id ? 'bg-primary/5 text-primary border-l-3 border-primary font-semibold' : 'text-slate-600'}`}>
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${completedTopics.includes(topic.id) ? 'bg-green-500 text-white' : 'bg-slate-200 text-slate-500'}`}>
+                            {completedTopics.includes(topic.id) ? <CheckCircle size={10} /> : topics.indexOf(topic) + 1}
                           </span>
-                          <span className="flex-1 truncate">{topic.title}</span>
+                          <span className="truncate">{topic.title}</span>
                         </button>
                       ))}
                     </div>
@@ -149,94 +181,135 @@ export default function TutorialPage() {
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Topic Content */}
-            {activeTopic && (
-              <div className="bg-white rounded-xl shadow-md p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-black text-slate-800">{activeTopic.title}</h2>
-                  <button onClick={() => handleTryIt(activeTopic)} className="flex items-center gap-1 px-3 py-1.5 bg-accent text-white text-xs font-bold rounded-lg hover:bg-accent-dark transition">
-                    <Play size={12} /> Try It Yourself
-                  </button>
+          {/* MAIN CONTENT */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile topic selector */}
+            <div className="lg:hidden mb-4">
+              <select value={activeTopic?.id || ''} onChange={e => setActiveTopic(lang.topics.find(t => t.id === e.target.value))} className="w-full p-3 border rounded-lg text-sm font-medium bg-white">
+                {Object.entries(categories).map(([cat, topics]) => (
+                  <optgroup key={cat} label={cat}>
+                    {topics.map(t => <option key={t.id} value={t.id}>{t.title}</option>)}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+
+            {activeTopic && topicData ? (
+              <div className="bg-white rounded-xl shadow-md">
+                {/* Topic Header */}
+                <div className="p-5 border-b">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-black text-slate-800">{activeTopic.title}</h2>
+                    <button onClick={() => handleTryIt(activeTopic.id)} className="flex items-center gap-1 px-4 py-2 bg-accent text-white text-sm font-bold rounded-lg hover:bg-accent-dark transition">
+                      <Play size={14} /> Try it Yourself
+                    </button>
+                  </div>
+                  <p className="text-slate-500 text-sm mt-1">{activeTopic.content}</p>
                 </div>
 
-                {content?.[activeTopic.id] ? (
-                  <div className="space-y-4 text-sm">
-                    <div className="bg-blue-50 border-l-4 border-primary p-4 rounded-r-lg">
-                      <h4 className="font-bold text-primary mb-1">Definition</h4>
-                      <p className="text-slate-700">{content[activeTopic.id].definition}</p>
-                    </div>
+                {/* Content Sections - w3schools style */}
+                <div className="p-5 space-y-6">
+                  {/* Definition */}
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">{activeTopic.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{topicData.definition}</p>
+                  </div>
 
-                    <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                      <h4 className="font-bold text-green-700 mb-1">Why Learn This?</h4>
-                      <p className="text-slate-700">{content[activeTopic.id].whyUse}</p>
-                    </div>
-
-                    {content[activeTopic.id].syntax && (
-                      <div>
-                        <h4 className="font-bold text-slate-800 mb-2">Syntax</h4>
-                        <p className="text-slate-600 mb-2">{content[activeTopic.id].syntax.description}</p>
-                        <pre className="bg-slate-900 text-green-400 p-3 rounded-lg text-xs overflow-x-auto"><code>{content[activeTopic.id].syntax.code}</code></pre>
-                      </div>
-                    )}
-
+                  {/* Why / Use case */}
+                  {topicData.whyUse && (
                     <div>
-                      <h4 className="font-bold text-slate-800 mb-2">Explanation</h4>
-                      <p className="text-slate-600 leading-relaxed">{content[activeTopic.id].explanation}</p>
+                      <p className="text-slate-600 leading-relaxed">{topicData.whyUse}</p>
                     </div>
+                  )}
 
-                    {content[activeTopic.id].examples?.map((ex, i) => (
-                      <div key={i}>
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-bold text-slate-800">{ex.title}</h4>
-                          <button onClick={() => { setCode(ex.code); setOutput(''); setShowCompiler(true) }} className="text-xs text-primary hover:underline font-bold">Run this</button>
-                        </div>
-                        <pre className="bg-slate-900 text-green-400 p-3 rounded-lg text-xs overflow-x-auto"><code>{ex.code}</code></pre>
-                        {ex.output && <p className="text-xs text-slate-500 mt-1">Output: {ex.output}</p>}
+                  {/* Explanation */}
+                  {topicData.explanation && (
+                    <div>
+                      <p className="text-slate-600 leading-relaxed">{topicData.explanation}</p>
+                    </div>
+                  )}
+
+                  {/* Examples - w3schools style */}
+                  {topicData.examples?.map((ex, i) => (
+                    <div key={i}>
+                      <h4 className="font-bold text-slate-800 mb-2">{ex.title}</h4>
+                      <div className="relative group">
+                        <pre className="bg-slate-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto font-mono"><code>{ex.code}</code></pre>
+                        <button onClick={() => handleTryIt(activeTopic.id, ex.code)} className="absolute top-2 right-2 px-3 py-1 bg-accent text-white text-xs font-bold rounded opacity-0 group-hover:opacity-100 transition">
+                          Try it Yourself
+                        </button>
                       </div>
-                    ))}
+                      {ex.output && (
+                        <div className="mt-2 bg-slate-100 border-l-4 border-green-500 p-3 rounded-r">
+                          <span className="text-xs font-bold text-slate-500 uppercase">Output:</span>
+                          <pre className="text-sm text-slate-700 font-mono mt-1">{ex.output}</pre>
+                        </div>
+                      )}
+                    </div>
+                  ))}
 
-                    <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
-                      <h4 className="font-bold text-amber-700 mb-1">Key Points</h4>
-                      <ul className="list-disc list-inside text-slate-700 space-y-1">
-                        {content[activeTopic.id].keyPoints.map((p, i) => <li key={i}>{p}</li>)}
+                  {/* Note box - w3schools style */}
+                  {topicData.keyPoints && topicData.keyPoints.length > 0 && (
+                    <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                      <h4 className="font-bold text-green-700 mb-2">Note:</h4>
+                      <ul className="text-sm text-slate-700 space-y-1">
+                        {topicData.keyPoints.map((p, i) => <li key={i}>{p}</li>)}
                       </ul>
                     </div>
+                  )}
 
-                    {content[activeTopic.id].commonMistakes && (
-                      <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
-                        <h4 className="font-bold text-red-700 mb-1">Common Mistakes</h4>
-                        <ul className="list-disc list-inside text-slate-700 space-y-1">
-                          {content[activeTopic.id].commonMistakes.map((m, i) => <li key={i}>{m}</li>)}
-                        </ul>
-                      </div>
-                    )}
+                  {/* Common Mistakes - w3schools "Warning" style */}
+                  {topicData.commonMistakes && topicData.commonMistakes.length > 0 && (
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                      <h4 className="font-bold text-red-700 mb-2">Warning:</h4>
+                      <ul className="text-sm text-slate-700 space-y-1">
+                        {topicData.commonMistakes.map((m, i) => <li key={i}>{m}</li>)}
+                      </ul>
+                    </div>
+                  )}
 
-                    {content[activeTopic.id].proTips && (
-                      <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-lg">
-                        <h4 className="font-bold text-purple-700 mb-1">Pro Tips</h4>
-                        <ul className="list-disc list-inside text-slate-700 space-y-1">
-                          {content[activeTopic.id].proTips.map((t, i) => <li key={i}>{t}</li>)}
-                        </ul>
-                      </div>
-                    )}
+                  {/* Pro Tips */}
+                  {topicData.proTips && topicData.proTips.length > 0 && (
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                      <h4 className="font-bold text-blue-700 mb-2">Tip:</h4>
+                      <ul className="text-sm text-slate-700 space-y-1">
+                        {topicData.proTips.map((t, i) => <li key={i}>{t}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Exercise section - w3schools style */}
+                  <div className="bg-slate-100 p-4 rounded-lg">
+                    <h4 className="font-bold text-slate-800 mb-2">Exercise:</h4>
+                    <p className="text-sm text-slate-600 mb-3">
+                      Click "Try it Yourself" to edit the code and experiment with {activeTopic.title.toLowerCase()}. See what happens when you change the values.
+                    </p>
+                    <button onClick={() => handleTryIt(activeTopic.id)} className="flex items-center gap-1 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary-dark transition">
+                      <Play size={14} /> Try it Yourself
+                    </button>
                   </div>
-                ) : (
-                  <div className="text-slate-500">{activeTopic.content}</div>
-                )}
+                </div>
 
-                <div className="mt-6 flex items-center justify-between border-t pt-4">
-                  <button onClick={() => { const idx = lang.topics.findIndex(t => t.id === activeTopic.id); if (idx < lang.topics.length - 1) setActiveTopic(lang.topics[idx + 1]) }} className="flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-primary">
-                    Next <ChevronRight size={14} />
-                  </button>
-                  <button onClick={() => markCompleted(activeTopic.id)} className={`px-4 py-1.5 rounded-lg font-bold text-sm transition ${completedTopics.includes(activeTopic.id) ? 'bg-green-100 text-green-600' : 'bg-primary text-white hover:bg-primary-dark'}`}>
+                {/* Prev / Next Navigation - w3schools style */}
+                <div className="p-5 border-t flex items-center justify-between">
+                  {lang.topics.findIndex(t => t.id === activeTopic.id) > 0 ? (
+                    <button onClick={() => goToTopic('prev')} className="flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-primary transition">
+                      <ArrowLeft size={14} /> Previous
+                    </button>
+                  ) : <div />}
+                  <button onClick={() => markCompleted(activeTopic.id)} className={`px-4 py-2 rounded-lg font-bold text-sm transition ${completedTopics.includes(activeTopic.id) ? 'bg-green-100 text-green-600' : 'bg-primary text-white hover:bg-primary-dark'}`}>
                     {completedTopics.includes(activeTopic.id) ? 'Completed' : 'Mark Complete'}
                   </button>
+                  {lang.topics.findIndex(t => t.id === activeTopic.id) < lang.topics.length - 1 ? (
+                    <button onClick={() => goToTopic('next')} className="flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-dark transition">
+                      Next <ChevronRight size={14} />
+                    </button>
+                  ) : <div />}
                 </div>
               </div>
-            )}
-
-            {!activeTopic && (
+            ) : (
               <div className="bg-white rounded-xl shadow-md p-8 text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                   <BookOpen className="text-primary" size={28} />
@@ -247,9 +320,9 @@ export default function TutorialPage() {
             )}
           </div>
 
-          {/* RIGHT: Compiler + Terminal */}
+          {/* RIGHT: Compiler Panel */}
           {showCompiler && (
-            <div className="lg:col-span-1 flex flex-col bg-slate-900 rounded-xl overflow-hidden" style={{ height: 'calc(100vh - 200px)', minHeight: '500px' }}>
+            <div className="w-[420px] flex-shrink-0 hidden xl:flex flex-col bg-slate-900 rounded-xl overflow-hidden" style={{ height: 'calc(100vh - 180px)', minHeight: '500px', position: 'sticky', top: '4px' }}>
               <div className="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
                   <Terminal size={12} /> Code Editor
@@ -260,7 +333,14 @@ export default function TutorialPage() {
                 </div>
               </div>
               <div className="flex-1 min-h-0">
-                <Editor height="100%" language={PISTON_LANG[language] || 'javascript'} value={code} onChange={v => setCode(v || '')} theme="vs-dark" options={{ minimap: { enabled: false }, fontSize: 13, padding: { top: 8 }, scrollBeyondLastLine: false, automaticLayout: true }} />
+                <Editor
+                  height="100%"
+                  language={PISTON_LANG[language] || 'javascript'}
+                  value={code}
+                  onChange={v => setCode(v || '')}
+                  theme="vs-dark"
+                  options={{ minimap: { enabled: false }, fontSize: 13, padding: { top: 8 }, scrollBeyondLastLine: false, automaticLayout: true }}
+                />
               </div>
               <div className="border-t border-slate-700">
                 <div className="flex items-center justify-between px-4 py-1.5 bg-slate-800">
@@ -283,8 +363,4 @@ export default function TutorialPage() {
       </div>
     </div>
   )
-}
-
-function getDefaultCode(lang, topicId) {
-  return defaultCode[lang]?.[topicId] || defaultCode[lang]?.intro || `// ${lang} code\nconsole.log("Hello!")`
 }

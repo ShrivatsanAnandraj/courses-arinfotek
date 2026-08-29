@@ -1,10 +1,10 @@
 const c = {
   intro: {
-    definition: "C is a general-purpose, procedural programming language developed by Dennis Ritchie at Bell Labs in 1972. It provides low-level access to memory and efficient machine-level instructions while maintaining a clean, structured syntax.",
-    whyUse: "C is the foundation of many modern languages (C++, Java, Python, etc.). It offers excellent performance, direct hardware access, and is widely used in system programming, embedded systems, and operating system development.",
-    whereUse: "Operating systems (Linux, Windows), embedded systems, device drivers, databases (MySQL), compilers, game engines, IoT devices, and performance-critical applications.",
+    definition: "C is a general-purpose programming language created by Dennis Ritchie in 1972. It gives you low-level memory access through pointers while keeping a clean, structured syntax.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C programs consist of functions, variables, and control structures. The main() function is the entry point. C uses preprocessor directives for includes and macros. Memory management is manual using pointers.",
+    explanation: "C programs are built from functions, variables, and control structures. The main() function is your entry point. Memory management is manual using pointers, and preprocessor directives handle includes and macros.",
     examples: [
       {
         title: "Hello World",
@@ -63,33 +63,25 @@ int main() {
     ],
     keyPoints: [
       "C is a procedural language with manual memory management",
-      "The main() function is the program entry point",
-      "C uses preprocessor directives starting with #",
-      "Pointers allow direct memory access",
-      "C has a small keyword set (32 keywords in ANSI C)"
+      "main() is the entry point of every C program",
+      "Preprocessor directives start with #"
     ],
     commonMistakes: [
       "Forgetting to include stdio.h for printf/scanf",
-      "Not returning 0 from main()",
-      "Using = instead of == for comparison",
-      "Memory leaks from malloc without free",
-      "Buffer overflow from unsafe string functions"
+      "Using = instead of == for comparison"
     ],
     proTips: [
       "Always initialize variables before use",
-      "Use const for values that should not change",
-      "Check return values of malloc and file operations",
-      "Use fgets() instead of gets() for safer input",
       "Compile with -Wall -Wextra for more warnings"
     ]
   },
 
   setup: {
-    definition: "Setting up a C development environment requires a compiler, text editor, and build tools. The most common compiler is GCC (GNU Compiler Collection), available on all major platforms.",
-    whyUse: "A proper setup ensures you can write, compile, debug, and run C programs efficiently. Using IDEs or proper toolchains streamlines the development workflow.",
-    whereUse: "Development environments for C programming: Windows (MinGW, Visual Studio), Linux (GCC), macOS (Clang), and online compilers for quick testing.",
+    definition: "You need a compiler, a text editor, and build tools to write C programs. GCC is the most popular compiler and runs on all major platforms.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C programs are written in .c files and compiled into executable binaries. The compilation process involves preprocessing, compilation, assembly, and linking stages.",
+    explanation: "C programs are written in .c files and compiled into executable binaries. The compilation process has four stages: preprocessing, compilation, assembly, and linking.",
     examples: [
       {
         title: "GCC Compilation",
@@ -139,34 +131,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "GCC is the most widely used C compiler",
       "Compile with: gcc -o program program.c",
       "Use -g flag for debugging symbols",
-      "Use -O2 for optimization",
       "Use make utility for larger projects"
     ],
     commonMistakes: [
       "Forgetting to compile before running",
-      "Not linking all required source files",
-      "Using wrong compiler for the platform",
-      "Ignoring compiler warnings",
-      "Not setting up proper include paths"
+      "Not linking all required source files"
     ],
     proTips: [
       "Use 'gcc -Wall -Wextra -pedantic' for strict warnings",
-      "Create a Makefile for project automation",
-      "Use Valgrind to detect memory leaks",
-      "Consider using CMake for cross-platform builds",
-      "Use clang-tidy for code quality checks"
+      "Create a Makefile for project automation"
     ]
   },
 
   variables: {
-    definition: "Variables are named memory locations that store data values. In C, variables must be declared with a specific type before use, determining what kind of data they can hold and how much memory they occupy.",
-    whyUse: "Variables allow programs to store, retrieve, and manipulate data. They are essential for creating dynamic programs that can process different inputs and maintain state.",
-    whereUse: "Every C program uses variables for storing numbers, characters, strings, pointers, and complex data structures throughout the code.",
+    definition: "Variables are named storage locations that hold data. In C you must declare a variable's type before using it, which determines how much memory it uses.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C provides several data types: int (integers), float (single precision), double (double precision), char (characters), and void. Variables can have modifiers like unsigned, short, long, and static.",
+    explanation: "C provides several basic types: int for integers, float and double for decimals, and char for single characters. You can use modifiers like unsigned, short, long, and const to fine-tune them.",
     examples: [
       {
         title: "Basic Data Types",
@@ -237,34 +221,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Must declare type before using a variable",
-      "Initialize variables to avoid garbage values",
+      "Declare the type before using a variable",
       "Use const for values that should not change",
-      "sizeof operator returns size in bytes",
-      "Casting can convert between types explicitly"
+      "sizeof returns the size in bytes"
     ],
     commonMistakes: [
-      "Using uninitialized variables",
-      "Integer division truncating decimals",
-      "Overflow when storing large numbers in small types",
-      "Using float comparisons with ==",
-      "Forgetting that char is actually a small integer"
+      "Using uninitialized variables leads to garbage values",
+      "Integer division silently truncates decimals"
     ],
     proTips: [
       "Use meaningful variable names for readability",
-      "Declare variables close to their first use",
-      "Use unsigned types for non-negative values",
-      "Use typedef for complex type names",
       "Initialize all variables at declaration"
     ]
   },
 
   operators: {
-    definition: "Operators are special symbols that perform operations on variables and values. C provides arithmetic, relational, logical, bitwise, assignment, and other operators for manipulating data.",
-    whyUse: "Operators are fundamental for performing calculations, making comparisons, and implementing logic in programs. They enable all data manipulation operations.",
-    whereUse: "Used everywhere in C programs: arithmetic calculations, conditional checks, bitwise operations for hardware control, and logical expressions in conditions.",
+    definition: "Operators are symbols that perform operations on values. C has arithmetic, relational, logical, bitwise, and assignment operators.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C operators have precedence and associativity rules. Arithmetic operators follow standard math rules. Logical operators use short-circuit evaluation. Bitwise operators work on individual bits.",
+    explanation: "Arithmetic operators handle math. Relational operators compare values. Logical operators combine boolean expressions. Bitwise operators work on individual bits. Operator precedence determines evaluation order.",
     examples: [
       {
         title: "Arithmetic Operators",
@@ -342,32 +318,24 @@ int main() {
     keyPoints: [
       "Arithmetic: +, -, *, /, %",
       "Relational: ==, !=, >, <, >=, <=",
-      "Logical: &&, ||, !",
-      "Assignment: =, +=, -=, *=, /=, %=",
-      "Ternary: condition ? expr1 : expr2"
+      "Use parentheses to clarify precedence"
     ],
     commonMistakes: [
       "Using = (assignment) instead of == (comparison)",
-      "Integer division losing precision",
-      "Incorrect operator precedence",
-      "Modulus with negative numbers",
-      "Side effects in complex expressions"
+      "Integer division losing precision"
     ],
     proTips: [
-      "Use parentheses to clarify precedence",
-      "Avoid complex expressions with side effects",
-      "Use bitwise operators for flag manipulation",
-      "Remember short-circuit evaluation in && and ||",
-      "Use compound assignments for cleaner code"
+      "Use parentheses to avoid precedence confusion",
+      "Remember short-circuit evaluation in && and ||"
     ]
   },
 
   conditionals: {
-    definition: "Conditional statements allow programs to make decisions and execute different code paths based on whether conditions are true or false. C supports if, if-else, else-if, and switch statements.",
-    whyUse: "Conditionals enable programs to respond differently to different inputs and situations, making programs dynamic and capable of handling various scenarios.",
-    whereUse: "Input validation, error handling, feature selection, game logic, user interface decisions, and any scenario requiring different code paths.",
+    definition: "Conditional statements let your program make decisions and run different code depending on whether a condition is true or false.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "if statements check a condition and execute code if true. if-else provides an alternative path. else-if chains multiple conditions. switch provides efficient multi-way branching for discrete values.",
+    explanation: "Use if to check a single condition, if-else for two paths, else-if to chain multiple conditions, and switch for efficient multi-way branching on discrete values.",
     examples: [
       {
         title: "If-Else Statement",
@@ -467,34 +435,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "if checks a single condition",
-      "if-else provides two code paths",
-      "else-if chains multiple conditions",
-      "switch is efficient for discrete values",
+      "if checks a single condition, if-else provides two paths",
+      "switch is efficient for discrete value matching",
       "Always use break in switch cases"
     ],
     commonMistakes: [
-      "Missing break in switch causing fall-through",
-      "Using = instead of == in conditions",
-      "Dangling else problem in nested ifs",
-      "Non-exhaustive switch without default",
-      "Comparing floats with =="
+      "Missing break in switch causes fall-through",
+      "Using = instead of == in conditions"
     ],
     proTips: [
-      "Put the most likely condition first",
-      "Use switch for many comparisons with same variable",
       "Always include a default case in switch",
-      "Use early returns to reduce nesting",
-      "Consider using functions to simplify complex conditions"
+      "Use early returns to reduce nesting"
     ]
   },
 
   loops: {
-    definition: "Loops allow repeated execution of code blocks. C provides three loop types: for (counter-controlled), while (condition-controlled), and do-while (runs at least once).",
-    whyUse: "Loops eliminate repetitive code and enable processing of collections, iterations, and repeated operations efficiently.",
-    whereUse: "Array traversal, string processing, file reading, mathematical calculations, simulations, and any task requiring repeated execution.",
+    definition: "Loops let you execute a block of code repeatedly. C has three loop types: for (counter-based), while (condition-based), and do-while (runs at least once).",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "for loops are best when you know the iteration count. while loops check the condition before each iteration. do-while guarantees at least one execution. break exits loops, continue skips to next iteration.",
+    explanation: "Use for when you know the iteration count. Use while when the condition should be checked before each run. Use do-while when the body must execute at least once. break exits the loop; continue skips to the next iteration.",
     examples: [
       {
         title: "For Loop",
@@ -570,34 +530,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "for: for(init; condition; increment)",
-      "while: while(condition) - checks before",
-      "do-while: do {} while(condition) - runs once",
-      "break exits the innermost loop",
-      "continue skips to the next iteration"
+      "for is best when you know the iteration count",
+      "while checks the condition before each iteration",
+      "do-while guarantees at least one execution"
     ],
     commonMistakes: [
       "Infinite loops from missing increment",
-      "Off-by-one errors in loop bounds",
-      "Using break when continue is intended",
-      "Modifying loop variable inside loop",
-      "do-while without semicolon"
+      "Off-by-one errors in loop bounds"
     ],
     proTips: [
       "Use for loops when iteration count is known",
-      "Use while for condition-based termination",
-      "Avoid modifying loop counters inside loops",
-      "Use meaningful loop variable names",
-      "Consider using functions to reduce loop complexity"
+      "Avoid modifying loop counters inside loops"
     ]
   },
 
   arrays: {
-    definition: "Arrays are collections of elements of the same type stored in contiguous memory locations. They provide efficient access to elements using indices starting from 0.",
-    whyUse: "Arrays enable efficient storage and access to multiple values of the same type. They are fundamental for implementing data structures and algorithms.",
-    whereUse: "Storing collections of numbers, characters, strings, matrices, lookup tables, buffers, and implementing stacks, queues, and other data structures.",
+    definition: "Arrays store multiple elements of the same type in contiguous memory. Elements are accessed by index, starting at 0.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Arrays are declared with a fixed size. Elements are accessed using array[index]. Arrays decay to pointers when passed to functions. Multi-dimensional arrays are arrays of arrays.",
+    explanation: "Declare an array with a fixed size and access elements using array[index]. When passed to functions, arrays decay to pointers. Use sizeof(arr)/sizeof(arr[0]) to calculate the number of elements.",
     examples: [
       {
         title: "Array Declaration and Access",
@@ -680,33 +632,25 @@ int main() {
     ],
     keyPoints: [
       "Array indices start at 0",
-      "Arrays are fixed-size in C",
-      "Arrays decay to pointers when passed to functions",
-      "sizeof gives total bytes, not element count",
-      "Multi-dimensional arrays are stored row-major"
+      "Use sizeof(arr)/sizeof(arr[0]) for element count",
+      "Arrays decay to pointers when passed to functions"
     ],
     commonMistakes: [
-      "Accessing beyond array bounds",
-      "Not initializing all elements",
-      "Using == to compare arrays",
-      "Forgetting array size when passing to functions",
-      "Stack overflow from large arrays"
+      "Accessing beyond array bounds is undefined behavior",
+      "Using == to compare arrays does not work"
     ],
     proTips: [
-      "Use sizeof(arr)/sizeof(arr[0]) for array length",
       "Initialize arrays at declaration",
-      "Pass array size as a separate parameter",
-      "Use const for read-only arrays",
-      "Consider dynamic allocation for large arrays"
+      "Pass array size as a separate parameter to functions"
     ]
   },
 
   strings: {
-    definition: "Strings in C are arrays of characters terminated by a null character ('\\0'). They are not a built-in type but are handled through character arrays and string functions from string.h.",
-    whyUse: "Strings are essential for text processing, user input/output, file operations, and any application involving text data manipulation.",
-    whereUse: "User interfaces, file processing, network communication, data parsing, and any application dealing with text content.",
+    definition: "Strings in C are arrays of characters ending with a null terminator ('\\0'). They are not a built-in type but are handled through char arrays and functions from string.h.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Strings are char arrays ending with '\\0'. String functions like strlen, strcpy, strcat, and strcmp provide common operations. The string.h header contains these functions.",
+    explanation: "Create strings as char arrays and use functions like strlen, strcpy, strcat, and strcmp from <string.h> for common operations. Always make sure your buffer is large enough for the null terminator.",
     examples: [
       {
         title: "String Declaration",
@@ -792,32 +736,24 @@ int main() {
     keyPoints: [
       "Strings end with null character '\\0'",
       "Use string.h for string functions",
-      "strlen returns length excluding null",
-      "strcpy and strcat require sufficient buffer size",
       "strcmp returns negative, zero, or positive"
     ],
     commonMistakes: [
-      "Buffer overflow from unbounded strcpy",
-      "Not allocating space for null terminator",
       "Comparing strings with == instead of strcmp",
-      "Modifying string literals",
-      "Forgetting to include string.h"
+      "Buffer overflow from unbounded strcpy"
     ],
     proTips: [
-      "Always use strncpy to prevent buffer overflow",
-      "Use sizeof for buffer size, strlen for string length",
-      "Use snprintf for safe formatted string building",
-      "Never modify string literals (use char arrays)",
-      "Use strncat for safe concatenation"
+      "Use strncpy and strncat to prevent buffer overflow",
+      "Use sizeof for buffer size, strlen for string length"
     ]
   },
 
   pointers: {
-    definition: "Pointers are variables that store memory addresses of other variables. They provide indirect access to data and are fundamental to C's power and flexibility for dynamic memory and data structures.",
-    whyUse: "Pointers enable dynamic memory allocation, efficient array passing, data structure implementation (linked lists, trees), and direct hardware access. They are essential for advanced C programming.",
-    whereUse: "Dynamic memory management, data structures, function callbacks, array manipulation, system programming, and hardware interaction.",
+    definition: "Pointers store the memory address of another variable. They give C its power for dynamic memory, data structures, and direct hardware access.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Pointers are declared with *. The & operator gets a variable's address. The * operator dereferences a pointer (gets its value). NULL pointer points to nothing. Pointer arithmetic allows array traversal.",
+    explanation: "Declare a pointer with * and get a variable's address with &. Dereference a pointer with * to read or modify its value. NULL points to nothing, so always check before dereferencing.",
     examples: [
       {
         title: "Basic Pointer Usage",
@@ -904,34 +840,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "* declares a pointer, & gets address",
-      "* dereferences a pointer (gets value)",
-      "Pointers must be initialized before use",
-      "NULL pointer points to nothing",
-      "Pointer arithmetic moves by type size"
+      "* declares a pointer, & gets an address, * dereferences",
+      "Always initialize pointers before use",
+      "Pointer arithmetic moves by the size of the type"
     ],
     commonMistakes: [
-      "Using uninitialized pointers (wild pointers)",
-      "Dangling pointers to freed memory",
-      "Memory leaks from forgotten free()",
-      "Null pointer dereference",
-      "Incorrect pointer type casting"
+      "Dereferencing a NULL or uninitialized pointer",
+      "Memory leaks from forgetting free()"
     ],
     proTips: [
-      "Always initialize pointers (NULL if not immediately assigned)",
       "Check pointers for NULL before dereferencing",
-      "Free memory in reverse order of allocation",
-      "Use const pointers for read-only access",
-      "Use Valgrind to detect memory issues"
+      "Set pointers to NULL after free()"
     ]
   },
 
   pointer_arrays: {
-    definition: "Pointer-array relationship in C: arrays decay to pointers, and pointers can be used to access array elements. Understanding this relationship is crucial for efficient array manipulation.",
-    whyUse: "This relationship enables efficient array passing to functions, dynamic array manipulation, and understanding how C handles arrays internally.",
-    whereUse: "Function parameters, dynamic data structures, string manipulation, and any code requiring flexible array access patterns.",
+    definition: "Arrays and pointers are closely related in C. An array name acts as a pointer to its first element, and pointer arithmetic can traverse arrays.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "An array name acts as a pointer to its first element. Array notation (arr[i]) is equivalent to pointer notation (*(arr+i)). Pointers can traverse arrays using arithmetic.",
+    explanation: "arr[i] is equivalent to *(arr+i). When you pass an array to a function it decays to a pointer, so you must pass the size separately. Pointers can step through arrays using arithmetic.",
     examples: [
       {
         title: "Array Name as Pointer",
@@ -1013,34 +941,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Array name decays to pointer to first element",
-      "arr[i] is equivalent to *(arr+i)",
+      "arr[i] is the same as *(arr+i)",
       "Arrays decay to pointers when passed to functions",
-      "Pointer arithmetic works on array elements",
-      "Array of pointers stores multiple addresses"
+      "Always pass array size along with the pointer"
     ],
     commonMistakes: [
-      "Confusing array size with pointer size",
-      "Losing array bounds when passing to functions",
-      "Using sizeof on pointer parameter",
-      "Confusing pointer to array with array of pointers",
-      "Off-by-one errors in pointer arithmetic"
+      "Using sizeof on a pointer parameter gives wrong size",
+      "Losing array bounds when passing to functions"
     ],
     proTips: [
-      "Always pass array size with array pointer",
       "Use const for read-only array parameters",
-      "Understand that arrays don't copy when passed",
-      "Use pointer notation for efficiency",
-      "Be careful with pointer comparisons"
+      "Use pointer notation for efficiency"
     ]
   },
 
   functions: {
-    definition: "Functions are reusable blocks of code that perform specific tasks. C supports functions with parameters, return values, recursion, and variable scope management.",
-    whyUse: "Functions enable code reuse, modular design, easier debugging, and abstraction. They are the building blocks of structured programming.",
-    whereUse: "Code organization, modular programming, library creation, callbacks, and implementing algorithms in manageable pieces.",
+    definition: "Functions are reusable blocks of code that perform a specific task. They help organize code, avoid repetition, and manage complexity.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Functions have a return type, name, parameters, and body. Parameters can be passed by value or by reference (using pointers). Scope determines variable visibility. Recursion enables self-calling functions.",
+    explanation: "A function has a return type, name, parameters, and a body. Parameters are passed by value by default; use pointers to modify the original values. Static variables inside functions persist across calls.",
     examples: [
       {
         title: "Function Definition",
@@ -1129,34 +1049,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Functions must be declared before use",
-      "Parameters are passed by value by default",
-      "Use pointers to modify original values",
-      "Static variables persist between calls",
-      "Recursion requires a base case"
+      "Parameters are passed by value unless you use pointers",
+      "Static variables persist between function calls",
+      "Recursion needs a base case to stop"
     ],
     commonMistakes: [
-      "Missing return statement",
-      "Passing arrays by value (they decay to pointers)",
-      "Infinite recursion without base case",
-      "Using wrong return type",
-      "Modifying array through pointer parameter"
+      "Missing return statement in non-void functions",
+      "Infinite recursion without a base case"
     ],
     proTips: [
-      "Keep functions small and focused",
-      "Use meaningful parameter names",
-      "Document function behavior and parameters",
-      "Use static for function-level persistence",
-      "Avoid side effects when possible"
+      "Keep functions small and focused on one task",
+      "Declare functions before calling them"
     ]
   },
 
   pointer_functions: {
-    definition: "Function pointers store addresses of functions and allow dynamic function calls. They enable callbacks, polymorphism, and flexible code architecture in C.",
-    whyUse: "Function pointers enable callback mechanisms, runtime function selection, event handling, and implementing polymorphic behavior in C.",
-    whereUse: "Callback functions, event handlers, plugin systems, sorting algorithms, and implementing interfaces and abstract data types.",
+    definition: "Function pointers store the address of a function, letting you call it indirectly. They are used for callbacks, dynamic dispatch, and flexible code architecture.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Function pointers are declared with (*name)(params). They can be passed as arguments, stored in arrays, and called indirectly. They enable runtime binding of functions.",
+    explanation: "Declare a function pointer with (*name)(params) and assign it a function. You can pass function pointers as arguments, store them in arrays, and use typedef for cleaner syntax.",
     examples: [
       {
         title: "Basic Function Pointer",
@@ -1253,34 +1165,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Declared as: return_type (*name)(params)",
-      "Can be assigned and reassigned",
-      "Enable callback patterns",
-      "Used by library functions like qsort",
+      "Declare as: return_type (*name)(params)",
+      "Enable callback and strategy patterns",
       "typedef simplifies complex declarations"
     ],
     commonMistakes: [
-      "Mismatched function signatures",
-      "Calling through NULL function pointer",
-      "Incorrect typedef usage",
-      "Forgetting to assign function before calling",
-      "Wrong number of arguments in callback"
+      "Calling through a NULL function pointer",
+      "Mismatched function signatures"
     ],
     proTips: [
       "Use typedef for readability",
-      "Always validate function pointer before calling",
-      "Use function pointers for strategy pattern",
-      "Keep function pointer signatures consistent",
-      "Document callback behavior clearly"
+      "Validate function pointers before calling"
     ]
   },
 
   structures: {
-    definition: "Structures group related variables of different types under a single name. They enable creating complex data types and organizing data logically.",
-    whyUse: "Structures provide a way to represent real-world entities with multiple attributes. They are essential for creating organized, maintainable data models.",
-    whereUse: "Representing objects (student, employee, product), implementing data structures (linked lists, trees), and organizing related data in programs.",
+    definition: "Structures group related variables of different types under one name. They let you model real-world entities with multiple attributes.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Structures are defined with struct keyword. Members are accessed using dot operator (.). Structures can be passed to functions, used in arrays, and contain pointers to themselves for linked structures.",
+    explanation: "Define a struct with the struct keyword, access members with dot (.), and use the arrow operator (->) with pointers. Structures can contain other structures and can be passed by value or reference.",
     examples: [
       {
         title: "Basic Structure",
@@ -1391,34 +1295,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Define with struct keyword",
-      "Access members with . operator",
-      "Use -> for pointer to structure",
+      "Use . to access members, -> to access via pointer",
       "Structures can be passed by value or reference",
-      "Structures can contain other structures"
+      "Structures can be nested"
     ],
     commonMistakes: [
-      "Comparing structures with ==",
-      "Forgetting semicolon after struct definition",
-      "Deep copy issues with pointer members",
-      "Memory alignment padding",
-      "Not initializing all members"
+      "Comparing structures with == does not work",
+      "Forgetting semicolon after struct definition"
     ],
     proTips: [
       "Use typedef for cleaner type names",
-      "Pass structures by pointer for efficiency",
-      "Use const for read-only structure parameters",
-      "Group related data logically",
-      "Consider memory alignment for performance"
+      "Pass structures by pointer for efficiency"
     ]
   },
 
   unions: {
-    definition: "Unions are user-defined types that overlay all members at the same memory location. Only one member can be accessed at a time, making unions memory-efficient for mutually exclusive data.",
-    whyUse: "Unions save memory when only one of several possible values needs to be stored at a time. They are useful for variant types and hardware register access.",
-    whereUse: "Memory-constrained systems, variant data types, type punning, hardware register mapping, and implementing tagged unions.",
+    definition: "Unions store different data types in the same memory location. Only one member can be accessed at a time, making them memory-efficient for mutually exclusive data.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Unions are declared like structures but use union keyword. All members share the same memory. The size equals the largest member. Only the last assigned member should be read.",
+    explanation: "Unions look like structs but use the union keyword. All members share the same memory, so the size equals the largest member. Use an enum tag to track which member is active.",
     examples: [
       {
         title: "Basic Union",
@@ -1515,32 +1411,24 @@ int main() {
     keyPoints: [
       "All members share the same memory",
       "Size equals the largest member",
-      "Only one member should be accessed at a time",
-      "Use tagged unions to track active member",
-      "More memory-efficient than structures"
+      "Use an enum tag to track which member is active"
     ],
     commonMistakes: [
-      "Accessing wrong member (undefined behavior)",
-      "Not tracking which member is active",
-      "Assuming union size is sum of members",
-      "Using union for type punning (non-portable)",
-      "Initializing multiple members"
+      "Accessing the wrong member is undefined behavior",
+      "Assuming union size is the sum of members"
     ],
     proTips: [
-      "Use enums to track active union member",
-      "Use unions for variant data types",
-      "Use unions for memory-constrained systems",
-      "Document which member is active",
-      "Consider using structures for safety"
+      "Use tagged unions for type safety",
+      "Use unions for memory-constrained systems"
     ]
   },
 
   dynamic: {
-    definition: "Dynamic memory allocation allows programs to request memory at runtime. C provides malloc, calloc, realloc, and free functions for manual memory management.",
-    whyUse: "Dynamic allocation enables programs to handle data of unknown size, create data structures that grow/shrink, and manage memory efficiently.",
-    whereUse: "Linked lists, trees, graphs, dynamic arrays, string manipulation, and any scenario where memory requirements are unknown at compile time.",
+    definition: "Dynamic memory allocation lets your program request memory at runtime. C provides malloc, calloc, realloc, and free from <stdlib.h> for this purpose.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "malloc allocates uninitialized memory. calloc allocates zero-initialized memory. realloc resizes existing allocation. free releases memory. Always check allocation success and free when done.",
+    explanation: "malloc allocates raw memory, calloc allocates zero-initialized memory, realloc resizes an existing block, and free releases it. Always check if allocation succeeded and always free when done.",
     examples: [
       {
         title: "Malloc Basic",
@@ -1647,34 +1535,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "malloc: allocate uninitialized memory",
-      "calloc: allocate zero-initialized memory",
-      "realloc: resize existing allocation",
-      "free: release allocated memory",
-      "Always check for NULL after allocation"
+      "malloc allocates uninitialized memory, calloc zeroes it",
+      "realloc resizes an existing allocation",
+      "Always free memory and check for NULL"
     ],
     commonMistakes: [
       "Memory leaks from missing free()",
-      "Using memory after free() (dangling pointer)",
-      "Double free",
-      "Not checking malloc return value",
-      "Wrong size calculation in malloc"
+      "Using memory after free() is undefined"
     ],
     proTips: [
       "Always check malloc/calloc return value",
-      "Set pointer to NULL after free()",
-      "Use Valgrind to detect memory leaks",
-      "Free memory in reverse order of allocation",
-      "Use memory pools for frequent allocations"
+      "Set pointer to NULL after free()"
     ]
   },
 
   preprocessor: {
-    definition: "The C preprocessor processes directives before compilation. It handles file inclusion, macro expansion, conditional compilation, and other text transformations.",
-    whyUse: "Preprocessor directives enable code reuse through macros, conditional compilation for platform-specific code, and file organization through includes.",
-    whereUse: "Header files, macro definitions, conditional compilation, platform-specific code, and build configuration.",
+    definition: "The C preprocessor runs before compilation and processes directives that start with #. It handles macros, file inclusion, and conditional compilation.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Preprocessor directives start with #. #define creates macros. #include adds header files. #ifdef/#ifndef enable conditional compilation. #pragma provides compiler-specific instructions.",
+    explanation: "#define creates macros that are expanded before compiling. #include pulls in header files. #ifdef and #ifndef enable conditional compilation. Macros are text substitutions, not real functions.",
     examples: [
       {
         title: "Macro Definition",
@@ -1747,34 +1627,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Directives start with #",
-      "#define creates macros",
-      "#include adds header files",
-      "#ifdef/#ifndef for conditional compilation",
+      "All directives start with #",
+      "#define creates macros, #include adds headers",
       "Macros are expanded before compilation"
     ],
     commonMistakes: [
-      "Missing parentheses in function macros",
-      "Side effects in macro arguments",
-      "Missing include guards",
-      "Using = instead of == in #if",
-      "Macro name collisions"
+      "Missing parentheses in function-like macros",
+      "Side effects in macro arguments"
     ],
     proTips: [
       "Always use parentheses in macro parameters",
-      "Use inline functions over complex macros",
-      "Use include guards in header files",
-      "Use #pragma once for simpler header guards",
-      "Document macro behavior clearly"
+      "Use inline functions over complex macros"
     ]
   },
 
   fileio: {
-    definition: "File I/O in C enables reading from and writing to files. The stdio.h library provides functions for file operations, formatted I/O, and stream handling.",
-    whyUse: "File I/O allows programs to persist data, read configuration files, process large datasets, and communicate with other programs through files.",
-    whereUse: "Data persistence, log files, configuration reading, data processing, report generation, and any application needing file access.",
+    definition: "File I/O lets your program read from and write to files. The stdio.h library provides fopen, fclose, fprintf, fscanf, and related functions.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Files are opened with fopen() and closed with fclose(). fgetc/fputs handle character I/O. fprintf/fscanf handle formatted I/O. Binary files use fread/fwrite.",
+    explanation: "Open a file with fopen() and close it with fclose(). Use fprintf/fscanf for formatted I/O, fgets/fputs for line-based I/O, and fread/fwrite for binary data. Always check that fopen succeeded.",
     examples: [
       {
         title: "Writing to File",
@@ -1876,34 +1748,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "fopen opens file, fclose closes it",
-      "Modes: r, w, a, rb, wb, r+, w+",
-      "Check fopen return for NULL",
-      "fprintf/fscanf for formatted I/O",
-      "fread/fwrite for binary I/O"
+      "fopen opens a file, fclose closes it",
+      "Always check fopen return value for NULL",
+      "Use fgets instead of gets for safety"
     ],
     commonMistakes: [
       "Not checking fopen return value",
-      "Forgetting to close files",
-      "Using wrong file mode",
-      "Buffer overflow in fgets",
-      "Not flushing buffers before close"
+      "Forgetting to close files"
     ],
     proTips: [
-      "Always check if fopen succeeds",
-      "Use fclose to flush and release resources",
-      "Use fgets instead of gets for safety",
-      "Use binary mode for non-text files",
-      "Use fseek/ftell for file positioning"
+      "Always check if fopen succeeds before writing",
+      "Use binary mode for non-text files"
     ]
   },
 
   bitwise: {
-    definition: "Bitwise operators manipulate individual bits of integer values. C provides AND, OR, XOR, NOT, left shift, and right shift operators for bit-level operations.",
-    whyUse: "Bitwise operations are essential for hardware programming, flags, masks, optimization, and implementing algorithms at the bit level.",
-    whereUse: "Embedded systems, hardware registers, permissions, color manipulation, cryptography, and performance optimization.",
+    definition: "Bitwise operators work on individual bits of integer values. They are useful for hardware control, flags, masks, and performance optimization.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Bitwise operators work on individual bits. & (AND), | (OR), ^ (XOR), ~ (NOT), << (left shift), >> (right shift). They are used for setting, clearing, toggling, and testing bits.",
+    explanation: "& is AND, | is OR, ^ is XOR, ~ is NOT, << shifts left, >> shifts right. Use these to set, clear, toggle, or test specific bits in a value.",
     examples: [
       {
         title: "Basic Bitwise Operations",
@@ -1988,34 +1852,25 @@ int main() {
       }
     ],
     keyPoints: [
-      "& (AND): both bits must be 1",
-      "| (OR): either bit can be 1",
-      "^ (XOR): bits must be different",
-      "~ (NOT): flips all bits",
-      "<< >>: shift bits left/right"
+      "& AND, | OR, ^ XOR, ~ NOT, << >> shift",
+      "Use bit flags for permission and status systems"
     ],
     commonMistakes: [
       "Confusing & with && and | with ||",
-      "Shifting by negative amount",
-      "Shifting by more than bit width",
-      "Sign extension in right shift",
-      "Operator precedence issues"
+      "Shifting by more than the bit width"
     ],
     proTips: [
-      "Use bit flags for permission systems",
-      "Use XOR for simple encryption",
-      "Use bit shifts for fast multiplication/division",
-      "Use masks to extract specific bits",
-      "Document bit positions clearly"
+      "Use bit shifts for fast multiplication/division by 2",
+      "Use masks to extract specific bits"
     ]
   },
 
   header: {
-    definition: "Header files contain declarations of functions, macros, constants, and type definitions. They enable code sharing between source files and provide interfaces for libraries.",
-    whyUse: "Headers promote modularity, prevent declaration mismatches, enable code reuse, and provide clean interfaces between compilation units.",
-    whereUse: "Organizing large projects, creating libraries, sharing declarations, and defining interfaces between modules.",
+    definition: "Header files contain function declarations, macros, constants, and type definitions. They let multiple source files share a common interface.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Header files use .h extension and contain declarations (not definitions). Include guards prevent multiple inclusions. They can include other headers and define macros, types, and function prototypes.",
+    explanation: "Headers use the .h extension and should contain declarations, not definitions. Include guards prevent a header from being included twice. They can include other headers and define macros.",
     examples: [
       {
         title: "Basic Header File - mathutils.h",
@@ -2090,33 +1945,25 @@ float point_distance(Point a, Point b);
     ],
     keyPoints: [
       "Headers contain declarations, not definitions",
-      "Use include guards to prevent multiple inclusion",
-      "Headers should be self-contained",
-      "Forward declarations reduce dependencies",
-      "Use extern for global variable declarations"
+      "Use include guards to prevent double inclusion",
+      "Headers should be self-contained"
     ],
     commonMistakes: [
-      "Defining variables in headers",
-      "Missing include guards",
-      "Circular header dependencies",
-      "Including implementation in headers",
-      "Not making headers self-contained"
+      "Defining variables in headers causes linker errors",
+      "Missing include guards"
     ],
     proTips: [
       "Use #pragma once for simpler header guards",
-      "Keep headers minimal and focused",
-      "Include necessary headers in your header",
-      "Use forward declarations when possible",
-      "Document header usage and requirements"
+      "Keep headers minimal and focused"
     ]
   },
 
   cli: {
-    definition: "Command Line Interface (CLI) programming in C involves parsing command-line arguments, handling user input from terminal, and creating programs that interact with the shell.",
-    whyUse: "CLI programs are essential for system utilities, automation scripts, build tools, and any program that needs to be controlled from the command line.",
-    whereUse: "System utilities, build tools, automation scripts, server programs, and tools that accept parameters and options.",
+    definition: "CLI programs receive input through command-line arguments. main() gets argc (argument count) and argv (argument vector) for parsing user input.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "main() receives argc (argument count) and argv (argument vector). Program name is argv[0]. Arguments follow. Use string functions to parse and validate arguments.",
+    explanation: "argv[0] is the program name, and the rest are arguments passed by the user. Use string functions like atoi and atof to convert arguments, and getenv to read environment variables.",
     examples: [
       {
         title: "Basic Arguments",
@@ -2222,25 +2069,17 @@ int main(int argc, char *argv[]) {
       }
     ],
     keyPoints: [
-      "argc counts arguments including program name",
+      "argc counts arguments including the program name",
       "argv[0] is the program name",
-      "Use atoi/atof to convert string arguments",
-      "Parse options with loop and strcmp",
       "Use getenv for environment variables"
     ],
     commonMistakes: [
       "Accessing argv beyond argc",
-      "Not validating argument count",
-      "Buffer overflow from strcpy",
-      "Not handling missing arguments",
-      "Using gets() instead of fgets()"
+      "Not validating argument count"
     ],
     proTips: [
       "Always validate argument count and types",
-      "Use getopt() for complex option parsing",
-      "Provide helpful usage messages",
-      "Handle both short and long options",
-      "Use environment variables for configuration"
+      "Provide helpful usage messages"
     ]
   }
 }

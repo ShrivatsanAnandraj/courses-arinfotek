@@ -1,10 +1,10 @@
 const java = {
   intro: {
-    definition: "Java is a high-level, object-oriented programming language developed by Sun Microsystems (now Oracle) in 1995. It follows the principle of Write Once, Run Anywhere (WORA), meaning compiled Java code can run on any platform that supports the Java Virtual Machine (JVM).",
-    whyUse: "Java is platform-independent, highly secure, robust, and has a massive ecosystem of libraries and frameworks. It supports multithreading, has strong memory management, and is widely used in enterprise applications, Android development, and cloud computing.",
-    whereUse: "Enterprise web applications (Spring Boot), Android mobile apps, big data technologies (Hadoop), cloud services (AWS Lambda), desktop applications, embedded systems, scientific computing, and financial services.",
+    definition: "Java is a high-level, object-oriented programming language that runs on the JVM. It follows the principle of Write Once, Run Anywhere.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Java uses a class-based structure where every program must have at least one class. The main method serves as the entry point. Code is organized into classes with methods and variables. Java uses curly braces to define blocks and semicolons to end statements.",
+    explanation: "Java programs are organized into classes. The main method is the entry point of every application. Code uses curly braces to define blocks and semicolons to end statements.",
     examples: [
       {
         title: "Your First Java Program",
@@ -47,34 +47,26 @@ const java = {
       }
     ],
     keyPoints: [
-      "Java is object-oriented — everything revolves around classes and objects",
-      "Compiled to bytecode, then interpreted by the JVM",
-      "Strongly typed — every variable must have a declared type",
-      "Memory managed via automatic garbage collection",
-      "Extensive standard library (java.util, java.io, java.net)"
+      "Everything revolves around classes and objects.",
+      "Every variable must have a declared type.",
+      "Compiled to bytecode, then run by the JVM."
     ],
     commonMistakes: [
-      "Forgetting that array indexing starts at 0",
-      "Confusing = (assignment) with == (comparison)",
-      "Not handling checked exceptions properly",
-      "Creating a class without a main method in entry-point classes",
-      "Integer division truncating decimal results"
+      "Confusing = (assignment) with == (comparison).",
+      "Integer division truncates decimal results."
     ],
     proTips: [
-      "Use final keyword for constants",
-      "Prefer interfaces over abstract classes for flexibility",
-      "Use StringBuilder for concatenation in loops",
-      "Leverage the enhanced for loop for array iteration",
-      "Always override toString() and equals() when needed"
+      "Use the final keyword for constants.",
+      "Use StringBuilder for concatenation in loops."
     ]
   },
 
   setup: {
-    definition: "Setting up Java involves installing the Java Development Kit (JDK), configuring environment variables, and setting up an IDE or text editor for development.",
-    whyUse: "A proper setup ensures you can compile, run, and debug Java programs efficiently. The JDK includes the compiler (javac), runtime (java), and standard libraries.",
-    whereUse: "Any system where you plan to develop, test, or deploy Java applications — Windows, macOS, Linux servers, or cloud environments.",
+    definition: "Setting up Java involves installing the Java Development Kit (JDK) and configuring your environment for development.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Download and install the JDK from Oracle or use OpenJDK. Set JAVA_HOME environment variable and add the bin directory to your PATH. Use javac to compile .java files into .class bytecode, and java to execute them.",
+    explanation: "Download and install the JDK from Oracle or use OpenJDK. Set the JAVA_HOME environment variable and add the bin directory to your PATH. Use javac to compile and java to execute.",
     examples: [
       {
         title: "Compile and Run",
@@ -92,10 +84,9 @@ public class Main {
   public static void main(String[] args) {
     System.out.println("Java Version: " + System.getProperty("java.version"));
     System.out.println("Java Home: " + System.getProperty("java.home"));
-    System.out.println("OS: " + System.getProperty("os.name"));
   }
 }`,
-        output: "Java Version: 21.0.x\nJava Home: /usr/lib/jvm/java-21\nOS: Linux"
+        output: "Java Version: 21.0.x\nJava Home: /usr/lib/jvm/java-21"
       },
       {
         title: "Using Command Line Arguments",
@@ -111,34 +102,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "JDK contains the compiler and runtime needed for Java development",
-      "Set JAVA_HOME to point to your JDK installation directory",
-      "Use javac filename.java to compile, java ClassName to run",
-      "IDEs like IntelliJ IDEA, Eclipse, or VS Code simplify development",
-      "Maven or Gradle handle project dependencies and builds"
+      "The JDK contains the compiler and runtime needed for Java development.",
+      "Use javac filename.java to compile, java ClassName to run."
     ],
     commonMistakes: [
-      "Not setting JAVA_HOME correctly",
-      "Forgetting to add the JDK bin directory to PATH",
-      "Mixing up the class name with the filename",
-      "Running java on a .java file instead of compiling first",
-      "Using wrong JDK version for your project requirements"
+      "Forgetting to add the JDK bin directory to PATH.",
+      "Running java on a .java file instead of compiling first."
     ],
     proTips: [
-      "Use sdkman or jenv to manage multiple Java versions",
-      "Configure your IDE to auto-format and check code style",
-      "Use Maven or Gradle for dependency management from the start",
-      "Set up a .gitignore to exclude compiled .class files",
-      "Use jshell for quick Java experiments without creating files"
+      "Use jshell for quick Java experiments without creating files.",
+      "Use sdkman or jenv to manage multiple Java versions."
     ]
   },
 
   variables: {
-    definition: "Variables are named storage locations in memory that hold data values. In Java, every variable has a specific type that determines what kind of data it can store.",
-    whyUse: "Variables allow programs to store, retrieve, and manipulate data. They are fundamental building blocks for any program logic, from simple calculations to complex data processing.",
-    whereUse: "Everywhere in programming — storing user input, tracking calculations, managing state, holding configuration values, and representing objects and their properties.",
+    definition: "Variables are named storage locations that hold data. In Java, every variable has a specific type that determines what it can store.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Java has primitive types (byte, short, int, long, float, double, char, boolean) and reference types (String, arrays, objects). Variables must be declared with a type before use. Use final for constants. Local variables require initialization before use.",
+    explanation: "Java has primitive types (int, double, boolean, char) and reference types (String, arrays). Variables must be declared with a type before use. Local variables require initialization before first use.",
     examples: [
       {
         title: "Primitive Data Types",
@@ -153,16 +135,13 @@ public class Main {
     char c = 'A';
     boolean flag = true;
     System.out.println("byte: " + b);
-    System.out.println("short: " + s);
     System.out.println("int: " + i);
-    System.out.println("long: " + l);
-    System.out.println("float: " + f);
     System.out.println("double: " + d);
     System.out.println("char: " + c);
     System.out.println("boolean: " + flag);
   }
 }`,
-        output: "byte: 127\nshort: 32000\nint: 2000000000\nlong: 9000000000\nfloat: 3.14\ndouble: 3.141592653589793\nchar: A\nboolean: true"
+        output: "byte: 127\nint: 2000000000\ndouble: 3.141592653589793\nchar: A\nboolean: true"
       },
       {
         title: "Type Casting",
@@ -179,7 +158,7 @@ public class Main {
         output: "Double to int: 3\nint 130 to byte: -126"
       },
       {
-        title: "Constants and Final Variables",
+        title: "Constants with final",
         code: `public class Main {
   public static void main(String[] args) {
     final double TAX_RATE = 0.08;
@@ -187,11 +166,10 @@ public class Main {
     double price = 100000.0;
     double tax = price * TAX_RATE;
     System.out.println(COUNTRY);
-    System.out.println("Price: " + price);
     System.out.println("Tax: " + tax);
   }
 }`,
-        output: "Indonesia\nPrice: 100000.0\nTax: 8000.0"
+        output: "Indonesia\nTax: 8000.0"
       },
       {
         title: "Variable Scope",
@@ -213,34 +191,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "byte (8-bit), short (16-bit), int (32-bit), long (64-bit) for integers",
-      "float (32-bit), double (64-bit) for decimals",
-      "char is 16-bit Unicode, boolean is true/false",
-      "Local variables must be initialized before use",
-      "Use final to declare constants that cannot change"
+      "int for whole numbers, double for decimals, boolean for true/false.",
+      "Local variables must be initialized before use."
     ],
     commonMistakes: [
-      "Integer overflow when exceeding type range",
-      "Losing precision in float/double arithmetic",
-      "Using local variables before initialization",
-      "Confusing scope — block variables not accessible outside their block",
-      "Forgetting L suffix for long literals"
+      "Integer overflow when exceeding type range.",
+      "Forgetting L suffix for long literals."
     ],
     proTips: [
-      "Use var for local variable type inference (Java 10+)",
-      "Prefer double over float for most decimal calculations",
-      "Use BigDecimal for precise financial calculations",
-      "Name constants in UPPER_SNAKE_CASE",
-      "Group variable declarations logically for readability"
+      "Use var for local variable type inference (Java 10+).",
+      "Use BigDecimal for precise financial calculations."
     ]
   },
 
   strings: {
-    definition: "Strings in Java are objects of the String class that represent sequences of characters. They are immutable — once created, their content cannot be changed.",
-    whyUse: "Strings are essential for text processing, data manipulation, user interfaces, and communication between systems. Java provides powerful String methods for manipulation.",
-    whereUse: "User input handling, text parsing, data formatting, file I/O, network communication, database queries, and building user interfaces.",
+    definition: "Strings in Java are objects that represent sequences of characters. They are immutable — once created, their content cannot change.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Strings are created using double quotes. String objects are immutable, so operations like concatenation create new String objects. Use StringBuilder for frequent modifications. String literals are stored in a string pool for memory efficiency.",
+    explanation: "Strings are created using double quotes. Since they are immutable, concatenation creates new String objects. Use StringBuilder for frequent modifications. String literals are stored in a string pool for efficiency.",
     examples: [
       {
         title: "Creating and Comparing Strings",
@@ -253,10 +222,9 @@ public class Main {
     System.out.println("s1 == s3: " + (s1 == s3));
     System.out.println("s1.equals(s3): " + s1.equals(s3));
     System.out.println("Length: " + s1.length());
-    System.out.println("Char at 1: " + s1.charAt(1));
   }
 }`,
-        output: "s1 == s2: true\ns1 == s3: false\ns1.equals(s3): true\nLength: 5\nChar at 1: e"
+        output: "s1 == s2: true\ns1 == s3: false\ns1.equals(s3): true\nLength: 5"
       },
       {
         title: "String Methods",
@@ -267,11 +235,10 @@ public class Main {
     System.out.println("Lower: " + text.toLowerCase());
     System.out.println("Index: " + text.indexOf("World"));
     System.out.println("Replace: " + text.replace("World", "Java"));
-    System.out.println("Substring: " + text.substring(7));
     System.out.println("Contains: " + text.contains("World"));
   }
 }`,
-        output: "Upper: HELLO, WORLD!\nLower: hello, world!\nIndex: 7\nReplace: Hello, Java!\nSubstring: World!\nContains: true"
+        output: "Upper: HELLO, WORLD!\nLower: hello, world!\nIndex: 7\nReplace: Hello, Java!\nContains: true"
       },
       {
         title: "StringBuilder for Mutable Strings",
@@ -318,34 +285,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "String is immutable — every operation returns a new String",
-      "Use == for reference comparison, .equals() for value comparison",
-      "String literals are interned in a string pool",
-      "StringBuilder is mutable and efficient for concatenation in loops",
-      "String.format() and printf() for formatted output"
+      "Every String operation returns a new String object.",
+      "Use == for reference comparison, .equals() for value comparison."
     ],
     commonMistakes: [
-      "Comparing strings with == instead of .equals()",
-      "Concatenating in loops without StringBuilder (performance hit)",
-      "Not handling StringIndexOutOfBoundsException",
-      "Confusing substring() indices with length",
-      "NullPointerException when calling methods on null strings"
+      "Comparing strings with == instead of .equals().",
+      "Concatenating in loops without StringBuilder causes performance issues."
     ],
     proTips: [
-      "Use String.join() instead of manual concatenation with separators",
-      "Prefer StringBuilder in loops with many concatenations",
-      "Use String.isBlank() (Java 11+) to check for empty or whitespace",
-      "Use text blocks (\"\"\" syntax) for multi-line strings (Java 13+)",
-      "Cache frequently used string results in variables"
+      "Use String.join() instead of manual concatenation with separators.",
+      "Use text blocks (\"\"\" syntax) for multi-line strings (Java 13+)."
     ]
   },
 
   operators: {
-    definition: "Operators are symbols that perform operations on variables and values. Java provides arithmetic, relational, logical, bitwise, assignment, and other operators for data manipulation.",
-    whyUse: "Operators are the fundamental building blocks for expressions and logic. They enable calculations, comparisons, and data transformations that form the core of program logic.",
-    whereUse: "Mathematical calculations, conditional checks, bitwise manipulation, string operations, logical decisions, and controlling program flow.",
+    definition: "Operators are symbols that perform operations on variables and values. Java provides arithmetic, relational, logical, and more.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Arithmetic operators (+, -, *, /, %) perform math. Relational operators (==, !=, <, >, <=, >=) compare values. Logical operators (&&, ||, !) combine boolean expressions. Assignment operators (=, +=, -=) assign values.",
+    explanation: "Arithmetic operators (+, -, *, /, %) do math. Relational operators (==, !=, <, >) compare values. Logical operators (&&, ||, !) combine boolean expressions.",
     examples: [
       {
         title: "Arithmetic Operators",
@@ -367,29 +325,14 @@ public class Main {
   public static void main(String[] args) {
     int x = 15;
     System.out.println("x > 10: " + (x > 10));
-    System.out.println("x < 10: " + (x < 10));
     System.out.println("x == 15: " + (x == 15));
-    System.out.println("x != 5: " + (x != 5));
-    System.out.println("x >= 15: " + (x >= 15));
-  }
-}`,
-        output: "x > 10: true\nx < 10: false\nx == 15: true\nx != 5: true\nx >= 15: true"
-      },
-      {
-        title: "Logical Operators",
-        code: `public class Main {
-  public static void main(String[] args) {
     boolean a = true, b = false;
     System.out.println("a && b: " + (a && b));
     System.out.println("a || b: " + (a || b));
-    System.out.println("!a: " + (!a));
     System.out.println("!b: " + (!b));
-    int score = 85;
-    boolean pass = score >= 70 && score <= 100;
-    System.out.println("Pass: " + pass);
   }
 }`,
-        output: "a && b: false\na || b: true\n!a: false\n!b: true\nPass: true"
+        output: "x > 10: true\nx == 15: true\na && b: false\na || b: true\n!b: true"
       },
       {
         title: "Bitwise Operators",
@@ -399,12 +342,11 @@ public class Main {
     System.out.println("a & b: " + (a & b));
     System.out.println("a | b: " + (a | b));
     System.out.println("a ^ b: " + (a ^ b));
-    System.out.println("~a: " + (~a));
     System.out.println("a << 2: " + (a << 2));
     System.out.println("a >> 1: " + (a >> 1));
   }
 }`,
-        output: "a & b: 8\na | b: 14\na ^ b: 6\n~a: -13\na << 2: 48\na >> 1: 6"
+        output: "a & b: 8\na | b: 14\na ^ b: 6\na << 2: 48\na >> 1: 6"
       },
       {
         title: "Ternary and Assignment Operators",
@@ -415,45 +357,33 @@ public class Main {
     System.out.println("Status: " + status);
     int x = 10;
     x += 5;
-    System.out.println("x += 5: " + x);
     x *= 2;
-    System.out.println("x *= 2: " + x);
-    x -= 3;
-    System.out.println("x -= 3: " + x);
+    System.out.println("x: " + x);
   }
 }`,
-        output: "Status: Adult\nx += 5: 15\nx *= 2: 30\nx -= 3: 27"
+        output: "Status: Adult\nx: 30"
       }
     ],
     keyPoints: [
-      "Arithmetic: + - * / % (modulus)",
-      "Relational: == != < > <= >= (return boolean)",
-      "Logical: && || ! (short-circuit evaluation)",
-      "Bitwise: & | ^ ~ << >> (work on bits)",
-      "Ternary: condition ? valueIfTrue : valueIfFalse"
+      "Arithmetic: + - * / % (modulus).",
+      "Logical: && || ! (short-circuit evaluation)."
     ],
     commonMistakes: [
-      "Confusing = (assignment) with == (comparison)",
-      "Integer division truncating decimal results",
-      "Short-circuit evaluation skipping side effects",
-      "Operator precedence causing unexpected results",
-      "Bitwise operators used on boolean values (use logical instead)"
+      "Confusing = (assignment) with == (comparison).",
+      "Integer division truncating decimal results."
     ],
     proTips: [
-      "Use compound assignment operators (+=, -=) for cleaner code",
-      "Remember && short-circuits — left side evaluated first",
-      "Use parentheses to clarify complex expressions",
-      "Ternary operator is great for simple conditional assignments",
-      "Bitwise operators are useful for flags and low-level operations"
+      "Use parentheses to clarify complex expressions.",
+      "Use compound assignment operators (+=, -=) for cleaner code."
     ]
   },
 
   conditionals: {
-    definition: "Conditional statements allow programs to make decisions and execute different code paths based on whether conditions evaluate to true or false.",
-    whyUse: "Conditionals enable programs to respond dynamically to different inputs, states, and scenarios. They are essential for implementing business logic and controlling program flow.",
-    whereUse: "Input validation, error handling, feature flags, state management, data routing, and implementing business rules and algorithms.",
+    definition: "Conditional statements let your program make decisions by executing different code based on conditions.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Java provides if-else, if-else if-else chains, and switch statements. Conditions must evaluate to boolean. Braces are optional for single statements but recommended. Switch works with int, char, String, and enums.",
+    explanation: "Java provides if-else, if-else if-else chains, and switch statements. Conditions must evaluate to boolean. Braces are optional for single statements but recommended.",
     examples: [
       {
         title: "If-Else Statement",
@@ -472,25 +402,6 @@ public class Main {
   }
 }`,
         output: "Grade: B"
-      },
-      {
-        title: "Nested Conditions",
-        code: `public class Main {
-  public static void main(String[] args) {
-    boolean isStudent = true;
-    int age = 22;
-    if (isStudent) {
-      if (age < 25) {
-        System.out.println("Student discount: 50%");
-      } else {
-        System.out.println("Student discount: 30%");
-      }
-    } else {
-      System.out.println("No discount");
-    }
-  }
-}`,
-        output: "Student discount: 50%"
       },
       {
         title: "Switch Statement",
@@ -536,43 +447,31 @@ public class Main {
     int temperature = 35;
     String weather = (temperature > 30) ? "Hot" : "Mild";
     System.out.println("Weather: " + weather);
-    int age = 16;
-    String canVote = (age >= 18) ? "Yes" : "No";
-    System.out.println("Can vote: " + canVote);
   }
 }`,
-        output: "Weather: Hot\nCan vote: No"
+        output: "Weather: Hot"
       }
     ],
     keyPoints: [
-      "if-else handles binary and multi-way decisions",
-      "Use else if for chained conditions",
-      "switch is great for discrete value matching",
-      "break is required in switch cases (or use arrows)",
-      "Ternary operator for simple two-option decisions"
+      "if-else handles binary and multi-way decisions.",
+      "switch is great for discrete value matching."
     ],
     commonMistakes: [
-      "Missing break statements in switch causing fall-through",
-      "Using assignment (=) instead of comparison (==) in conditions",
-      "Confusing && (AND) with || (OR) logic",
-      "Not handling the default case in switch statements",
-      "Deeply nesting conditions making code unreadable"
+      "Missing break statements in switch causing fall-through.",
+      "Deeply nesting conditions making code unreadable."
     ],
     proTips: [
-      "Use switch expressions for cleaner, safer code (Java 14+)",
-      "Prefer early returns over nested if-else chains",
-      "Extract complex conditions into descriptive boolean variables",
-      "Use Objects.requireNonNullElse() for null-safe defaults",
-      "Consider using polymorphism instead of switch for type-based logic"
+      "Use switch expressions for cleaner, safer code (Java 14+).",
+      "Extract complex conditions into descriptive boolean variables."
     ]
   },
 
   loops: {
-    definition: "Loops allow repetitive execution of code blocks. Java provides for, while, do-while, and enhanced for loops for iterating over collections and ranges.",
-    whyUse: "Loops enable processing collections of data, performing repeated calculations, implementing algorithms, and automating repetitive tasks without code duplication.",
-    whereUse: "Array/collection processing, file line-by-line reading, data transformation, algorithm implementation, pagination handling, and simulation.",
+    definition: "Loops allow repetitive execution of code blocks. Java provides for, while, do-while, and enhanced for loops.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "for loop: init; condition; update. while loop: check condition before each iteration. do-while: execute at least once. Enhanced for: iterate over arrays/collections without index. Use break to exit, continue to skip iterations.",
+    explanation: "The for loop is best when iteration count is known. The while loop checks a condition before each iteration. The enhanced for loop iterates cleanly over arrays and collections.",
     examples: [
       {
         title: "Basic For Loop",
@@ -600,7 +499,7 @@ public class Main {
         output: "Countdown: 5\nCountdown: 4\nCountdown: 3\nCountdown: 2\nCountdown: 1\nDone!"
       },
       {
-        title: "Enhanced For Loop (For-Each)",
+        title: "Enhanced For Loop",
         code: `public class Main {
   public static void main(String[] args) {
     String[] fruits = {"Apple", "Banana", "Cherry"};
@@ -612,20 +511,6 @@ public class Main {
         output: "Fruit: Apple\nFruit: Banana\nFruit: Cherry"
       },
       {
-        title: "Nested Loops",
-        code: `public class Main {
-  public static void main(String[] args) {
-    for (int i = 1; i <= 3; i++) {
-      for (int j = 1; j <= 3; j++) {
-        System.out.print(i + "x" + j + "=" + (i*j) + " ");
-      }
-      System.out.println();
-    }
-  }
-}`,
-        output: "1x1=1 1x2=2 1x3=3\n2x1=2 2x2=4 2x3=6\n3x1=3 3x2=6 3x3=9"
-      },
-      {
         title: "Break and Continue",
         code: `public class Main {
   public static void main(String[] args) {
@@ -634,41 +519,31 @@ public class Main {
       if (i == 7) break;
       System.out.print(i + " ");
     }
-    System.out.println();
   }
 }`,
         output: "1 2 4 5 6"
       }
     ],
     keyPoints: [
-      "for loop: best when iteration count is known",
-      "while loop: best when condition-based termination",
-      "do-while: guarantees at least one execution",
-      "enhanced for: clean iteration over arrays/collections",
-      "break exits loop, continue skips to next iteration"
+      "for loop: best when iteration count is known.",
+      "break exits the loop, continue skips to the next iteration."
     ],
     commonMistakes: [
-      "Infinite loops from missing update or wrong condition",
-      "Off-by-one errors (looping one too many or too few times)",
-      "Modifying collection while iterating (ConcurrentModificationException)",
-      "Using wrong loop type for the use case",
-      "Forgetting break in switch causing unintended fall-through"
+      "Infinite loops from missing update or wrong condition.",
+      "Off-by-one errors in loop boundaries."
     ],
     proTips: [
-      "Use labeled break/continue for nested loops",
-      "Consider Stream API as a modern alternative to loops",
-      "Avoid modifying loop variables inside the loop body",
-      "Use for-each loop for simple iteration (no index needed)",
-      "Profile loops in performance-critical code"
+      "Use labeled break/continue for nested loops.",
+      "Consider Stream API as a modern alternative to loops."
     ]
   },
 
   arrays: {
-    definition: "Arrays are data structures that store fixed-size collections of elements of the same type. They provide indexed access to elements and are fundamental for data storage.",
-    whyUse: "Arrays provide efficient storage and access for homogeneous data. They are the foundation for more complex data structures and algorithms.",
-    whereUse: "Storing lists of data, implementing matrices, caching results, buffering data, and as building blocks for custom data structures.",
+    definition: "Arrays are data structures that store fixed-size collections of elements of the same type. They provide indexed access to elements.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Arrays are declared with type[] and initialized with new type[size] or array literals. Arrays are zero-indexed. Length is fixed after creation. Use Arrays utility class for common operations.",
+    explanation: "Arrays are declared with type[] and initialized with new type[size] or array literals. Arrays are zero-indexed. Use the Arrays utility class for common operations like sort and search.",
     examples: [
       {
         title: "Array Declaration and Initialization",
@@ -738,34 +613,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "Arrays are fixed-size — cannot add or remove elements",
-      "Zero-indexed: first element at index 0",
-      "length property gives the array size",
-      "Arrays.sort() for sorting, Arrays.toString() for display",
-      "Multi-dimensional arrays are arrays of arrays"
+      "Arrays are fixed-size — you cannot add or remove elements.",
+      "Zero-indexed: first element is at index 0."
     ],
     commonMistakes: [
-      "ArrayIndexOutOfBoundsException from invalid index access",
-      "Not initializing array elements before use",
-      "Confusing array length with last index (length-1)",
-      "Trying to resize a fixed-size array",
-      "Comparing arrays with == instead of Arrays.equals()"
+      "ArrayIndexOutOfBoundsException from invalid index access.",
+      "Trying to resize a fixed-size array."
     ],
     proTips: [
-      "Use ArrayList for dynamic-size collections",
-      "Use Arrays.copyOf() to resize arrays efficiently",
-      "Use Arrays.equals() for content comparison",
-      "Consider using Collections for more functionality",
-      "Use Arrays.stream() for functional-style operations"
+      "Use ArrayList for dynamic-size collections.",
+      "Use Arrays.copyOf() to resize arrays efficiently."
     ]
   },
 
   methods: {
-    definition: "Methods (functions) are reusable blocks of code that perform specific tasks. They can accept parameters, return values, and help organize programs into logical units.",
-    whyUse: "Methods promote code reuse, modularity, and readability. They allow complex operations to be broken into manageable, testable, and reusable pieces.",
-    whereUse: "Encapsulating business logic, creating reusable utilities, implementing algorithms, handling events, and organizing code into logical components.",
+    definition: "Methods are reusable blocks of code that perform specific tasks. They can accept parameters and return values.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Methods are defined with a return type, name, parameters, and body. void means no return value. Static methods belong to the class, instance methods to objects. Use return to send back values.",
+    explanation: "Methods are defined with a return type, name, parameters, and body. Use void for no return value. Static methods belong to the class. Use return to send back values.",
     examples: [
       {
         title: "Basic Method",
@@ -827,41 +693,31 @@ public class Main {
   }
   public static void main(String[] args) {
     System.out.println("5! = " + factorial(5));
-    System.out.println("10! = " + factorial(10));
   }
 }`,
-        output: "5! = 120\n10! = 3628800"
+        output: "5! = 120"
       }
     ],
     keyPoints: [
-      "Methods must declare a return type (void if none)",
-      "Parameters are passed by value (not by reference)",
-      "Overloading: same name, different parameter lists",
-      "Static methods belong to the class, not instances",
-      "Recursion requires a base case to avoid infinite calls"
+      "Methods must declare a return type (void if none).",
+      "Overloading means same name, different parameter lists."
     ],
     commonMistakes: [
-      "Stack overflow from infinite recursion",
-      "Confusing pass-by-value with pass-by-reference",
-      "Not returning a value when required",
-      "Method signature mismatch when calling",
-      "Overlapping overloaded method signatures"
+      "Stack overflow from infinite recursion.",
+      "Not returning a value when required."
     ],
     proTips: [
-      "Keep methods short and focused on one task",
-      "Use descriptive names that explain what the method does",
-      "Limit method parameters to 3-4 for readability",
-      "Use static utility methods for stateless operations",
-      "Document public methods with Javadoc"
+      "Keep methods short and focused on one task.",
+      "Use descriptive names that explain what the method does."
     ]
   },
 
   classes: {
-    definition: "Classes are blueprints for creating objects. They define properties (fields) and behaviors (methods) that objects of that type will have.",
-    whyUse: "Classes enable object-oriented programming — encapsulating data and behavior, creating reusable components, and modeling real-world entities in code.",
-    whereUse: "Modeling domain entities, creating service components, building UI components, designing APIs, and structuring any object-oriented application.",
+    definition: "Classes are blueprints for creating objects. They define properties (fields) and behaviors (methods).",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "A class is defined with the class keyword. It contains fields (state) and methods (behavior). Constructors initialize new objects. Access modifiers (public, private) control visibility.",
+    explanation: "A class is defined with the class keyword. Constructors initialize new objects. Access modifiers (public, private) control visibility. Use this to refer to the current instance.",
     examples: [
       {
         title: "Basic Class Definition",
@@ -906,15 +762,11 @@ class BankAccount {
     this.owner = owner;
     this.balance = balance;
   }
-  double getBalance() {
-    return balance;
-  }
+  double getBalance() { return balance; }
   void setBalance(double balance) {
     if (balance >= 0) this.balance = balance;
   }
-  void deposit(double amount) {
-    balance += amount;
-  }
+  void deposit(double amount) { balance += amount; }
 }`,
         output: "Balance: 2000.0\nAfter deposit: 2500.0"
       },
@@ -942,34 +794,25 @@ class Student {
       }
     ],
     keyPoints: [
-      "Classes are blueprints; objects are instances of classes",
-      "Constructors initialize object state",
-      "private fields with public getters/setters for encapsulation",
-      "this keyword refers to the current instance",
-      "Override toString() for meaningful object representation"
+      "Classes are blueprints; objects are instances of classes.",
+      "Use private fields with public getters/setters for encapsulation."
     ],
     commonMistakes: [
-      "Forgetting to define a constructor when needed",
-      "Not using this keyword to disambiguate parameters",
-      "Accessing private members directly from outside the class",
-      "Not overriding equals() and hashCode() when needed",
-      "Creating classes with too many responsibilities"
+      "Accessing private members directly from outside the class.",
+      "Not overriding equals() and hashCode() when needed."
     ],
     proTips: [
-      "Use records (Java 14+) for simple data classes",
-      "Follow the Single Responsibility Principle",
-      "Make fields private and provide controlled access",
-      "Use static factory methods as alternatives to constructors",
-      "Implement toString(), equals(), and hashCode() consistently"
+      "Use records (Java 14+) for simple data classes.",
+      "Make fields private and provide controlled access."
     ]
   },
 
   inheritance: {
-    definition: "Inheritance allows a class to inherit fields and methods from another class. It promotes code reuse and establishes hierarchical relationships between classes.",
-    whyUse: "Inheritance enables code reuse, polymorphic behavior, and creating logical class hierarchies. It reduces redundancy and makes code more maintainable.",
-    whereUse: "Building component hierarchies, implementing design patterns, creating framework extensions, and modeling real-world IS-A relationships.",
+    definition: "Inheritance allows a class to inherit fields and methods from another class. It promotes code reuse and builds hierarchical relationships.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Use extends keyword to inherit. A class can only extend one class (no multiple inheritance). The subclass inherits all non-private members. super calls the parent constructor. Override to modify inherited behavior.",
+    explanation: "Use the extends keyword to inherit. A class can only extend one class. The subclass inherits all non-private members. Use super to call the parent constructor. Override to modify inherited behavior.",
     examples: [
       {
         title: "Basic Inheritance",
@@ -982,12 +825,8 @@ class Student {
 }
 class Animal {
   String name;
-  Animal(String name) {
-    this.name = name;
-  }
-  void eat() {
-    System.out.println(name + " is eating");
-  }
+  Animal(String name) { this.name = name; }
+  void eat() { System.out.println(name + " is eating"); }
 }
 class Dog extends Animal {
   String breed;
@@ -995,9 +834,7 @@ class Dog extends Animal {
     super(name);
     this.breed = breed;
   }
-  void bark() {
-    System.out.println(name + " says Woof!");
-  }
+  void bark() { System.out.println(name + " says Woof!"); }
 }`,
         output: "Buddy is eating\nBuddy says Woof!"
       },
@@ -1012,15 +849,11 @@ class Dog extends Animal {
   }
 }
 class Animal {
-  void makeSound() {
-    System.out.println("Some sound");
-  }
+  void makeSound() { System.out.println("Some sound"); }
 }
 class Dog extends Animal {
   @Override
-  void makeSound() {
-    System.out.println("Woof!");
-  }
+  void makeSound() { System.out.println("Woof!"); }
 }`,
         output: "Some sound\nWoof!"
       },
@@ -1051,34 +884,25 @@ class Puppy extends Dog {
       }
     ],
     keyPoints: [
-      "extends keyword establishes the inheritance relationship",
-      "Java supports single inheritance only (one parent class)",
-      "super() calls the parent class constructor",
-      "Override annotation ensures correct method overriding",
-      "Subclasses inherit all non-private members"
+      "Java supports single inheritance only (one parent class).",
+      "Use @Override annotation to catch signature mismatches."
     ],
     commonMistakes: [
-      "Calling super() before this() in constructors",
-      "Trying to override private or final methods",
-      "Diamond problem — not supported in Java classes",
-      "Forgetting to call super() in subclass constructor",
-      "Overusing inheritance when composition is better"
+      "Trying to override private or final methods.",
+      "Forgetting to call super() in subclass constructor."
     ],
     proTips: [
-      "Prefer composition over inheritance when possible",
-      "Use abstract classes for partial implementations",
-      "Mark classes final to prevent inheritance when needed",
-      "Use @Override annotation to catch signature mismatches",
-      "Design class hierarchies with the Liskov Substitution Principle"
+      "Prefer composition over inheritance when possible.",
+      "Use abstract classes for partial implementations."
     ]
   },
 
   interfaces: {
-    definition: "Interfaces define a contract of methods that implementing classes must provide. They enable abstraction, multiple type inheritance, and loose coupling between components.",
-    whyUse: "Interfaces define what a class must do without specifying how. They enable polymorphism, multiple type inheritance, and clean architecture through abstraction.",
-    whereUse: "Defining APIs, implementing design patterns (Strategy, Observer), creating plugin systems, enabling polymorphism, and establishing contracts between components.",
+    definition: "Interfaces define a contract of methods that implementing classes must provide. They enable abstraction and loose coupling.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Interfaces contain method signatures (and optionally default/static methods). Classes implement interfaces using the implements keyword. A class can implement multiple interfaces. Fields are implicitly public static final.",
+    explanation: "Interfaces contain method signatures. Classes implement interfaces using the implements keyword. A class can implement multiple interfaces. Fields are implicitly public static final.",
     examples: [
       {
         title: "Basic Interface",
@@ -1114,12 +938,8 @@ class Rectangle implements Shape {
     phone.browse();
   }
 }
-interface Callable {
-  void call();
-}
-interface Browseable {
-  void browse();
-}
+interface Callable { void call(); }
+interface Browseable { void browse(); }
 class SmartPhone implements Callable, Browseable {
   String os;
   SmartPhone(String os) { this.os = os; }
@@ -1148,42 +968,31 @@ interface Greet {
   }
 }
 class EnglishGreet implements Greet {
-  public void sayHello() {
-    System.out.println("Hello!");
-  }
+  public void sayHello() { System.out.println("Hello!"); }
 }`,
         output: "Hello!\nGoodbye!\nStatic method in interface"
       }
     ],
     keyPoints: [
-      "Interfaces define contracts — what methods must exist",
-      "A class can implement multiple interfaces",
-      "Default methods provide optional implementation (Java 8+)",
-      "Static methods in interfaces (Java 8+)",
-      "Fields are implicitly public static final"
+      "A class can implement multiple interfaces.",
+      "Default methods provide optional implementation (Java 8+)."
     ],
     commonMistakes: [
-      "Not implementing all abstract methods",
-      "Confusing abstract classes with interfaces",
-      "Diamond problem with default methods from two interfaces",
-      "Forgetting that interface methods are public by default",
-      "Overusing interfaces when abstract class suffices"
+      "Not implementing all abstract methods.",
+      "Diamond problem with default methods from two interfaces."
     ],
     proTips: [
-      "Use interfaces for defining pure contracts",
-      "Use default methods for backward compatibility",
-      "Prefer interfaces over abstract classes for flexibility",
-      "Use @FunctionalInterface for single-abstract-method interfaces",
-      "Design small, focused interfaces (Interface Segregation)"
+      "Use interfaces for defining pure contracts.",
+      "Design small, focused interfaces (Interface Segregation)."
     ]
   },
 
   abstract: {
-    definition: "Abstract classes cannot be instantiated and may contain both abstract methods (without implementation) and concrete methods (with implementation). They serve as base classes for inheritance.",
-    whyUse: "Abstract classes provide a common base with shared implementation while requiring subclasses to define specific behavior. They bridge interfaces and concrete classes.",
-    whereUse: "Creating base classes for related components, implementing Template Method pattern, providing partial implementations, and enforcing design contracts.",
+    definition: "Abstract classes cannot be instantiated. They may contain abstract methods (no implementation) and concrete methods (with implementation).",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Use the abstract keyword. Abstract methods have no body — subclasses must implement them. Concrete methods have full implementation. Abstract classes can have constructors, fields, and any access modifiers.",
+    explanation: "Use the abstract keyword. Abstract methods have no body — subclasses must implement them. Concrete methods have full implementation. Abstract classes can have constructors and fields.",
     examples: [
       {
         title: "Basic Abstract Class",
@@ -1197,9 +1006,7 @@ class EnglishGreet implements Greet {
 }
 abstract class Shape {
   abstract double getArea();
-  void display() {
-    System.out.println("Area: " + getArea());
-  }
+  void display() { System.out.println("Area: " + getArea()); }
 }
 class Circle extends Shape {
   double radius;
@@ -1225,10 +1032,7 @@ abstract class Beverage {
   abstract void brew();
   abstract void addCondiments();
   final void prepare() {
-    boilWater();
-    brew();
-    pourInCup();
-    addCondiments();
+    boilWater(); brew(); pourInCup(); addCondiments();
   }
   void boilWater() { System.out.println("Boiling water"); }
   void pourInCup() { System.out.println("Pouring in cup"); }
@@ -1245,34 +1049,25 @@ class Tea extends Beverage {
       }
     ],
     keyPoints: [
-      "Cannot instantiate abstract classes directly",
-      "Abstract methods must be implemented by concrete subclasses",
-      "Can have constructors, fields, and concrete methods",
-      "Use for partial implementations shared across subclasses",
-      "Enforce a contract while providing reusable code"
+      "You cannot instantiate abstract classes directly.",
+      "Abstract methods must be implemented by concrete subclasses."
     ],
     commonMistakes: [
-      "Trying to create instances of abstract classes",
-      "Not implementing all abstract methods in subclasses",
-      "Confusing abstract classes with interfaces",
-      "Overusing abstract classes when interface suffices",
-      "Making constructors private (prevents subclass creation)"
+      "Trying to create instances of abstract classes.",
+      "Not implementing all abstract methods in subclasses."
     ],
     proTips: [
-      "Use abstract classes when you need shared state or implementation",
-      "Use interfaces when you only need to define a contract",
-      "Combine both: implement interface, extend abstract class",
-      "Keep abstract classes focused on one responsibility",
-      "Use protected methods for subclass access"
+      "Use abstract classes when you need shared state or implementation.",
+      "Keep abstract classes focused on one responsibility."
     ]
   },
 
   polymorphism: {
-    definition: "Polymorphism allows objects of different types to be treated through a common interface. It enables a single method call to behave differently based on the actual object type.",
-    whyUse: "Polymorphism enables flexible, extensible code. New classes can be added without modifying existing code. It supports the Open/Closed Principle and simplifies client code.",
-    whereUse: "Plugin systems, event handlers, strategy patterns, GUI frameworks, any system where behavior varies by type but is called through a common interface.",
+    definition: "Polymorphism allows objects of different types to be treated through a common interface. A single method call behaves differently based on the actual object type.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Compile-time polymorphism: method overloading (same name, different parameters). Runtime polymorphism: method overriding (subclass redefines parent behavior). The JVM determines which method to call at runtime based on actual object type.",
+    explanation: "Compile-time polymorphism uses method overloading. Runtime polymorphism uses method overriding. The JVM determines which method to call at runtime based on the actual object type.",
     examples: [
       {
         title: "Runtime Polymorphism",
@@ -1346,32 +1141,23 @@ class Rectangle implements Shape {
       }
     ],
     keyPoints: [
-      "Runtime polymorphism: method overriding (subclass behavior)",
-      "Compile-time polymorphism: method overloading (same name, different params)",
-      "JVM resolves method calls at runtime based on object type",
-      "Reference type determines available methods, object type determines behavior",
-      "Enables programming to an interface, not an implementation"
+      "Runtime polymorphism uses method overriding.",
+      "Reference type determines available methods, object type determines behavior."
     ],
     commonMistakes: [
-      "Casting to wrong type causing ClassCastException",
-      "Calling methods not defined in the reference type",
-      "Confusing overloading with overriding",
-      "Hiding static methods instead of overriding them",
-      "Not understanding that fields are not polymorphic"
+      "Casting to wrong type causing ClassCastException.",
+      "Confusing overloading with overriding."
     ],
     proTips: [
-      "Program to interfaces for maximum flexibility",
-      "Use instanceof before casting for safe type checking",
-      "Leverage polymorphism to avoid large switch/if-else chains",
-      "Use generics for type-safe polymorphic collections",
-      "Understand that static methods are resolved at compile time"
+      "Program to interfaces for maximum flexibility.",
+      "Use instanceof before casting for safe type checking."
     ]
   },
 
   encapsulation: {
-    definition: "Encapsulation is the practice of hiding internal state and requiring access through controlled methods. It protects data integrity and provides a clean public interface.",
-    whyUse: "Encapsulation prevents external code from putting objects into invalid states. It allows internal implementation changes without breaking external code. It supports maintainability and testability.",
-    whereUse: "All object-oriented design — protecting internal state, validating inputs, providing controlled access, and maintaining invariants in domain models.",
+    definition: "Encapsulation hides internal state and requires access through controlled methods. It protects data integrity and provides a clean public interface.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: "Declare fields as private. Provide public getter/setter methods with validation. The class controls how its data is accessed and modified. This is a core principle of OOP.",
     examples: [
@@ -1390,16 +1176,11 @@ class Rectangle implements Shape {
 class Person {
   private String name;
   private int age;
-  Person(String name, int age) {
-    this.name = name;
-    this.age = age;
-  }
+  Person(String name, int age) { this.name = name; this.age = age; }
   String getName() { return name; }
   int getAge() { return age; }
   void setAge(int age) {
-    if (age > 0 && age < 150) {
-      this.age = age;
-    }
+    if (age > 0 && age < 150) this.age = age;
   }
 }`,
         output: "Alice\n30\nAge after invalid set: 30"
@@ -1426,34 +1207,25 @@ final class Money {
       }
     ],
     keyPoints: [
-      "Declare fields as private for controlled access",
-      "Provide public getters/setters with validation",
-      "Immutable objects have no setters and final fields",
-      "Encapsulation protects invariants and data integrity",
-      "Changes to internal implementation don't affect external code"
+      "Declare fields as private for controlled access.",
+      "Immutable objects have no setters and final fields."
     ],
     commonMistakes: [
-      "Exposing mutable internal state through getters",
-      "Not validating input in setters",
-      "Making all fields public instead of private",
-      "Returning references to internal mutable objects",
-      "Over-encapsulating trivial data classes"
+      "Making all fields public instead of private.",
+      "Not validating input in setters."
     ],
     proTips: [
-      "Use records for simple immutable data classes",
-      "Return defensive copies of internal collections",
-      "Use the Builder pattern for complex object construction",
-      "Validate invariants in constructors",
-      "Document which fields are nullable"
+      "Use records for simple immutable data classes.",
+      "Return defensive copies of internal collections."
     ]
   },
 
   generics: {
-    definition: "Generics allow classes, interfaces, and methods to operate on type parameters. They provide compile-time type safety and eliminate the need for explicit casting.",
-    whyUse: "Generics enable writing reusable, type-safe code. They catch type errors at compile time instead of runtime, improving reliability and code clarity.",
-    whereUse: "Collections framework, utility classes, data structures, DAOs, service layers, and any code that works with multiple types while maintaining type safety.",
+    definition: "Generics allow classes, interfaces, and methods to operate on type parameters. They provide compile-time type safety and eliminate explicit casting.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Use <T> to declare type parameters. Classes can be generic (Box<T>), methods can be generic (<T> T method()), and wildcards (?, extends, super) handle type flexibility. Type erasure removes generics at runtime.",
+    explanation: "Use <T> to declare type parameters. Classes can be generic (Box<T>), methods can be generic (<T> T method()), and wildcards handle type flexibility. Type erasure removes generics at runtime.",
     examples: [
       {
         title: "Generic Class",
@@ -1532,34 +1304,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "Type parameters (T, E, K, V) ensure type safety",
-      "Bounded types (extends, super) limit type parameters",
-      "Type erasure removes generics at runtime",
-      "Wildcards (?) provide flexibility for method parameters",
-      "Generic methods can define their own type parameters"
+      "Type parameters (T, E, K, V) ensure type safety.",
+      "Type erasure removes generics at runtime."
     ],
     commonMistakes: [
-      "Trying to create generic arrays (not allowed in Java)",
-      "Type erasure confusion — generics are compile-time only",
-      "Using raw types instead of parameterized types",
-      "Overcomplicating with too many type parameters",
-      "Confusing extends (upper bound) with super (lower bound)"
+      "Trying to create generic arrays (not allowed in Java).",
+      "Using raw types instead of parameterized types."
     ],
     proTips: [
-      "Use meaningful type parameter names (T for type, E for element)",
-      "Use bounded types to restrict generic parameters",
-      "Leverage PECS: Producer Extends, Consumer Super",
-      "Use @SuppressWarnings for unavoidable generic warnings",
-      "Consider using class tokens for runtime type information"
+      "Use meaningful type parameter names (T for type, E for element).",
+      "Leverage PECS: Producer Extends, Consumer Super."
     ]
   },
 
   collections: {
-    definition: "The Java Collections Framework provides interfaces and implementations for storing and manipulating groups of objects. It includes List, Set, Queue, and Map data structures.",
-    whyUse: "Collections provide efficient, reusable data structures with common operations. They eliminate the need to implement data structures from scratch and ensure consistent APIs.",
-    whereUse: "Storing lists of data, maintaining unique elements, implementing caches, queues, maps, and any scenario requiring dynamic data storage and retrieval.",
+    definition: "The Java Collections Framework provides interfaces and implementations for storing and manipulating groups of objects. It includes List, Set, Queue, and Map.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "List (ArrayList, LinkedList) for ordered sequences. Set (HashSet, TreeSet) for unique elements. Queue (PriorityQueue) for FIFO operations. Map (HashMap, TreeMap) for key-value pairs. Use interfaces for flexibility.",
+    explanation: "List (ArrayList) for ordered sequences. Set (HashSet) for unique elements. Map (HashMap) for key-value pairs. Use interfaces for flexibility and generics for type safety.",
     examples: [
       {
         title: "ArrayList",
@@ -1573,12 +1336,11 @@ public class Main {
     names.add("Charlie");
     System.out.println("Names: " + names);
     System.out.println("Size: " + names.size());
-    System.out.println("Get 1: " + names.get(1));
     names.remove("Bob");
     System.out.println("After remove: " + names);
   }
 }`,
-        output: "Names: [Alice, Bob, Charlie]\nSize: 3\nGet 1: Bob\nAfter remove: [Alice, Charlie]"
+        output: "Names: [Alice, Bob, Charlie]\nSize: 3\nAfter remove: [Alice, Charlie]"
       },
       {
         title: "HashMap",
@@ -1592,12 +1354,11 @@ public class Main {
     scores.put("Charlie", 92);
     System.out.println("Scores: " + scores);
     System.out.println("Alice: " + scores.get("Alice"));
-    System.out.println("Contains Bob: " + scores.containsKey("Bob"));
     scores.putIfAbsent("Diana", 88);
     System.out.println("After add: " + scores);
   }
 }`,
-        output: "Scores: {Alice=95, Bob=87, Charlie=92}\nAlice: 95\nContains Bob: true\nAfter add: {Alice=95, Bob=87, Charlie=92, Diana=88}"
+        output: "Scores: {Alice=95, Bob=87, Charlie=92}\nAlice: 95\nAfter add: {Alice=95, Bob=87, Charlie=92, Diana=88}"
       },
       {
         title: "HashSet",
@@ -1612,10 +1373,9 @@ public class Main {
     colors.add("Red");
     System.out.println("Colors: " + colors);
     System.out.println("Size: " + colors.size());
-    System.out.println("Has Red: " + colors.contains("Red"));
   }
 }`,
-        output: "Colors: [Red, Green, Blue]\nSize: 3\nHas Red: true"
+        output: "Colors: [Red, Green, Blue]\nSize: 3"
       },
       {
         title: "Iterating Collections",
@@ -1636,34 +1396,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "List: ordered, duplicates allowed (ArrayList, LinkedList)",
-      "Set: no duplicates (HashSet, TreeSet, LinkedHashSet)",
-      "Map: key-value pairs (HashMap, TreeMap, LinkedHashMap)",
-      "Use interfaces (List, Set, Map) for flexibility",
-      "Generics ensure type safety in collections"
+      "List: ordered, duplicates allowed. Set: no duplicates. Map: key-value pairs.",
+      "Use interfaces (List, Set, Map) for flexibility."
     ],
     commonMistakes: [
-      "ConcurrentModificationException from modifying during iteration",
-      "Using ArrayList for frequent insertions/deletions in middle",
-      "Forgetting that HashSet has no ordering guarantee",
-      "Not overriding equals() and hashCode() for custom objects in sets",
-      "Using raw types without generics"
+      "ConcurrentModificationException from modifying during iteration.",
+      "Not overriding equals() and hashCode() for custom objects in sets."
     ],
     proTips: [
-      "Use List.of() or Map.of() for immutable collections (Java 9+)",
-      "Use streams for complex collection operations",
-      "Prefer LinkedList for frequent insertions/deletions",
-      "Use TreeMap for sorted keys, LinkedHashSet for insertion order",
-      "Use Collections.unmodifiableList() for read-only views"
+      "Use List.of() or Map.of() for immutable collections (Java 9+).",
+      "Use streams for complex collection operations."
     ]
   },
 
   exceptions: {
-    definition: "Exceptions are events that disrupt normal program flow. Java has a robust exception handling mechanism using try-catch-finally blocks to handle errors gracefully.",
-    whyUse: "Exception handling separates error-handling code from regular code. It provides a structured way to deal with errors, recover from failures, and maintain program stability.",
-    whereUse: "File I/O operations, network calls, database access, user input validation, API interactions, and any operation that might fail at runtime.",
+    definition: "Exceptions are events that disrupt normal program flow. Java uses try-catch-finally blocks to handle errors gracefully.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Checked exceptions must be declared or caught (IOException). Unchecked exceptions (RuntimeException) don't require handling. Use try to wrap risky code, catch to handle exceptions, finally for cleanup, and throw to propagate exceptions.",
+    explanation: "Use try to wrap risky code, catch to handle exceptions, and finally for cleanup. Checked exceptions must be declared or caught. Unchecked exceptions (RuntimeException) are optional.",
     examples: [
       {
         title: "Try-Catch-Finally",
@@ -1688,8 +1439,6 @@ public class Main {
     try {
       int[] arr = {1, 2, 3};
       System.out.println(arr[5]);
-      String s = null;
-      System.out.println(s.length());
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Array error: " + e.getMessage());
     } catch (NullPointerException e) {
@@ -1743,34 +1492,25 @@ class InsufficientFundsException extends Exception {
       }
     ],
     keyPoints: [
-      "Try-catch-finally for exception handling",
-      "Checked exceptions must be caught or declared",
-      "Unchecked exceptions (RuntimeException) are optional",
-      "Use finally for cleanup code that must execute",
-      "Custom exceptions extend Exception or RuntimeException"
+      "Try-catch-finally for exception handling.",
+      "Use finally for cleanup code that must execute."
     ],
     commonMistakes: [
-      "Catching overly broad Exception type",
-      "Swallowing exceptions (empty catch blocks)",
-      "Using exceptions for normal flow control",
-      "Forgetting finally block for resource cleanup",
-      "Not chaining exceptions properly"
+      "Catching overly broad Exception type.",
+      "Swallowing exceptions (empty catch blocks)."
     ],
     proTips: [
-      "Use try-with-resources for AutoCloseable resources",
-      "Create specific exception types for your domain",
-      "Log exceptions with proper context information",
-      "Use @SuppressWarnings carefully for unavoidable warnings",
-      "Consider Optional for methods that may not return a value"
+      "Use try-with-resources for AutoCloseable resources.",
+      "Create specific exception types for your domain."
     ]
   },
 
   enums: {
-    definition: "Enums (enumerations) are special classes that represent a fixed set of constants. They provide type safety, can have fields, methods, and implement interfaces.",
-    whyUse: "Enums are type-safe alternatives to constants. They can have behavior, fields, and methods. They support switch statements, have built-in methods like values() and valueOf().",
-    whereUse: "State machines, configuration options, status codes, categories, modes, and any scenario with a fixed set of related constants.",
+    definition: "Enums are special classes that represent a fixed set of constants. They provide type safety and can have fields, methods, and implement interfaces.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Define enums with the enum keyword. Each constant is an instance. Enums can have fields, constructors (private), and methods. They are implicitly final and extend java.lang.Enum.",
+    explanation: "Define enums with the enum keyword. Each constant is an instance. Enums can have fields and private constructors. They support switch statements and have built-in methods like values().",
     examples: [
       {
         title: "Basic Enum",
@@ -1781,13 +1521,12 @@ class InsufficientFundsException extends Exception {
   public static void main(String[] args) {
     Day today = Day.WEDNESDAY;
     System.out.println("Today: " + today);
-    System.out.println("Ordinal: " + today.ordinal());
     for (Day d : Day.values()) {
       System.out.println(d);
     }
   }
 }`,
-        output: "Today: WEDNESDAY\nOrdinal: 2\nMONDAY\nTUESDAY\nWEDNESDAY\nTHURSDAY\nFRIDAY\nSATURDAY\nSUNDAY"
+        output: "Today: WEDNESDAY\nMONDAY\nTUESDAY\nWEDNESDAY\nTHURSDAY\nFRIDAY\nSATURDAY\nSUNDAY"
       },
       {
         title: "Enum with Fields and Methods",
@@ -1837,34 +1576,25 @@ class InsufficientFundsException extends Exception {
       }
     ],
     keyPoints: [
-      "Enums are implicitly final and extend java.lang.Enum",
-      "Each constant is an instance of the enum type",
-      "Enums can have fields, constructors, and methods",
-      "values() returns all constants, valueOf() finds by name",
-      "ordinal() returns the position (0-based) of the constant"
+      "Each enum constant is an instance of the enum type.",
+      "values() returns all constants, ordinal() returns position."
     ],
     commonMistakes: [
-      "Comparing enums with == (works but .equals() is safer for null)",
-      "Forgetting enums are classes — they can have behavior",
-      "Not handling all cases in switch statements",
-      "Using ordinal() for persistence (can change if reordered)",
-      "Creating enums with public constructors"
+      "Using ordinal() for persistence (can change if reordered).",
+      "Not handling all cases in switch statements."
     ],
     proTips: [
-      "Use enums for type-safe constants instead of static final",
-      "Implement interfaces with enums for polymorphic behavior",
-      "Use EnumSet and EnumMap for efficient enum-based collections",
-      "Add abstract methods to enums for constant-specific behavior",
-      "Use enum constants in annotated configurations"
+      "Use EnumSet and EnumMap for efficient enum-based collections.",
+      "Implement interfaces with enums for polymorphic behavior."
     ]
   },
 
   lambdas: {
-    definition: "Lambda expressions are anonymous functions that provide a concise way to implement functional interfaces. They enable functional programming patterns in Java.",
-    whyUse: "Lambdas reduce boilerplate code for simple function implementations. They enable functional programming, simplify event handlers, and work seamlessly with streams.",
-    whereUse: "Event handlers, callbacks, stream operations, comparator implementations, thread runnables, and any single-method interface implementation.",
+    definition: "Lambda expressions are anonymous functions that provide a concise way to implement functional interfaces.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Lambda syntax: parameters -> expression or parameters -> { statements }. Must target a functional interface (single abstract method). Use :: for method references. Type inference eliminates parameter types.",
+    explanation: "Lambda syntax: parameters -> expression or parameters -> { statements }. Must target a functional interface (single abstract method). Use :: for method references.",
     examples: [
       {
         title: "Basic Lambda",
@@ -1918,34 +1648,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "Lambda: parameters -> expression or { statements }",
-      "Must target a functional interface (single abstract method)",
-      "Type inference often eliminates the need for parameter types",
-      "Method references (ClassName::methodName) as shorthand",
-      "Lambdas can capture effectively final variables"
+      "Lambda: parameters -> expression or { statements }.",
+      "Method references (ClassName::methodName) are shorthand for lambdas."
     ],
     commonMistakes: [
-      "Trying to use lambdas with non-functional interfaces",
-      "Capturing non-final variables in lambdas",
-      "Over-complicating simple lambdas with unnecessary braces",
-      "Confusing lambdas with anonymous inner classes",
-      "Using var incorrectly in lambda parameters"
+      "Trying to use lambdas with non-functional interfaces.",
+      "Over-complicating simple lambdas with unnecessary braces."
     ],
     proTips: [
-      "Use :: method references for cleaner lambda expressions",
-      "Keep lambdas short — extract to methods if complex",
-      "Use @FunctionalInterface annotation for custom functional interfaces",
-      "Lambdas enable powerful stream operations",
-      "Prefer lambdas over anonymous classes for conciseness"
+      "Use :: method references for cleaner lambda expressions.",
+      "Use @FunctionalInterface annotation for custom functional interfaces."
     ]
   },
 
   streams: {
-    definition: "Streams provide a functional approach to process collections of data. They support operations like filter, map, reduce, and collect in a declarative style.",
-    whyUse: "Streams enable concise, readable data processing pipelines. They support parallel execution, lazy evaluation, and functional-style operations on collections.",
-    whereUse: "Data transformation, filtering, aggregation, grouping, sorting, and any collection processing that benefits from functional-style operations.",
+    definition: "Streams provide a functional approach to process collections of data. They support filter, map, reduce, and collect in a declarative style.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Create streams from collections with stream(). Intermediate operations (filter, map, sorted) return new streams. Terminal operations (collect, forEach, reduce) produce results. Streams are lazy — intermediate ops run only when terminal op is invoked.",
+    explanation: "Create streams from collections with stream(). Intermediate operations (filter, map) return new streams. Terminal operations (collect, forEach) produce results. Streams are lazy — they only run when a terminal op is invoked.",
     examples: [
       {
         title: "Filter and Map",
@@ -2002,34 +1723,25 @@ public class Main {
       }
     ],
     keyPoints: [
-      "Streams don't modify the source collection",
-      "Intermediate operations are lazy (deferred execution)",
-      "Terminal operations trigger the pipeline execution",
-      "Collectors utility class provides common collection strategies",
-      "Parallel streams (.parallelStream()) for multi-threaded processing"
+      "Streams don't modify the source collection.",
+      "Terminal operations trigger the pipeline execution."
     ],
     commonMistakes: [
-      "Trying to reuse a stream after a terminal operation",
-      "Modifying the source collection during stream processing",
-      "Using parallel streams inappropriately (thread safety issues)",
-      "Creating infinite streams without proper limits",
-      "Ignoring the lazy nature and doing unnecessary work"
+      "Trying to reuse a stream after a terminal operation.",
+      "Modifying the source collection during stream processing."
     ],
     proTips: [
-      "Use method references where possible for cleaner code",
-      "Prefer collect(toList()) over creating empty lists and adding",
-      "Use flatMap() for flattening nested collections",
-      "Use peek() for debugging stream pipelines",
-      "Consider using parallel streams for CPU-bound operations"
+      "Use method references where possible for cleaner code.",
+      "Use flatMap() for flattening nested collections."
     ]
   },
 
   annotations: {
-    definition: "Annotations are metadata tags that provide information about code but don't affect program execution directly. They can be used by the compiler, runtime, or tools.",
-    whyUse: "Annotations reduce boilerplate code (like @Override), enable compile-time checking, support dependency injection, and provide metadata for frameworks and tools.",
-    whereUse: "Code documentation (@Deprecated), compile-time checks (@Override), dependency injection (@Autowired), testing (@Test), serialization, and framework configurations.",
+    definition: "Annotations are metadata tags that provide information about code. They can be used by the compiler, runtime, or tools.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Built-in annotations: @Override, @Deprecated, @SuppressWarnings, @FunctionalInterface. Custom annotations are defined with @interface. Annotations can have elements (attributes) and retention policies.",
+    explanation: "Built-in annotations include @Override, @Deprecated, and @SuppressWarnings. Custom annotations are defined with @interface. Annotations can have elements and retention policies.",
     examples: [
       {
         title: "Common Built-in Annotations",
@@ -2062,8 +1774,7 @@ public class Main {
         code: `import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@interface LogExecutionTime {
-}
+@interface LogExecutionTime {}
 public class Main {
   @LogExecutionTime
   static void fastMethod() {
@@ -2083,25 +1794,16 @@ public class Main {
       }
     ],
     keyPoints: [
-      "@Override ensures method correctly overrides parent",
-      "@Deprecated marks code as outdated",
-      "@SuppressWarnings silences compiler warnings",
-      "@FunctionalInterface verifies single abstract method",
-      "Custom annotations use @interface keyword"
+      "@Override ensures a method correctly overrides the parent.",
+      "Custom annotations use the @interface keyword."
     ],
     commonMistakes: [
-      "Not understanding retention policies (SOURCE, CLASS, RUNTIME)",
-      "Using annotations without proper retention for runtime access",
-      "Over-annotating code making it hard to read",
-      "Confusing annotation elements with method parameters",
-      "Not processing annotations at the right stage"
+      "Not understanding retention policies (SOURCE, CLASS, RUNTIME).",
+      "Over-annotating code making it hard to read."
     ],
     proTips: [
-      "Use @Override always when overriding methods",
-      "Create custom annotations for cross-cutting concerns",
-      "Use annotation processors for compile-time code generation",
-      "Leverage annotations for dependency injection frameworks",
-      "Document annotations with Javadoc for team usage"
+      "Use @Override always when overriding methods.",
+      "Create custom annotations for cross-cutting concerns."
     ]
   }
 }

@@ -1,8 +1,8 @@
 const typescript = {
   intro: {
     definition: 'TypeScript is a strongly typed programming language that builds on JavaScript, developed by Microsoft. It adds static type checking to JavaScript.',
-    whyUse: 'TypeScript catches errors at compile time, provides better IDE support, and makes large codebases more maintainable.',
-    whereUse: 'Used for large-scale web applications, enterprise software, Angular/React/Vue projects, and anywhere JavaScript is used.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'TypeScript compiles to JavaScript. It adds type annotations, interfaces, generics, and other features while maintaining full JavaScript compatibility.',
     examples: [
@@ -33,29 +33,23 @@ console.log(typeof message, typeof count, typeof isValid);`,
     keyPoints: [
       'TypeScript is a superset of JavaScript',
       'Adds static type checking',
-      'Compiles to plain JavaScript',
-      'Supports interfaces and generics',
-      'Excellent IDE support with IntelliSense'
+      'Compiles to plain JavaScript'
     ],
     commonMistakes: [
       'Using any type defeats the purpose',
-      'Not enabling strict mode',
-      'Overcomplicating type definitions',
-      'Ignoring compiler errors'
+      'Not enabling strict mode'
     ],
     proTips: [
       'Enable strict mode in tsconfig.json',
-      'Use type inference when obvious',
-      'Prefer interfaces over type aliases for objects',
-      'Use readonly for immutable data'
+      'Use type inference when obvious'
     ]
   },
 
   setup: {
     definition: 'Setting up TypeScript involves installing the compiler, configuring tsconfig.json, and setting up your development environment.',
-    whyUse: 'Proper setup enables type checking, compilation, and IDE support for TypeScript development.',
-    whereUse: 'Required for any TypeScript project.',
-    syntax: 'npm install -g typescript',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Install TypeScript globally or locally, create tsconfig.json for configuration, and use tsc to compile.',
     examples: [
       {
@@ -100,29 +94,23 @@ node dist/app.js`,
     keyPoints: [
       'Install with npm install -g typescript',
       'Use tsc --init to create tsconfig.json',
-      'tsc compiles TypeScript to JavaScript',
-      'Enable strict mode for better type safety',
-      'Use watch mode for development'
+      'Enable strict mode for better type safety'
     ],
     commonMistakes: [
       'Not configuring tsconfig.json properly',
-      'Forgetting to enable strict mode',
-      'Not understanding compilation output',
-      'Mixing TypeScript and JavaScript files'
+      'Forgetting to enable strict mode'
     ],
     proTips: [
       'Use TypeScript in package.json scripts',
-      'Configure path aliases in tsconfig',
-      'Use ts-node for direct TypeScript execution',
-      'Set up ESLint with TypeScript plugin'
+      'Use ts-node for direct TypeScript execution'
     ]
   },
 
   types: {
     definition: 'TypeScript provides several built-in types including string, number, boolean, array, tuple, enum, any, unknown, void, null, and undefined.',
-    whyUse: 'Types enable compile-time error checking, better code documentation, and improved developer experience.',
-    whereUse: 'Used throughout TypeScript for variable declarations, function parameters, and return types.',
-    syntax: 'let variable: type = value;',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript uses type annotations to specify types. Types can be inferred or explicitly declared.',
     examples: [
       {
@@ -166,29 +154,23 @@ console.log(dir);`,
     keyPoints: [
       'string, number, boolean are primitives',
       'Array<T> or T[] for arrays',
-      'Tuple for fixed-length arrays',
-      'Enum for named constants',
-      'any disables type checking'
+      'Tuple for fixed-length arrays'
     ],
     commonMistakes: [
       'Using any when a specific type is possible',
-      'Not understanding type inference',
-      'Confusing type aliases with interfaces',
-      'Forgetting null and undefined are types'
+      'Not understanding type inference'
     ],
     proTips: [
       'Avoid any - use unknown instead',
-      'Use union types for flexibility',
-      'Leverage type inference',
-      'Use const enums for performance'
+      'Use union types for flexibility'
     ]
   },
 
   arrays: {
     definition: 'TypeScript arrays are ordered collections of elements of the same type. They provide type-safe array operations.',
-    whyUse: 'Type-safe arrays prevent runtime errors and enable better IDE support for array operations.',
-    whereUse: 'Used for storing collections of data, implementing data structures, and processing lists.',
-    syntax: 'let array: type[] = [values];',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript arrays can be typed using type[], Array<type>, or inferred. Readonly arrays prevent modification.',
     examples: [
       {
@@ -222,29 +204,23 @@ console.log(mixed);`,
     keyPoints: [
       'Type[] or Array<Type> for typed arrays',
       'readonly for immutable arrays',
-      'Generic methods for type preservation',
-      'Spread operator for combining arrays',
-      'Destructuring for array unpacking'
+      'Spread operator for combining arrays'
     ],
     commonMistakes: [
       'Not using readonly for immutable arrays',
-      'Mixing types without union types',
-      'Forgetting array methods return new arrays',
-      'Using any[] instead of specific types'
+      'Mixing types without union types'
     ],
     proTips: [
-      'Use generic types for array methods',
       'Prefer map/filter/reduce over for loops',
-      'Use tuple for fixed-length arrays',
-      'Consider using ReadonlyArray<T>'
+      'Use tuple for fixed-length arrays'
     ]
   },
 
   interfaces: {
     definition: 'Interfaces in TypeScript define the shape of objects. They specify what properties and methods an object should have.',
-    whyUse: 'Interfaces provide clear contracts for objects, enabling better code organization and type checking.',
-    whereUse: 'Used for defining object shapes, function parameters, and class contracts.',
-    syntax: 'interface InterfaceName { property: type; method(): returnType; }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Interfaces define object structure. They can be extended, merged, and used for type checking.',
     examples: [
       {
@@ -303,29 +279,23 @@ console.log(myDog.speak());`,
     keyPoints: [
       'Define object shape with properties',
       'Optional properties with ?',
-      'Methods are function types',
-      'Interfaces can extend other interfaces',
-      'Interfaces are compile-time only'
+      'Interfaces can extend other interfaces'
     ],
     commonMistakes: [
       'Confusing interfaces with type aliases',
-      'Not using optional properties correctly',
-      'Overcomplicating interface hierarchy',
-      'Forgetting interfaces are erased at runtime'
+      'Not using optional properties correctly'
     ],
     proTips: [
       'Use interfaces for object shapes',
-      'Extend interfaces for composition',
-      'Use declaration merging for libraries',
-      'Prefer interfaces over classes for contracts'
+      'Extend interfaces for composition'
     ]
   },
 
   typealiases: {
     definition: 'Type aliases in TypeScript create new names for existing types. They can represent primitive types, unions, tuples, and complex object types.',
-    whyUse: 'Type aliases improve code readability and enable creating complex type combinations.',
-    whereUse: 'Used for creating descriptive type names, union types, and complex type structures.',
-    syntax: 'type TypeName = type;',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Type aliases can represent any type, including primitives, unions, intersections, and mapped types.',
     examples: [
       {
@@ -372,29 +342,23 @@ handleUser({ id: 1, name: "Alice", email: "alice@example.com" });`,
     keyPoints: [
       'Create aliases for any type',
       'Union types with |',
-      'Intersection types with &',
-      'Generic type aliases',
-      'Aliases can be recursive'
+      'Intersection types with &'
     ],
     commonMistakes: [
       'Overusing type aliases for simple types',
-      'Confusing type aliases with interfaces',
-      'Creating circular type references',
-      'Not understanding type alias limitations'
+      'Confusing type aliases with interfaces'
     ],
     proTips: [
       'Use type aliases for unions and primitives',
-      'Use interfaces for object shapes',
-      'Combine type aliases and interfaces',
-      'Use descriptive names for type aliases'
+      'Use interfaces for object shapes'
     ]
   },
 
   operators: {
     definition: 'TypeScript provides all JavaScript operators plus additional type-related operators for type checking and manipulation.',
-    whyUse: 'Operators enable performing operations on data and types, forming the basis of program logic.',
-    whereUse: 'Used for math operations, comparisons, logical operations, and type checking.',
-    syntax: 'operand operator operand',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript includes standard JavaScript operators plus type operators like typeof, instanceof, keyof, and conditional types.',
     examples: [
       {
@@ -440,30 +404,24 @@ console.log(obj.age ?? "Unknown");`,
     ],
     keyPoints: [
       'typeof for type checking at runtime',
-      'instanceof for class checking',
-      'keyof for getting object keys',
       'Optional chaining ?. for null safety',
       'Nullish coalescing ?? for defaults'
     ],
     commonMistakes: [
       'Using == instead of ===',
-      'Not using nullish coalescing',
-      'Confusing typeof with type annotations',
-      'Forgetting operator precedence'
+      'Not using nullish coalescing'
     ],
     proTips: [
       'Use strict equality (===)',
-      'Use optional chaining for null safety',
-      'Use nullish coalescing for defaults',
-      'Use type guards for type narrowing'
+      'Use optional chaining for null safety'
     ]
   },
 
   functions: {
     definition: 'TypeScript functions can have typed parameters, return types, and support overloading. They are the building blocks of TypeScript programs.',
-    whyUse: 'Typed functions provide better documentation, catch errors at compile time, and enable better IDE support.',
-    whereUse: 'Used for encapsulating logic, creating reusable code, and implementing business rules.',
-    syntax: 'function name(param: type): returnType { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript functions support type annotations, optional parameters, default values, and function overloading.',
     examples: [
       {
@@ -504,29 +462,23 @@ console.log(square(6));`,
     keyPoints: [
       'Type parameters with : type',
       'Return type after closing paren',
-      'Optional parameters with ?',
-      'Default parameters with =',
       'Arrow functions for concise syntax'
     ],
     commonMistakes: [
       'Not specifying return type',
-      'Using optional parameters incorrectly',
-      'Confusing arrow functions with methods',
-      'Forgetting to handle undefined'
+      'Using optional parameters incorrectly'
     ],
     proTips: [
       'Use type inference when obvious',
-      'Use union types for flexible parameters',
-      'Prefer named functions for hoisting',
       'Use rest parameters for variable arguments'
     ]
   },
 
   lambdas: {
     definition: 'Lambda expressions (arrow functions) in TypeScript provide concise function syntax with automatic type inference.',
-    whyUse: 'Lambdas provide shorter syntax for functions, especially for callbacks and higher-order functions.',
-    whereUse: 'Used for callbacks, event handlers, array methods, and functional programming patterns.',
-    syntax: '(param: type) => expression',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Arrow functions inherit the surrounding context (no own this). They are shorter and can be anonymous.',
     examples: [
       {
@@ -565,29 +517,23 @@ console.log(double(5), triple(5));`,
     keyPoints: [
       '=> is the arrow function syntax',
       'No own this binding',
-      'Automatic return for single expressions',
-      'Type inference for parameters',
       'Perfect for callbacks and closures'
     ],
     commonMistakes: [
       'Using arrow functions as methods',
-      'Not understanding this binding',
-      'Forgetting type annotations when needed',
-      'Overcomplicating lambda expressions'
+      'Not understanding this binding'
     ],
     proTips: [
       'Use for callbacks and array methods',
-      'Use for closures and higher-order functions',
-      'Keep lambdas small and focused',
-      'Use named functions for complex logic'
+      'Keep lambdas small and focused'
     ]
   },
 
   classes: {
     definition: 'TypeScript classes combine OOP concepts with static typing. They support access modifiers, abstract classes, and implementing interfaces.',
-    whyUse: 'Classes provide structured OOP with type safety, enabling better code organization and reuse.',
-    whereUse: 'Used to model real-world entities, create reusable components, and structure applications.',
-    syntax: 'class ClassName { constructor() { } }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript classes extend JavaScript classes with access modifiers (public, private, protected), abstract classes, and interfaces.',
     examples: [
       {
@@ -662,29 +608,23 @@ console.log(circle.describe());`,
     keyPoints: [
       'public, private, protected access modifiers',
       'readonly for immutable properties',
-      'abstract classes cannot be instantiated',
-      'extends for inheritance',
-      'implements for interface contracts'
+      'extends for inheritance'
     ],
     commonMistakes: [
       'Not initializing properties',
-      'Using public when private is needed',
-      'Confusing this with arrow functions',
-      'Forgetting to call super()'
+      'Using public when private is needed'
     ],
     proTips: [
       'Use parameter properties for shorter syntax',
-      'Prefer interfaces over abstract classes',
-      'Use readonly for immutable data',
-      'Consider using readonly for constants'
+      'Prefer interfaces over abstract classes'
     ]
   },
 
   inheritance: {
     definition: 'TypeScript inheritance allows creating classes based on existing classes. It supports single inheritance with multiple interface implementation.',
-    whyUse: 'Inheritance promotes code reuse, establishes relationships, and enables polymorphism.',
-    whereUse: 'Used to create specialized classes, build hierarchies, and share behavior.',
-    syntax: 'class Derived extends Base { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript supports single inheritance with extends. Multiple contracts can be implemented with interfaces.',
     examples: [
       {
@@ -761,29 +701,23 @@ doc.log();`,
     keyPoints: [
       'Single inheritance with extends',
       'Multiple interface implementation',
-      'super() calls parent constructor',
-      'Override methods with override keyword',
-      'Polymorphism through interfaces'
+      'super() calls parent constructor'
     ],
     commonMistakes: [
       'Creating deep inheritance hierarchies',
-      'Not calling super() in constructor',
-      'Confusing inheritance with composition',
-      'Forgetting to implement interface methods'
+      'Not calling super() in constructor'
     ],
     proTips: [
       'Prefer composition over inheritance',
-      'Use abstract classes for partial implementations',
-      'Use interfaces for multiple contracts',
-      'Keep inheritance hierarchies shallow'
+      'Use interfaces for multiple contracts'
     ]
   },
 
   enums: {
     definition: 'TypeScript enums define a set of named constants. They can be numeric or string-based, and support reverse mappings.',
-    whyUse: 'Enums improve code readability and provide type-safe constants.',
-    whereUse: 'Used for status codes, configuration options, and fixed sets of values.',
-    syntax: 'enum EnumName { Value1, Value2 }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript enums are real objects at runtime. They support numeric (auto-increment) and string values.',
     examples: [
       {
@@ -828,29 +762,23 @@ console.log(favorite);`,
     keyPoints: [
       'Numeric enums auto-increment',
       'String enums require explicit values',
-      'const enums are inlined at compile time',
-      'Reverse mapping for numeric enums',
-      'Enums are real objects at runtime'
+      'const enums are inlined at compile time'
     ],
     commonMistakes: [
       'Not understanding numeric enum values',
-      'Using enums when const enums are better',
-      'Forgetting reverse mapping',
-      'Not handling undefined enum values'
+      'Using enums when const enums are better'
     ],
     proTips: [
       'Use const enums for performance',
-      'Use string enums for serialization',
-      'Consider using union types instead',
-      'Use enum for fixed sets of options'
+      'Consider using union types instead'
     ]
   },
 
   generics: {
     definition: 'Generics in TypeScript allow creating reusable components that work with multiple types while maintaining type safety.',
-    whyUse: 'Generics provide type safety, code reuse, and flexibility for working with different data types.',
-    whereUse: 'Used in data structures, algorithms, React components, and anywhere type-agnostic code is needed.',
-    syntax: 'function generic<T>(param: T): T { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Generics use type parameters (T, K, V) that are replaced with specific types at compile time.',
     examples: [
       {
@@ -907,29 +835,23 @@ logLength({ length: 10 });`,
     keyPoints: [
       'Type parameters with <T>',
       'Can have multiple type parameters',
-      'Constraints with extends',
-      'Generic interfaces and classes',
-      'Type inference for generics'
+      'Constraints with extends'
     ],
     commonMistakes: [
       'Overusing generic constraints',
-      'Not understanding type inference',
-      'Creating overly complex generics',
-      'Forgetting to specify types when needed'
+      'Not understanding type inference'
     ],
     proTips: [
       'Use meaningful type parameter names',
-      'Prefer generics over any',
-      'Use constraints to limit types',
-      'Consider using conditional types'
+      'Prefer generics over any'
     ]
   },
 
   utility: {
     definition: 'TypeScript provides built-in utility types for transforming and manipulating types, including Partial, Required, Readonly, Pick, Omit, and Record.',
-    whyUse: 'Utility types simplify common type transformations without creating custom types.',
-    whereUse: 'Used for transforming object types, creating variations of existing types, and type manipulation.',
-    syntax: 'UtilityType<OriginalType>',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Utility types are generic types that transform other types in useful ways.',
     examples: [
       {
@@ -981,29 +903,23 @@ console.log(permissions);`,
     keyPoints: [
       'Partial<T> makes all properties optional',
       'Required<T> makes all properties required',
-      'Readonly<T> makes all properties readonly',
-      'Pick<T, K> selects specific properties',
-      'Omit<T, K> removes specific properties'
+      'Pick<T, K> selects specific properties'
     ],
     commonMistakes: [
       'Not understanding what each utility does',
-      'Overcomplicating type transformations',
-      'Not using utility types when appropriate',
-      'Forgetting utility types return new types'
+      'Overcomplicating type transformations'
     ],
     proTips: [
       'Use Partial for update functions',
-      'Use Pick for response types',
-      'Use Omit for sensitive data',
-      'Combine utility types for complex transformations'
+      'Use Omit for sensitive data'
     ]
   },
 
   mapped: {
     definition: 'Mapped types in TypeScript create new types by transforming properties of existing types. They enable powerful type transformations.',
-    whyUse: 'Mapped types automate type transformations, reducing code duplication and improving consistency.',
-    whereUse: 'Used for creating variations of types, adding modifiers, and transforming object shapes.',
-    syntax: '{ [K in keyof T]: NewType }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Mapped types iterate over keys of a type and transform each property.',
     examples: [
       {
@@ -1060,29 +976,23 @@ console.log(getters.getName());`,
     keyPoints: [
       'Iterate over keys with [K in keyof T]',
       'Add ? for optional properties',
-      'Add readonly for readonly properties',
-      'Transform property types',
       'Use as for key remapping'
     ],
     commonMistakes: [
       'Not understanding key remapping',
-      'Overcomplicating transformations',
-      'Forgetting to preserve property types',
-      'Not using built-in utility types'
+      'Overcomplicating transformations'
     ],
     proTips: [
       'Use utility types first before custom mapped types',
-      'Use key remapping for property name changes',
-      'Combine with conditional types',
-      'Keep mapped types readable'
+      'Use key remapping for property name changes'
     ]
   },
 
   modules: {
     definition: 'TypeScript modules provide a way to organize code into separate files with import/export statements for modular development.',
-    whyUse: 'Modules enable code organization, encapsulation, reusability, and dependency management.',
-    whereUse: 'Used in all TypeScript projects for organizing code into logical units.',
-    syntax: 'export const value; import { value } from "module";',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript uses ES modules (import/export) for code organization. Each file is a module.',
     examples: [
       {
@@ -1139,29 +1049,23 @@ console.log(Utils.formatTime(new Date()));`,
     keyPoints: [
       'Named exports for multiple exports',
       'Default export for one export per file',
-      'import for importing exports',
-      'import * as for namespace imports',
-      'Re-exporting with export from'
+      'import for importing exports'
     ],
     commonMistakes: [
       'Confusing named and default exports',
-      'Not using relative paths correctly',
-      'Circular import dependencies',
-      'Forgetting to export types'
+      'Not using relative paths correctly'
     ],
     proTips: [
       'Use barrel files for re-exports',
-      'Prefer named exports over default',
-      'Use type-only imports for types',
-      'Organize imports by category'
+      'Prefer named exports over default'
     ]
   },
 
   decorators: {
     definition: 'Decorators in TypeScript are special declarations that can be attached to classes, methods, properties, or parameters to modify their behavior.',
-    whyUse: 'Decorators provide a clean way to add cross-cutting concerns like logging, validation, and caching.',
-    whereUse: 'Used in Angular, NestJS, and other frameworks for metadata and behavior modification.',
-    syntax: '@decorator',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Decorators are functions that receive and can modify class declarations, methods, or properties.',
     examples: [
       {
@@ -1227,29 +1131,23 @@ const config = new Config();
     keyPoints: [
       'Decorators are functions',
       '@decorator syntax applies decorators',
-      'Class, method, property, parameter decorators',
-      'Can modify or wrap declarations',
       'Used extensively in Angular'
     ],
     commonMistakes: [
       'Not understanding decorator execution order',
-      'Forgetting to enable experimentalDecorators',
-      'Using decorators incorrectly',
-      'Not returning modified descriptor'
+      'Forgetting to enable experimentalDecorators'
     ],
     proTips: [
       'Enable experimentalDecorators in tsconfig',
-      'Use decorators for cross-cutting concerns',
-      'Keep decorators focused and simple',
-      'Consider using higher-order functions instead'
+      'Use decorators for cross-cutting concerns'
     ]
   },
 
   advanced: {
     definition: 'Advanced TypeScript features include conditional types, mapped types, template literal types, and other powerful type manipulation tools.',
-    whyUse: 'Advanced types enable creating highly type-safe and flexible code patterns.',
-    whereUse: 'Used for complex type manipulations, library development, and type-safe frameworks.',
-    syntax: 'T extends U ? X : Y',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Advanced TypeScript features enable complex type transformations and conditional logic at the type level.',
     examples: [
       {
@@ -1289,29 +1187,23 @@ console.log(result);`,
     keyPoints: [
       'Conditional types: T extends U ? X : Y',
       'Infer keyword for type extraction',
-      'Template literal types for string manipulation',
-      'Mapped types with key remapping',
-      'Recursive type definitions'
+      'Template literal types for string manipulation'
     ],
     commonMistakes: [
       'Overcomplicating type definitions',
-      'Not understanding type distribution',
-      'Using infer incorrectly',
-      'Creating unreadable type aliases'
+      'Not understanding type distribution'
     ],
     proTips: [
       'Use conditional types for type transformations',
-      'Use infer for extracting types',
-      'Keep types readable',
-      'Document complex type definitions'
+      'Keep types readable'
     ]
   },
 
   react: {
     definition: 'TypeScript with React provides type safety for components, props, state, and hooks. It catches errors at compile time and improves developer experience.',
-    whyUse: 'TypeScript in React catches bugs early, improves code documentation, and enhances IDE support.',
-    whereUse: 'Used in React applications for type-safe component development.',
-    syntax: 'interface Props { children: React.ReactNode; }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'TypeScript types React components, props, state, hooks, and event handlers for better type safety.',
     examples: [
       {
@@ -1384,21 +1276,15 @@ const UserProfile: React.FC<{ userId: number }> = ({ userId }) => {
     keyPoints: [
       'Type props with interfaces',
       'Type useState with generic',
-      'Type event handlers',
-      'Use React.FC for component type',
-      'Type refs with useRef<T>'
+      'Type event handlers'
     ],
     commonMistakes: [
       'Using any for props',
-      'Not typing event handlers',
-      'Forgetting to type useState',
-      'Not handling null/undefined'
+      'Not typing event handlers'
     ],
     proTips: [
       'Use interface for props',
-      'Use type for unions/intersections',
-      'Enable strictNullChecks',
-      'Use React.ComponentProps for prop types'
+      'Enable strictNullChecks'
     ]
   }
 }

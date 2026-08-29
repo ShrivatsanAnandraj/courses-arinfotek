@@ -1,8 +1,8 @@
 const ruby = {
   intro: {
     definition: 'Ruby is a dynamic, interpreted, object-oriented programming language designed for simplicity and productivity. It was created by Yukihiro Matsumoto (Matz) in 1995.',
-    whyUse: 'Ruby emphasizes developer happiness with clean, readable syntax. It follows the principle of least surprise and provides elegant solutions for common problems.',
-    whereUse: 'Web development (Ruby on Rails), scripting, automation, data processing, DevOps tools, and prototyping.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Ruby uses English-like keywords, dynamic typing, and everything is an object. It supports multiple programming paradigms including OOP, functional, and reflective.',
     examples: [
@@ -31,28 +31,22 @@ puts true.class`,
     keyPoints: [
       'Ruby is dynamically typed with strong typing',
       'Everything is an object, including primitives',
-      'Uses blocks, procs, and lambdas for functional programming',
-      'Convention over configuration (especially in Rails)',
       'Garbage collection handles memory management'
     ],
     commonMistakes: [
       'Confusing = (assignment) with == (comparison)',
-      'Not understanding method visibility',
-      'Forgetting that methods return the last expression',
-      'Using when you might need gsub'
+      'Forgetting that methods return the last expression'
     ],
     proTips: [
       'Use Ruby\'s built-in methods before writing loops',
-      'Embrace blocks and iterators',
-      'Use symbols for fixed strings',
-      'Leverage Ruby\'s expressive syntax'
+      'Embrace blocks and iterators'
     ]
   },
 
   setup: {
     definition: 'Setting up a Ruby development environment involves installing Ruby, a version manager, and essential gems for development.',
-    whyUse: 'A proper setup enables efficient Ruby development with version management, dependency handling, and development tools.',
-    whereUse: 'Essential for Ruby on Rails development, scripting, and any Ruby project.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Use rbenv or RVM for version management, Bundler for dependency management, and a text editor like VS Code or RubyMine.',
     examples: [
@@ -91,29 +85,23 @@ ruby -e 'puts "Hello from command line"'`,
     keyPoints: [
       'Use rbenv or RVM for Ruby version management',
       'Use Bundler for dependency management',
-      'Install gems with gem install',
-      'Use Gemfile to specify dependencies',
       'Run bundle install to install dependencies'
     ],
     commonMistakes: [
       'Using system Ruby instead of version manager',
-      'Not using Bundler for dependency management',
-      'Installing gems globally instead of per-project',
-      'Forgetting to specify Ruby version'
+      'Not using Bundler for dependency management'
     ],
     proTips: [
       'Use .ruby-version file for project Ruby version',
-      'Add Gemfile.lock to version control',
-      'Use bundle exec for project commands',
-      'Consider using Docker for consistent environments'
+      'Add Gemfile.lock to version control'
     ]
   },
 
   variables: {
     definition: 'Ruby variables are dynamically typed and don\'t require explicit type declaration. Ruby has several variable naming conventions that indicate scope.',
-    whyUse: 'Variables store and reference data, enabling programs to work with information. Ruby\'s variable conventions make scope clear.',
-    whereUse: 'Used throughout Ruby programs for storing data, references, and state.',
-    syntax: 'variable_name = value',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby variables start with specific characters: @ for instance, @@ for class, $ for global, and lowercase for local variables.',
     examples: [
       {
@@ -163,29 +151,23 @@ e1.show`,
     keyPoints: [
       '$ prefix for global variables',
       '@ prefix for instance variables',
-      '@@ prefix for class variables',
-      'No prefix for local variables',
-      'Constants start with uppercase letters'
+      '@@ prefix for class variables'
     ],
     commonMistakes: [
       'Overusing global variables',
-      'Confusing instance and class variables',
-      'Not understanding variable scope',
-      'Using capital letters for non-constants'
+      'Confusing instance and class variables'
     ],
     proTips: [
       'Avoid global variables when possible',
-      'Use attr_reader/attr_writer for accessors',
-      'Prefer local variables over instance when possible',
       'Use constants for fixed values'
     ]
   },
 
   strings: {
     definition: 'Ruby strings are sequences of characters. They can be mutable or immutable, and Ruby provides extensive string manipulation capabilities.',
-    whyUse: 'Strings are essential for text processing, I/O operations, and data manipulation in Ruby.',
-    whereUse: 'Used for user messages, file paths, data storage, and text processing.',
-    syntax: 'string = "value" or \'value\'',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby offers single-quoted (no interpolation) and double-quoted (interpolation) strings. Strings are mutable in Ruby.',
     examples: [
       {
@@ -219,29 +201,23 @@ puts str.split(" ").join("-")`,
     keyPoints: [
       'Double quotes support interpolation',
       'Single quotes are literal (no interpolation)',
-      'Strings are mutable in Ruby',
-      'Use gsub for global substitution',
-      'Heredocs for multi-line strings'
+      'Strings are mutable in Ruby'
     ],
     commonMistakes: [
       'Confusing single and double quotes',
-      'Not escaping special characters',
-      'Using mutable strings incorrectly',
-      'Forgetting strip for whitespace'
+      'Not escaping special characters'
     ],
     proTips: [
       'Use %Q{} for strings with quotes',
-      'Use heredocs for multi-line text',
-      'Use freeze for immutable strings',
-      'Prefer interpolation over concatenation'
+      'Use heredocs for multi-line text'
     ]
   },
 
   operators: {
     definition: 'Ruby provides a rich set of operators for comparisons, arithmetic, logical operations, and object manipulation.',
-    whyUse: 'Operators enable performing calculations, comparisons, and logical operations on data.',
-    whereUse: 'Used throughout Ruby for math, comparisons, assignments, and control flow.',
-    syntax: 'operand operator operand',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby supports standard arithmetic, comparison, and logical operators, plus unique ones like <=> (spaceship) and === (case equality).',
     examples: [
       {
@@ -284,29 +260,23 @@ puts range.include?(3)`,
     keyPoints: [
       '<=> returns -1, 0, or 1',
       '=== is case equality (used in case statements)',
-      'Range operator creates ranges',
-      'Ternary operator: condition ? true : false',
-      'Pattern matching with === for case statements'
+      'Range operator creates ranges'
     ],
     commonMistakes: [
       'Integer division truncating results',
-      'Using = instead of == in comparisons',
-      'Confusing && with and',
-      'Not understanding operator precedence'
+      'Using = instead of == in comparisons'
     ],
     proTips: [
       'Use spaceship operator for custom sorting',
-      'Use ranges for iteration and membership',
-      'Prefer && and || over and and or',
-      'Use pattern matching for complex comparisons'
+      'Use ranges for iteration and membership'
     ]
   },
 
   conditionals: {
     definition: 'Ruby provides if, unless, case, and ternary operators for conditional execution. Everything in Ruby evaluates to true or false.',
-    whyUse: 'Conditionals enable decision-making in programs, allowing different actions based on data or state.',
-    whereUse: 'Used for input validation, feature toggles, error handling, and controlling program flow.',
-    syntax: 'if condition then statement end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby treats nil and false as false, everything else as true. Conditionals can use then/end or do/end blocks.',
     examples: [
       {
@@ -349,29 +319,23 @@ end`,
     keyPoints: [
       'if/unless/elsif/else/end',
       'case/when/end',
-      'Ternary: condition ? true : false',
-      'Ruby uses truthy/falsy values',
-      'Modifier form: statement if condition'
+      'Ruby uses truthy/falsy values'
     ],
     commonMistakes: [
       'Confusing = and == in conditions',
-      'Using when with incorrect syntax',
-      'Not handling all cases in case statement',
-      'Overusing nested if statements'
+      'Using when with incorrect syntax'
     ],
     proTips: [
       'Use case when checking multiple conditions',
-      'Use unless for negated conditions',
-      'Consider using early returns',
-      'Use case with pattern matching in Ruby 3+'
+      'Use unless for negated conditions'
     ]
   },
 
   loops: {
     definition: 'Ruby provides while, for, each, and other loop constructs for iteration. Blocks and iterators are fundamental to Ruby iteration.',
-    whyUse: 'Loops enable processing collections, repeating tasks, and implementing algorithms that require iteration.',
-    whereUse: 'Used for processing arrays, reading input, implementing game logic, and data processing.',
-    syntax: 'loop do statement end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby favors iterators over traditional loops. Each, map, select are preferred for collection processing.',
     examples: [
       {
@@ -411,29 +375,23 @@ end`,
     keyPoints: [
       'each is the primary iterator',
       'map returns new array with transformed elements',
-      'select returns elements matching condition',
-      'times and upto for numeric iteration',
-      'do/end for multi-line, {} for single-line'
+      'select returns elements matching condition'
     ],
     commonMistakes: [
       'Using each when map is appropriate',
-      'Modifying array during iteration',
-      'Not using block variables correctly',
-      'Forgetting break for early exit'
+      'Modifying array during iteration'
     ],
     proTips: [
       'Prefer iterators over while/for loops',
-      'Use lazy enumerators for large collections',
-      'Chain enumerator methods for readability',
-      'Use reduce for accumulating values'
+      'Use lazy enumerators for large collections'
     ]
   },
 
   methods: {
     definition: 'Ruby methods are reusable blocks of code that perform specific tasks. They can accept parameters, return values, and are defined with def/end.',
-    whyUse: 'Methods promote code reuse, modularity, and clean code organization.',
-    whereUse: 'Used to encapsulate functionality, create reusable logic, and structure applications.',
-    syntax: 'def method_name(params) body end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Methods in Ruby return the last expression. They can have default parameters, optional parameters, and splat operators.',
     examples: [
       {
@@ -471,29 +429,23 @@ puts "Sum: #{s}, Diff: #{d}"`,
     keyPoints: [
       'Methods return the last expression',
       'Use def/end to define methods',
-      'Default parameters with =',
-      'Use splat (*) for variable arguments',
-      'Methods can be private, protected, or public'
+      'Default parameters with ='
     ],
     commonMistakes: [
       'Not using explicit return when needed',
-      'Confusing method calls with variables',
-      'Forgetting method scope',
-      'Not using meaningful method names'
+      'Confusing method calls with variables'
     ],
     proTips: [
       'Use attr_reader/attr_writer for getters/setters',
-      'Keep methods small and focused',
-      'Use module functions for utility methods',
-      'Use method(:name) to get method reference'
+      'Keep methods small and focused'
     ]
   },
 
   blocks: {
     definition: 'Blocks in Ruby are chunks of code that can be passed to methods. They are enclosed in do/end or curly braces and can accept parameters.',
-    whyUse: 'Blocks enable passing behavior to methods, facilitating iterators, callbacks, and resource management.',
-    whereUse: 'Used with iterator methods, callbacks, resource management (File.open), and configuration.',
-    syntax: 'method_name { |param| block }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Blocks are anonymous code segments. yield passes control to the block. Procs and lambdas are block-like objects.',
     examples: [
       {
@@ -531,29 +483,23 @@ end`,
     keyPoints: [
       'Blocks are closures - they capture surrounding scope',
       'yield passes control to the block',
-      'block_given? checks if block was passed',
-      'do/end for multi-line, {} for single-line',
-      'Blocks can return values with next'
+      'do/end for multi-line, {} for single-line'
     ],
     commonMistakes: [
       'Confusing blocks with procs or lambdas',
-      'Not understanding variable scope in blocks',
-      'Using wrong block delimiter',
-      'Forgetting to handle block parameters'
+      'Not understanding variable scope in blocks'
     ],
     proTips: [
       'Use blocks for iterator callbacks',
-      'Use yield for simple delegation',
-      'Use block_given? for optional blocks',
-      'Consider using procs for complex block passing'
+      'Use yield for simple delegation'
     ]
   },
 
   lambdas: {
     definition: 'Lambdas in Ruby are anonymous functions that can be stored in variables and passed around. They are strict about arity and return.',
-    whyUse: 'Lambdas provide functional programming capabilities, enabling higher-order functions and closures.',
-    whereUse: 'Used for callbacks, functional programming patterns, and when behavior needs to be passed as data.',
-    syntax: 'lambda { |params| body } or -> (params) { body }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Lambdas are instances of Proc class but with strict arity checking. They return from themselves, not the enclosing method.',
     examples: [
       {
@@ -595,29 +541,23 @@ puts squared.inspect`,
     keyPoints: [
       'Lambdas check argument count strictly',
       'Use .call to invoke lambdas',
-      'Lambdas return from themselves',
-      'Use & to convert lambda to block',
-      'Lambdas are closures like blocks'
+      'Lambdas return from themselves'
     ],
     commonMistakes: [
       'Confusing lambda with Proc',
-      'Not using .call to invoke',
-      'Using wrong syntax for parameters',
-      'Forgetting arity checking'
+      'Not using .call to invoke'
     ],
     proTips: [
       'Use lambdas for strict function behavior',
-      'Use Proc for flexible argument handling',
-      'Store lambdas in variables for reuse',
-      'Use & to pass lambdas as blocks'
+      'Store lambdas in variables for reuse'
     ]
   },
 
   arrays: {
     definition: 'Ruby arrays are ordered, integer-indexed collections of objects. They can hold objects of different types and are dynamically resizable.',
-    whyUse: 'Arrays provide ordered storage and powerful iteration methods for managing collections of data.',
-    whereUse: 'Used for storing lists, processing collections, implementing stacks/queues, and data manipulation.',
-    syntax: 'array = [item1, item2, item3]',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby arrays are zero-indexed, resizable, and can contain any object type. They provide rich enumeration methods.',
     examples: [
       {
@@ -660,29 +600,23 @@ puts sum`,
     keyPoints: [
       'Arrays are zero-indexed',
       'Negative indices count from end',
-      'Use push/pop for stack operations',
-      'Use shift/unshift for queue operations',
       'Rich enumeration methods (map, select, reduce)'
     ],
     commonMistakes: [
       'Out of bounds access returning nil',
-      'Not checking for empty arrays',
-      'Modifying array during iteration',
-      'Using wrong iterator method'
+      'Modifying array during iteration'
     ],
     proTips: [
       'Use %w{} for array of strings',
-      'Use parallel arrays carefully',
-      'Use zip for combining arrays',
       'Consider using Set for uniqueness'
     ]
   },
 
   hashes: {
     definition: 'Ruby hashes are collections of key-value pairs. They are similar to dictionaries in other languages and provide fast lookup by key.',
-    whyUse: 'Hashes provide efficient key-based storage and retrieval, essential for mapping relationships and structured data.',
-    whereUse: 'Used for configuration, data modeling, JSON processing, and mapping relationships.',
-    syntax: 'hash = { key => value }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Hashes can use any object as key. Ruby 1.9+ supports symbol keys with new syntax. Hashes maintain insertion order.',
     examples: [
       {
@@ -716,29 +650,23 @@ puts scores.select { |k, v| v > 90 }.inspect`,
     keyPoints: [
       'Keys can be any object',
       'Symbol keys use shorthand: { key: value }',
-      'Use fetch for missing key handling',
-      'each iterates over key-value pairs',
-      'merge combines hashes'
+      'Use fetch for missing key handling'
     ],
     commonMistakes: [
       'Confusing key syntax',
-      'Not handling missing keys',
-      'Using wrong key type',
-      'Modifying hash during iteration'
+      'Not handling missing keys'
     ],
     proTips: [
       'Use symbol keys for performance',
-      'Use fetch with default for safety',
-      'Use Hash.new for default values',
-      'Consider using OpenStruct for dot notation'
+      'Use fetch with default for safety'
     ]
   },
 
   ranges: {
     definition: 'Ranges in Ruby represent a sequence of values. They can be inclusive (..) or exclusive (...), and work with integers, strings, and custom objects.',
-    whyUse: 'Ranges provide a concise way to represent sequences, iterate, and check membership.',
-    whereUse: 'Used for iteration, case statements, regular expressions, and sequence generation.',
-    syntax: 'range = start..end or start...end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Two-dot range is inclusive, three-dot is exclusive. Ranges can be used in case statements and iteration.',
     examples: [
       {
@@ -778,29 +706,23 @@ end`,
     keyPoints: [
       '.. is inclusive, ... is exclusive',
       'Ranges can iterate with each',
-      'Use include? or === for membership',
-      'String ranges work alphabetically',
-      'Ranges can be used in case statements'
+      'Use include? or === for membership'
     ],
     commonMistakes: [
       'Confusing .. with ...',
-      'Using wrong range direction',
-      'Not understanding range inclusion',
-      'Using ranges with non-compatible types'
+      'Using wrong range direction'
     ],
     proTips: [
       'Use ranges for case statement matching',
-      'Use step for non-sequential iteration',
-      'Consider using Enumerator for lazy ranges',
-      'Use cover? for performance on large ranges'
+      'Use step for non-sequential iteration'
     ]
   },
 
   classes: {
     definition: 'Ruby classes are blueprints for creating objects. They encapsulate data (instance variables) and behavior (methods) following OOP principles.',
-    whyUse: 'Classes enable object-oriented programming, providing encapsulation, inheritance, and polymorphism.',
-    whereUse: 'Used to model real-world entities, create reusable components, and structure applications.',
-    syntax: 'class ClassName; def initialize; end; end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby classes use initialize for constructors, instance variables for state, and methods for behavior. Everything is an object, including classes.',
     examples: [
       {
@@ -863,29 +785,23 @@ puts account.balance`,
     keyPoints: [
       'initialize is the constructor',
       'attr_accessor creates getters and setters',
-      'Instance variables start with @',
-      'Class methods use self.method_name',
-      'Classes are objects too'
+      'Instance variables start with @'
     ],
     commonMistakes: [
       'Confusing instance and class variables',
-      'Not using attr_accessor properly',
-      'Forgetting to initialize instance variables',
-      'Using class when module is appropriate'
+      'Not using attr_accessor properly'
     ],
     proTips: [
       'Use attr_reader for read-only attributes',
-      'Use attr_writer for write-only attributes',
-      'Consider using Struct for simple data classes',
-      'Use freeze for immutable objects'
+      'Consider using Struct for simple data classes'
     ]
   },
 
   inheritance: {
     definition: 'Ruby inheritance allows creating new classes based on existing classes. A subclass inherits methods and data from its superclass.',
-    whyUse: 'Inheritance promotes code reuse, establishes relationships, and enables polymorphism.',
-    whereUse: 'Used to create specialized versions of classes, build hierarchies, and share behavior.',
-    syntax: 'class Derived < Base; end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby supports single inheritance. Modules provide mixins for multiple inheritance-like behavior.',
     examples: [
       {
@@ -958,29 +874,23 @@ child.greet`,
     keyPoints: [
       'Single inheritance only',
       'Use super to call parent methods',
-      'Method lookup follows MRO',
-      'is_a? checks inheritance relationship',
-      'Modules provide multiple inheritance'
+      'Method lookup follows MRO'
     ],
     commonMistakes: [
       'Creating deep inheritance hierarchies',
-      'Not calling super when needed',
-      'Confusing inheritance with composition',
-      'Forgetting method lookup order'
+      'Not calling super when needed'
     ],
     proTips: [
       'Prefer composition over inheritance',
-      'Use modules for shared behavior',
-      'Keep inheritance hierarchies shallow',
-      'Use respond_to? for duck typing'
+      'Use modules for shared behavior'
     ]
   },
 
   modules: {
     definition: 'Modules in Ruby are collections of methods and constants. They cannot be instantiated and are used for namespacing and mixins.',
-    whyUse: 'Modules provide namespacing, mixins for code reuse, and a way to share behavior without inheritance.',
-    whereUse: 'Used for grouping related methods, creating namespaces, and providing mixins.',
-    syntax: 'module ModuleName; def method_name; end; end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Modules can be included as mixins, used for namespacing, or as containers for constants and class methods.',
     examples: [
       {
@@ -1037,29 +947,23 @@ server.start`,
     keyPoints: [
       'Modules cannot be instantiated',
       'include for instance methods',
-      'extend for class methods',
-      'extend self for module methods',
-      'Modules can include other modules'
+      'extend for class methods'
     ],
     commonMistakes: [
       'Confusing modules with classes',
-      'Not using namespacing properly',
-      'Overcomplicating module inclusion',
-      'Forgetting module lookup order'
+      'Not using namespacing properly'
     ],
     proTips: [
       'Use modules for code organization',
-      'Use mixins for shared behavior',
-      'Use modules for namespacing',
-      'Consider using Concerns in Rails'
+      'Use mixins for shared behavior'
     ]
   },
 
   io: {
     definition: 'Ruby provides extensive I/O capabilities for reading and writing files, processing input/output, and working with streams.',
-    whyUse: 'File I/O is essential for data persistence, configuration, logging, and data processing.',
-    whereUse: 'Used for reading/writing files, processing CSV/JSON, logging, and command-line applications.',
-    syntax: 'File.open("file", "r") { |f| f.read }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby provides File, IO, and other classes for I/O operations. Blocks ensure proper resource cleanup.',
     examples: [
       {
@@ -1104,29 +1008,23 @@ puts Dir.glob("*.txt").inspect`,
     keyPoints: [
       'Use blocks for automatic file closing',
       'File.read for simple reading',
-      'File.write for simple writing',
-      'File.open for complex operations',
-      'Use Dir.glob for file pattern matching'
+      'File.write for simple writing'
     ],
     commonMistakes: [
       'Not closing file handles',
-      'Using wrong file mode',
-      'Not handling file permissions',
-      'Forgetting to handle exceptions'
+      'Using wrong file mode'
     ],
     proTips: [
       'Always use blocks for file operations',
-      'Use FileUtils for file system operations',
-      'Consider using Pathname for path manipulation',
-      'Use IO.pipe for inter-process communication'
+      'Use FileUtils for file system operations'
     ]
   },
 
   exceptions: {
     definition: 'Ruby exceptions handle runtime errors and exceptional conditions. They provide a way to transfer control and recover from errors.',
-    whyUse: 'Exception handling enables graceful error recovery, logging, and maintaining application stability.',
-    whereUse: 'Used everywhere for error handling, input validation, and resource cleanup.',
-    syntax: 'begin; rescue ExceptionType => e; ensure; end',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby uses begin/rescue/ensure for exception handling. raise raises exceptions, rescue catches them.',
     examples: [
       {
@@ -1176,29 +1074,23 @@ end`,
     keyPoints: [
       'rescue catches exceptions',
       'ensure always runs',
-      'raise raises exceptions',
-      'StandardError is base for most exceptions',
-      'retry retries the block'
+      'raise raises exceptions'
     ],
     commonMistakes: [
       'Catching too broadly',
-      'Not logging exceptions',
-      'Swallowing exceptions silently',
-      'Forgetting ensure for cleanup'
+      'Swallowing exceptions silently'
     ],
     proTips: [
       'Be specific with exception types',
-      'Log exceptions with full context',
-      'Use ensure for resource cleanup',
-      'Consider using Result pattern'
+      'Log exceptions with full context'
     ]
   },
 
   regex: {
     definition: 'Ruby has built-in regular expression support using the Regexp class. Regex is used for pattern matching and text manipulation.',
-    whyUse: 'Regex provides powerful pattern matching for validation, extraction, and text transformation.',
-    whereUse: 'Used for input validation, data extraction, search and replace, and text processing.',
-    syntax: '/pattern/ or Regexp.new("pattern")',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Ruby regex uses /pattern/ syntax. Methods like match, gsub, and scan work with patterns.',
     examples: [
       {
@@ -1231,29 +1123,23 @@ puts text.split(/\s+/).inspect`,
     keyPoints: [
       '/pattern/ creates regular expression',
       'match? checks for match',
-      'gsub replaces matches',
-      'scan returns all matches',
-      'Captures using parentheses ()'
+      'gsub replaces matches'
     ],
     commonMistakes: [
       'Not escaping special characters',
-      'Using wrong regex flags',
-      'Not handling nil matches',
-      'Overcomplicating patterns'
+      'Using wrong regex flags'
     ],
     proTips: [
       'Use Regexp.union for multiple patterns',
-      'Use named captures for clarity',
-      'Test patterns with rubular.org',
-      'Use regex for complex string validation'
+      'Test patterns with rubular.org'
     ]
   },
 
   rails: {
     definition: 'Ruby on Rails is a full-stack web framework that follows MVC architecture. It provides conventions for rapid web application development.',
-    whyUse: 'Rails provides everything needed for web development: database ORM, routing, views, testing, and deployment tools.',
-    whereUse: 'Used for building web applications, APIs, e-commerce sites, social platforms, and SaaS applications.',
-    syntax: 'rails new app_name',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Rails follows convention over configuration, providing sensible defaults and structure for web applications.',
     examples: [
       {
@@ -1313,21 +1199,15 @@ end`,
     keyPoints: [
       'MVC architecture pattern',
       'Convention over configuration',
-      'ActiveRecord for database ORM',
-      'RESTful routing by convention',
-      'Built-in testing framework'
+      'ActiveRecord for database ORM'
     ],
     commonMistakes: [
       'Not following Rails conventions',
-      'Putting business logic in controllers',
-      'Not using model validations',
-      'N+1 query problems'
+      'Putting business logic in controllers'
     ],
     proTips: [
       'Use service objects for complex logic',
-      'Implement concerns for shared behavior',
-      'Use background jobs for heavy processing',
-      'Cache frequently accessed data'
+      'Use background jobs for heavy processing'
     ]
   }
 }

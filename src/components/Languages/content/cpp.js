@@ -1,10 +1,10 @@
 const cpp = {
   intro: {
-    definition: "C++ is a powerful, general-purpose programming language created as an extension of C. It supports both procedural and object-oriented programming paradigms, providing high-level abstractions while maintaining low-level memory access.",
-    whyUse: "C++ offers exceptional performance, extensive standard library, OOP capabilities, and is used in performance-critical applications. It's the foundation for game engines, operating systems, browsers, and high-performance computing.",
-    whereUse: "Game development (Unreal Engine), browsers (Chrome, Firefox), operating systems, databases, compilers, embedded systems, scientific computing, and real-time systems.",
+    definition: "C++ is a general-purpose language built as an extension of C. It supports both procedural and object-oriented programming and gives you high-level abstractions with low-level memory access.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C++ combines C's features with classes, objects, inheritance, polymorphism, templates, and STL. It uses iostream for I/O and supports both stack and heap memory management.",
+    explanation: "C++ adds classes, inheritance, polymorphism, templates, and the STL on top of C. It uses iostream for input/output and supports both stack and heap memory management.",
     examples: [
       {
         title: "Hello World",
@@ -62,34 +62,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "C++ is an extension of C with OOP features",
+      "C++ extends C with OOP features like classes and inheritance",
       "Uses cout and cin for input/output",
-      "Supports both procedural and OOP paradigms",
-      "Has a rich standard library (STL)",
-      "Compiles to efficient native code"
+      "Has a rich standard library (STL)"
     ],
     commonMistakes: [
       "Forgetting to include iostream",
-      "Not using std namespace or std:: prefix",
-      "Memory leaks from missing delete",
-      "Using C-style casts instead of C++ casts",
-      "Ignoring compiler warnings"
+      "Not using std namespace or std:: prefix"
     ],
     proTips: [
-      "Use auto for type deduction when obvious",
-      "Use nullptr instead of NULL",
-      "Prefer range-based for loops",
-      "Use smart pointers for memory management",
-      "Compile with -Wall -Wextra for warnings"
+      "Use auto for type deduction when the type is obvious",
+      "Use smart pointers for memory management"
     ]
   },
 
   setup: {
-    definition: "Setting up a C++ development environment requires a compiler (GCC, Clang, MSVC), text editor or IDE, and build tools. C++ files use .cpp extension.",
-    whyUse: "A proper setup ensures efficient compilation, debugging, and project management. Modern IDEs provide code completion, debugging, and project organization.",
-    whereUse: "Development environments: Linux (g++), macOS (clang++), Windows (MSVC, MinGW), and online compilers for quick testing.",
+    definition: "You need a compiler like g++ or clang++, a text editor or IDE, and build tools. C++ source files use the .cpp extension.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C++ programs are compiled using g++ or clang++. The compilation process includes preprocessing, compilation, assembly, and linking. Build systems like CMake manage complex projects.",
+    explanation: "Compile C++ programs with g++ or clang++. The compilation process includes preprocessing, compilation, assembly, and linking. Build systems like CMake manage larger projects.",
     examples: [
       {
         title: "G++ Compilation",
@@ -143,34 +135,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Use g++ or clang++ as the compiler",
       "Compile with: g++ -o program program.cpp",
-      "Use -std=c++17 for modern features",
-      "Use -g for debugging symbols",
-      "Use -O2 for optimization"
+      "Use -std=c++17 or newer for modern features",
+      "Use -g for debugging symbols"
     ],
     commonMistakes: [
       "Using .c extension for C++ files",
-      "Missing C++ standard flag",
-      "Not linking required libraries",
-      "Ignoring compiler warnings",
-      "Using wrong compiler flags"
+      "Missing the C++ standard flag"
     ],
     proTips: [
       "Use CMake for cross-platform builds",
-      "Use -std=c++20 for latest features",
-      "Use clang-tidy for code quality",
-      "Use Valgrind for memory checking",
-      "Create Makefiles for simple projects"
+      "Use clang-tidy for code quality checks"
     ]
   },
 
   variables: {
-    definition: "C++ variables are typed storage locations that hold data. C++ supports all C types plus string, bool, and references. Type safety is enforced at compile time.",
-    whyUse: "Variables enable programs to store, retrieve, and manipulate data. C++ provides strong type checking and multiple storage classes for different use cases.",
-    whereUse: "Every C++ program uses variables for storing numbers, characters, strings, objects, pointers, and references throughout the code.",
+    definition: "C++ variables are typed storage locations. C++ supports all C types plus string, bool, and references. Type safety is enforced at compile time.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C++ variables must be declared with a type. auto keyword deduces type. const creates constants. References provide aliases. Scope determines lifetime and visibility.",
+    explanation: "Declare variables with a type, or let auto deduce it. Use const for read-only values. References provide aliases to existing variables. Scope determines lifetime and visibility.",
     examples: [
       {
         title: "Basic Data Types",
@@ -254,34 +238,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Must declare type before using a variable",
-      "auto deduces type from initializer",
+      "auto deduces the type from the initializer",
       "const creates read-only variables",
-      "References are aliases to existing variables",
-      "sizeof returns size in bytes"
+      "References are aliases to existing variables"
     ],
     commonMistakes: [
       "Using uninitialized variables",
-      "Narrowing conversions losing data",
-      "Using C-style casts in C++",
-      "Comparing floats with ==",
-      "Ignoring const correctness"
+      "Narrowing conversions losing data"
     ],
     proTips: [
       "Use auto for complex type names",
-      "Use const for values that don't change",
-      "Use references for efficient parameter passing",
-      "Initialize variables at declaration",
-      "Use meaningful variable names"
+      "Use references for efficient parameter passing"
     ]
   },
 
   strings: {
-    definition: "C++ provides the string class in <string> header, offering dynamic string handling with operator overloading, methods, and safe memory management.",
-    whyUse: "C++ strings are safer and more feature-rich than C strings. They handle memory automatically, support concatenation with +, and provide many utility methods.",
-    whereUse: "Text processing, user input, file operations, GUI development, and any application dealing with text content.",
+    definition: "C++ provides a string class in <string> that handles dynamic text with automatic memory management, operator overloading, and useful methods.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "The string class manages memory automatically. Strings can be concatenated with +, compared with ==, and accessed with []. Methods include length(), substr(), find(), and more.",
+    explanation: "Concatenate with +, compare with ==, and access characters with []. Methods like length(), substr(), and find() make string manipulation easy. getline() reads full lines of input.",
     examples: [
       {
         title: "String Declaration",
@@ -372,34 +348,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "string class in <string> header",
-      "Automatic memory management",
-      "Operator overloading for +, ==, <, etc.",
-      "Methods: length(), substr(), find(), etc.",
-      "getline() for line input"
+      "string class in <string> handles memory automatically",
+      "Use + for concatenation, == for comparison",
+      "getline() reads full lines of input"
     ],
     commonMistakes: [
-      "Using == for string comparison in C",
-      "Buffer overflow with C-style strings",
       "Not including <string> header",
-      "Confusing string and char*",
-      "Not handling string conversion errors"
+      "Confusing string and char*"
     ],
     proTips: [
       "Use string_view for read-only strings",
-      "Use to_string() for number conversion",
-      "Use stoi(), stod() for parsing",
-      "Use reserve() to pre-allocate memory",
-      "Useemplace_back() for efficient append"
+      "Use reserve() to pre-allocate memory for large strings"
     ]
   },
 
   operators: {
-    definition: "C++ provides all C operators plus additional operators for objects and streams. Operators define how data is manipulated and expressions are evaluated.",
-    whyUse: "Operators are fundamental for all data manipulation. C++ extends operators with overloading, enabling custom operations on user-defined types.",
-    whereUse: "Arithmetic calculations, logical expressions, bitwise operations, object manipulation, stream I/O, and memory management throughout C++ programs.",
+    definition: "C++ has all C operators plus additions for objects and streams. Operators define how data is manipulated and expressions are evaluated.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "C++ supports all C operators and adds scope resolution (::), member access (->), new/delete, and operator overloading. Operator precedence determines evaluation order.",
+    explanation: "C++ adds scope resolution (::), new/delete, and operator overloading on top of C operators. Precedence rules determine the order of evaluation.",
     examples: [
       {
         title: "Arithmetic Operators",
@@ -480,33 +448,25 @@ int main() {
     ],
     keyPoints: [
       "All C operators work in C++",
-      "C++ adds scope resolution (::)",
-      "new/delete for dynamic memory",
-      "Operator overloading for custom types",
-      "Stream operators (<<, >>) for I/O"
+      "C++ adds scope resolution (::) and new/delete",
+      "Operator overloading lets you define +, <<, etc. for custom types"
     ],
     commonMistakes: [
-      "Operator precedence errors",
       "Using = instead of ==",
-      "Integer division truncation",
-      "Side effects in expressions",
-      "Incorrect operator overloading"
+      "Operator precedence errors"
     ],
     proTips: [
       "Use parentheses to clarify precedence",
-      "Use compound assignments (+=, -=, etc.)",
-      "Understand short-circuit evaluation",
-      "Use const references to avoid copies",
-      "Document operator overloads clearly"
+      "Understand short-circuit evaluation in && and ||"
     ]
   },
 
   conditionals: {
-    definition: "C++ conditional statements control program flow based on conditions. C++ supports if, if-else, switch, and the conditional (ternary) operator for decision making.",
-    whyUse: "Conditionals enable programs to respond differently to different inputs, making them dynamic and capable of handling various scenarios.",
-    whereUse: "Input validation, error handling, feature selection, game logic, user interface decisions, and any scenario requiring different code paths.",
+    definition: "Conditional statements let your program choose different code paths based on whether conditions are true or false.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "if checks a condition. if-else provides alternative paths. else-if chains multiple conditions. switch provides efficient multi-way branching. C++17 adds if-with-initializer.",
+    explanation: "if checks a condition, if-else provides two paths, else-if chains multiple conditions, and switch handles discrete values. C++17 adds if-with-initializer for scoped initialization.",
     examples: [
       {
         title: "If-Else Statement",
@@ -600,34 +560,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "if checks a single condition",
       "if-else provides two code paths",
-      "else-if chains multiple conditions",
-      "switch for discrete value matching",
-      "if-with-initializer (C++17) for scoped init"
+      "switch is efficient for discrete value matching",
+      "C++17 adds if-with-initializer for scoped variables"
     ],
     commonMistakes: [
       "Missing break in switch cases",
-      "Using = instead of ==",
-      "Dangling else problem",
-      "Non-exhaustive switch",
-      "Comparing floats with =="
+      "Using = instead of =="
     ],
     proTips: [
-      "Use switch for many comparisons with same variable",
-      "Use early returns to reduce nesting",
-      "Use if-with-initializer for cleaner scope",
       "Always include default in switch",
-      "Consider using polymorphism over switch"
+      "Use early returns to reduce nesting"
     ]
   },
 
   loops: {
-    definition: "C++ provides for, while, and do-while loops for repeated execution. C++11 adds range-based for loops for easy container iteration.",
-    whyUse: "Loops eliminate repetitive code and enable processing collections, iterations, and repeated operations efficiently.",
-    whereUse: "Array traversal, string processing, file reading, mathematical calculations, simulations, and any task requiring repeated execution.",
+    definition: "Loops let you run a block of code repeatedly. C++ provides for, while, and do-while, plus range-based for loops for easy container iteration.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "for loops are best for known iteration counts. while loops check condition before each iteration. do-while guarantees at least one execution. Range-based for iterates containers.",
+    explanation: "Use for when you know the count, while for condition-based termination, and do-while when the body must run at least once. Range-based for (C++11) iterates containers cleanly.",
     examples: [
       {
         title: "For Loop",
@@ -708,34 +660,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "for: for(init; condition; increment)",
-      "while: checks condition before each iteration",
-      "do-while: runs at least once",
-      "Range-based for for containers",
-      "break exits, continue skips iteration"
+      "for is best when you know the iteration count",
+      "range-based for iterates containers cleanly",
+      "break exits the loop, continue skips to the next iteration"
     ],
     commonMistakes: [
       "Infinite loops from missing increment",
-      "Off-by-one errors",
-      "Using range-based for on non-containers",
-      "Modifying loop variable inside loop",
-      "Missing semicolon after do-while"
+      "Off-by-one errors"
     ],
     proTips: [
       "Use range-based for for simple iteration",
-      "Use auto for type deduction in loops",
-      "Avoid modifying loop counters",
-      "Use iterators for complex container traversal",
-      "Consider algorithms over manual loops"
+      "Use auto for type deduction in loops"
     ]
   },
 
   references: {
-    definition: "References in C++ are aliases for existing variables. They provide an alternative name for an object and must be initialized at declaration. References are commonly used for function parameters and return values.",
-    whyUse: "References offer a safer alternative to pointers, enabling pass-by-reference without pointer syntax. They are essential for operator overloading and efficient parameter passing.",
-    whereUse: "Function parameters, return values, operator overloading, and as aliases for complex types.",
+    definition: "References are aliases for existing variables. They provide an alternative name, must be initialized at declaration, and cannot be null or rebound.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "References are declared with &. They must be initialized and cannot be null. Once bound, they cannot be rebound. References are dereferenced implicitly.",
+    explanation: "Declare a reference with &. They are dereferenced implicitly and are commonly used for function parameters (especially const references) and return values.",
     examples: [
       {
         title: "Basic Reference",
@@ -828,34 +772,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "References are aliases for existing variables",
-      "Must be initialized at declaration",
-      "Cannot be null or rebound",
-      "Implicitly dereferenced",
-      "Commonly used for function parameters"
+      "References must be initialized at declaration",
+      "They cannot be null or rebound",
+      "const references are ideal for function parameters"
     ],
     commonMistakes: [
-      "Uninitialized references",
-      "Returning reference to local variable",
-      "Confusing references with pointers",
-      "Non-const references to temporaries",
-      "Reference to destroyed object"
+      "Returning a reference to a local variable",
+      "Uninitialized references"
     ],
     proTips: [
       "Use const references for read-only parameters",
-      "Use references instead of pointers when possible",
-      "Avoid returning references to local variables",
-      "Use references for operator overloading",
-      "Understand reference vs pointer semantics"
+      "Use references instead of pointers when possible"
     ]
   },
 
   oop: {
-    definition: "Object-Oriented Programming (OOP) in C++ organizes code into classes and objects. It provides encapsulation, inheritance, polymorphism, and abstraction for modular, reusable code.",
-    whyUse: "OOP models real-world entities, promotes code reuse, enables polymorphism, and provides clear interfaces through encapsulation.",
-    whereUse: "Large software projects, game development, GUI frameworks, database systems, and any project requiring modular, maintainable code.",
+    definition: "Object-Oriented Programming organizes code into classes and objects. It provides encapsulation, inheritance, polymorphism, and abstraction for modular, reusable code.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Classes define object blueprints with attributes (data) and methods (functions). Objects are instances of classes. Access specifiers (public, private, protected) control visibility.",
+    explanation: "Classes define object blueprints with attributes and methods. Objects are instances of classes. Access specifiers (public, private, protected) control visibility. Constructors initialize objects.",
     examples: [
       {
         title: "Basic Class",
@@ -979,34 +915,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Classes define object blueprints",
-      "Objects are instances of classes",
-      "Encapsulation hides implementation details",
-      "Constructors initialize objects",
-      "Static members belong to the class"
+      "Classes define object blueprints with attributes and methods",
+      "Encapsulation hides implementation behind a clean interface",
+      "Constructors initialize objects when they are created"
     ],
     commonMistakes: [
       "Forgetting virtual destructor in base class",
-      "Slicing in object assignment",
-      "Circular dependencies between classes",
-      "Not initializing all member variables",
-      "Memory leaks from missing delete"
+      "Not initializing all member variables"
     ],
     proTips: [
       "Use RAII for resource management",
-      "Keep classes small and focused",
-      "Use const member functions",
-      "Prefer composition over inheritance",
-      "Use smart pointers for ownership"
+      "Prefer composition over inheritance"
     ]
   },
 
   inheritance: {
-    definition: "Inheritance allows creating new classes from existing ones. The derived class inherits members from the base class, enabling code reuse and establishing IS-A relationships.",
-    whyUse: "Inheritance promotes code reuse, establishes hierarchical relationships, and enables polymorphism through virtual functions.",
-    whereUse: "GUI frameworks, game entities, database models, and any scenario where specialized types share common behavior.",
+    definition: "Inheritance lets you create new classes from existing ones. The derived class inherits members from the base class, enabling code reuse and IS-A relationships.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Derived classes inherit from base classes using : public/protected/private. Virtual functions enable runtime polymorphism. Constructors are called in order: base then derived.",
+    explanation: "Use : public/protected/private to inherit. Virtual functions enable runtime polymorphism. Constructors are called in order: base first, then derived.",
     examples: [
       {
         title: "Basic Inheritance",
@@ -1146,33 +1074,25 @@ int main() {
     ],
     keyPoints: [
       "Inheritance establishes IS-A relationships",
-      "Public inheritance maintains interface",
-      "Protected members accessible to derived classes",
-      "Constructors call base first",
-      "Multiple inheritance supported"
+      "Protected members are accessible to derived classes",
+      "Constructors call base class first"
     ],
     commonMistakes: [
       "Diamond problem with multiple inheritance",
-      "Slicing when assigning derived to base",
-      "Missing virtual destructor",
-      "Overusing inheritance",
-      "Confusing inheritance with composition"
+      "Missing virtual destructor in base class"
     ],
     proTips: [
       "Prefer composition over inheritance",
-      "Use virtual destructor in base class",
-      "Use final to prevent further inheritance",
-      "Keep inheritance hierarchy shallow",
-      "Use interfaces (pure abstract classes)"
+      "Use final to prevent further inheritance"
     ]
   },
 
   polymorphism: {
-    definition: "Polymorphism allows objects of different types to be treated through a common interface. C++ supports compile-time (templates, overloading) and runtime (virtual functions) polymorphism.",
-    whyUse: "Polymorphism enables writing generic code that works with different types, promotes flexibility, and supports the Open-Closed Principle.",
-    whereUse: "GUI frameworks, plugin systems, game engines, and any scenario where the same operation works differently on different types.",
+    definition: "Polymorphism lets objects of different types be treated through a common interface. C++ supports compile-time (templates, overloading) and runtime (virtual functions) polymorphism.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Runtime polymorphism uses virtual functions and inheritance. Compile-time polymorphism uses templates and overloading. Pure virtual functions create abstract classes.",
+    explanation: "Runtime polymorphism uses virtual functions and inheritance. Compile-time polymorphism uses templates and overloading. Pure virtual functions (= 0) create abstract classes.",
     examples: [
       {
         title: "Virtual Functions",
@@ -1306,32 +1226,24 @@ int main() {
     keyPoints: [
       "Virtual functions enable runtime polymorphism",
       "Templates enable compile-time polymorphism",
-      "Pure virtual functions create abstract classes",
-      "Override keyword ensures correct overriding",
-      "Function overloading allows same name, different params"
+      "Pure virtual functions create abstract classes"
     ],
     commonMistakes: [
-      "Slicing when copying derived objects",
-      "Forgetting virtual destructor",
-      "Not using override keyword",
-      "Calling virtual functions in constructor",
-      "Object slicing with value semantics"
+      "Forgetting virtual destructor in polymorphic classes",
+      "Not using override keyword"
     ],
     proTips: [
       "Use virtual destructor in polymorphic base classes",
-      "Use override to prevent errors",
-      "Use final to prevent further overriding",
-      "Use smart pointers for polymorphic objects",
-      "Prefer abstract interfaces over deep hierarchies"
+      "Use override to prevent errors"
     ]
   },
 
   encapsulation: {
-    definition: "Encapsulation bundles data and methods into a single unit (class) and restricts access to internal details. It hides implementation complexity behind a clean interface.",
-    whyUse: "Encapsulation protects object integrity, reduces coupling, and provides clear interfaces. It's fundamental to OOP and data hiding principles.",
-    whereUse: "Class design, API development, library creation, and any scenario where internal state should be protected.",
+    definition: "Encapsulation bundles data and methods into a class and restricts access to internal details. It hides complexity behind a clean interface.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Access specifiers control visibility: public (accessible everywhere), private (class only), protected (class and derived classes). Getters/setters provide controlled access.",
+    explanation: "public members are accessible everywhere, private members only inside the class, and protected members are available to derived classes too. Getters and setters provide controlled access.",
     examples: [
       {
         title: "Private Members",
@@ -1482,32 +1394,24 @@ int main() {
     keyPoints: [
       "Private hides internal implementation",
       "Public provides the interface",
-      "Protected allows derived class access",
-      "Getters/setters control access",
-      "Validation ensures data integrity"
+      "Getters/setters control access to private data"
     ],
     commonMistakes: [
-      "Making everything public",
-      "Not validating in setters",
-      "Exposing internal data structures",
-      "Breaking encapsulation with friend",
-      "Not using const methods"
+      "Making everything public defeats encapsulation",
+      "Not validating in setters"
     ],
     proTips: [
       "Keep data members private",
-      "Use const for read-only methods",
-      "Validate data in setters",
-      "Minimize use of friend functions",
-      "Provide minimal interface"
+      "Validate data in setters"
     ]
   },
 
   stl: {
-    definition: "The Standard Template Library (STL) provides containers, algorithms, iterators, and function objects for generic programming. It's a powerful framework for data structures and algorithms.",
-    whyUse: "STL provides tested, efficient implementations of common data structures and algorithms. It saves development time and ensures optimal performance.",
-    whereUse: "Data storage, searching, sorting, string processing, and implementing efficient data structures throughout C++ applications.",
+    definition: "The Standard Template Library provides containers, algorithms, iterators, and function objects for generic programming. It is the backbone of efficient C++ data structures.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "STL has four components: containers (vector, map, set), algorithms (sort, find, transform), iterators (begin, end, next), and function objects (less, greater).",
+    explanation: "STL containers like vector, map, and set store data. Algorithms like sort and find operate on them through iterators. Function objects and lambdas customize behavior.",
     examples: [
       {
         title: "Vector Container",
@@ -1603,34 +1507,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Containers: vector, list, map, set, stack, queue",
-      "Algorithms: sort, find, transform, for_each",
-      "Iterators: begin, end, next, prev",
-      "Function objects: less, greater, plus",
-      "Templates enable generic programming"
+      "vector is the default container for most use cases",
+      "map stores key-value pairs in sorted order",
+      "Algorithms work through iterators"
     ],
     commonMistakes: [
       "Invalidating iterators after modification",
-      "Using wrong container for the task",
-      "Not reserving vector capacity",
-      "Using maps for unsorted data",
-      "Ignoring algorithm complexity"
+      "Using wrong container for the task"
     ],
     proTips: [
-      "Use vector as default container",
-      "Use unordered_map for O(1) lookup",
-      "Reserve vector capacity for known sizes",
-      "Use algorithms over manual loops",
-      "Understand iterator invalidation rules"
+      "Use vector as your default container",
+      "Use unordered_map for O(1) average lookup"
     ]
   },
 
   iterators: {
-    definition: "Iterators are objects that traverse container elements. They provide a uniform interface for accessing elements regardless of container type.",
-    whyUse: "Iterators enable generic algorithms that work with any container. They provide safe traversal and are essential for STL algorithms.",
-    whereUse: "Container traversal, algorithm implementation, and any code needing to process elements sequentially.",
+    definition: "Iterators traverse container elements and provide a uniform interface for accessing data regardless of the underlying container type.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Iterators have types: input, output, forward, bidirectional, and random access. begin() returns start, end() returns past-the-last. Use * to dereference, ++ to advance.",
+    explanation: "begin() returns an iterator to the first element, end() returns past the last. Use * to dereference and ++ to advance. Different containers support different iterator types.",
     examples: [
       {
         title: "Basic Iterator Usage",
@@ -1717,34 +1613,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "begin() returns iterator to first element",
-      "end() returns iterator past last element",
-      "Use * to dereference iterator",
-      "++ moves to next element",
-      "Different iterator types for different operations"
+      "begin() returns the first element, end() past the last",
+      "Use * to dereference an iterator",
+      "Use auto to simplify iterator declarations"
     ],
     commonMistakes: [
-      "Using invalidated iterators",
-      "Comparing iterators from different containers",
       "Dereferencing end() iterator",
-      "Not advancing iterator in loop",
-      "Using wrong iterator category"
+      "Using invalidated iterators"
     ],
     proTips: [
-      "Use auto for iterator type deduction",
       "Use const_iterator for read-only access",
-      "Use reverse_iterator for backward traversal",
-      "Use distance() for index calculation",
-      "Understand iterator invalidation rules"
+      "Use distance() for index calculation"
     ]
   },
 
   algorithms: {
-    definition: "C++ STL provides a rich set of algorithms for searching, sorting, transforming, and manipulating data. These algorithms work with iterators and can be applied to any container.",
-    whyUse: "STL algorithms are tested, efficient, and expressive. They replace manual loops with clear, concise code and are optimized for performance.",
-    whereUse: "Data processing, searching, sorting, transforming collections, and implementing common operations on data structures.",
+    definition: "STL algorithms operate on iterator ranges and provide tested, efficient implementations for searching, sorting, transforming, and manipulating data.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Algorithms are in <algorithm> header. They take iterator ranges. Common algorithms: sort, find, transform, for_each, count, accumulate, unique, reverse.",
+    explanation: "Algorithms are in <algorithm> and work on iterator ranges. Common ones include sort, find, transform, for_each, count, and accumulate. Lambdas let you customize behavior inline.",
     examples: [
       {
         title: "Sort Algorithm",
@@ -1834,33 +1722,25 @@ int main() {
     ],
     keyPoints: [
       "Algorithms work on iterator ranges",
-      "sort() for ordering elements",
-      "find() for searching",
-      "transform() for applying operations",
-      "for_each() for iteration with side effects"
+      "sort() orders elements, find() searches",
+      "transform() applies an operation to each element"
     ],
     commonMistakes: [
-      "Using wrong iterator types",
-      "Not reserving space for output",
-      "Modifying container during iteration",
-      "Using algorithms with wrong comparators",
-      "Not including required headers"
+      "Using wrong iterator types for an algorithm",
+      "Modifying container during iteration"
     ],
     proTips: [
-      "Use lambda functions with algorithms",
-      "Use function objects for reusable operations",
-      "Prefer algorithms over manual loops",
-      "Use <numeric> for numerical algorithms",
-      "Understand iterator requirements"
+      "Use lambda functions with algorithms for clean code",
+      "Prefer algorithms over manual loops"
     ]
   },
 
   pointers: {
-    definition: "C++ inherits C pointers and adds smart pointers for automatic memory management. Raw pointers provide direct memory access while smart pointers prevent memory leaks.",
-    whyUse: "Pointers enable dynamic memory allocation, polymorphism, and efficient data passing. Smart pointers provide RAII-based memory management.",
-    whereUse: "Dynamic memory, polymorphic objects, data structures, callback functions, and any scenario requiring indirect access.",
+    definition: "C++ inherits C pointers and adds smart pointers for automatic memory management. Raw pointers give direct memory access; smart pointers prevent leaks.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Raw pointers use * and &. Smart pointers (unique_ptr, shared_ptr, weak_ptr) automatically manage memory. new/delete allocate/free heap memory.",
+    explanation: "Raw pointers use * and &. Smart pointers (unique_ptr, shared_ptr, weak_ptr) manage memory automatically. new/delete allocate and free heap memory.",
     examples: [
       {
         title: "Raw Pointer",
@@ -1945,34 +1825,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "Raw pointers: * to declare, & to get address",
       "Smart pointers automate memory management",
-      "unique_ptr: exclusive ownership",
-      "shared_ptr: shared ownership with reference counting",
-      "new/delete for heap allocation"
+      "unique_ptr gives exclusive ownership",
+      "shared_ptr uses reference counting for shared ownership"
     ],
     commonMistakes: [
-      "Dangling pointers to freed memory",
       "Memory leaks with raw pointers",
-      "Circular references with shared_ptr",
-      "Using delete instead of delete[]",
-      "Dereferencing null pointers"
+      "Circular references with shared_ptr"
     ],
     proTips: [
       "Prefer smart pointers over raw pointers",
-      "Use unique_ptr by default",
-      "Use weak_ptr to break circular references",
-      "Use make_shared/make_unique",
-      "Avoid owning raw pointers"
+      "Use make_unique and make_shared"
     ]
   },
 
   templates: {
-    definition: "Templates enable generic programming by creating functions and classes that work with any data type. The compiler generates specific code for each type used.",
-    whyUse: "Templates provide type-safe generics, code reuse, and compile-time polymorphism. They are the foundation of STL and generic programming in C++.",
-    whereUse: "STL containers and algorithms, generic data structures, type-safe utilities, and writing code that works with multiple types.",
+    definition: "Templates let you write generic functions and classes that work with any data type. The compiler generates specific code for each type used.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Templates use <typename T> or <class T> for type parameters. The compiler instantiates templates for each type used. Templates can have multiple parameters and specializations.",
+    explanation: "Use <typename T> or <class T> for type parameters. The compiler instantiates templates for each type. Templates can have multiple parameters and specializations.",
     examples: [
       {
         title: "Function Template",
@@ -2091,32 +1963,24 @@ int main() {
     keyPoints: [
       "Templates generate code for each type used",
       "Function templates for generic functions",
-      "Class templates for generic classes",
-      "Template specialization for specific types",
-      "Compile-time polymorphism"
+      "Template specialization for specific types"
     ],
     commonMistakes: [
-      "Template definitions in wrong file",
-      "Missing template instantiation",
-      "Confusing typename and class",
-      "Over-specializing templates",
-      "Template compilation errors"
+      "Template definitions in the wrong file",
+      "Missing template instantiation"
     ],
     proTips: [
-      "Keep templates simple",
-      "Use template specialization sparingly",
       "Include template definitions in headers",
-      "Use concepts (C++20) for constraints",
-      "Use SFINAE for conditional compilation"
+      "Use concepts (C++20) for constraints"
     ]
   },
 
   exceptions: {
-    definition: "C++ exceptions provide a mechanism for handling errors and exceptional conditions. They separate error handling from normal code flow using try, catch, and throw.",
-    whyUse: "Exceptions provide a clean way to handle errors, propagate them up the call stack, and ensure resources are cleaned up properly.",
-    whereUse: "Error handling, resource management, library interfaces, and any scenario where errors need to be propagated and handled.",
+    definition: "C++ exceptions handle errors by separating error-handling code from normal flow using try, catch, and throw.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Throw raises an exception. Try block catches exceptions. Catch handles specific exception types. Exception classes can carry error information. Stack unwinding cleans up resources.",
+    explanation: "throw raises an exception. try blocks wrap code that might throw. catch handles specific types. Stack unwinding cleans up resources automatically. RAII ensures proper cleanup.",
     examples: [
       {
         title: "Basic Exception",
@@ -2259,34 +2123,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "throw raises an exception",
-      "try block wraps code that might throw",
-      "catch handles specific exception types",
-      "catch(...) catches all exceptions",
-      "Stack unwinding cleans up resources"
+      "throw raises an exception, try/catch handles it",
+      "Catch by const reference to avoid slicing",
+      "RAII ensures resources are cleaned up on exception"
     ],
     commonMistakes: [
       "Catching by value instead of reference",
-      "Throwing in destructors",
-      "Missing catch for thrown exceptions",
-      "Catching base before derived",
-      "Not re-throwing when needed"
+      "Throwing in destructors"
     ],
     proTips: [
-      "Catch exceptions by const reference",
       "Use standard exception classes when possible",
-      "Don't use exceptions for control flow",
-      "Ensure exception safety in classes",
-      "Use RAII for resource management"
+      "Don't use exceptions for control flow"
     ]
   },
 
   fileio: {
-    definition: "C++ file I/O uses streams (ifstream, ofstream, fstream) for reading and writing files. The <fstream> header provides file stream classes for text and binary operations.",
-    whyUse: "File I/O enables data persistence, log files, configuration reading, and communication with external data sources.",
-    whereUse: "Data storage, log files, configuration files, data processing, and any application needing file access.",
+    definition: "C++ file I/O uses streams (ifstream, ofstream, fstream) from <fstream> for reading and writing files with the same << and >> syntax as cin/cout.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "ifstream for input, ofstream for output, fstream for both. Files are opened with open() or constructors. << and >> operators work with file streams like cin/cout.",
+    explanation: "ifstream reads files, ofstream writes files, fstream does both. Open files in the constructor or with open(). Use is_open() to verify. Always close when done.",
     examples: [
       {
         title: "Writing to File",
@@ -2393,34 +2249,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "ifstream for input, ofstream for output",
-      "fstream for both input and output",
-      "Use is_open() to check file state",
-      "<< and >> operators work with files",
-      "Close files when done"
+      "ifstream for input, ofstream for output, fstream for both",
+      "Use is_open() to check if the file opened successfully",
+      "Use stringstream for string parsing"
     ],
     commonMistakes: [
       "Not checking if file opened successfully",
-      "Forgetting to close files",
-      "Using wrong file mode",
-      "Binary mode for text files",
-      "Not handling end-of-file conditions"
+      "Forgetting to close files"
     ],
     proTips: [
       "Always check is_open() after opening",
-      "Use RAII to ensure files are closed",
-      "Use binary mode for non-text files",
-      "Use stringstream for string parsing",
-      "Use getline for line-by-line reading"
+      "Use binary mode for non-text files"
     ]
   },
 
   lambdas: {
-    definition: "Lambda expressions create anonymous functions inline. They provide a concise way to define small function objects, commonly used with algorithms and callbacks.",
-    whyUse: "Lambdas reduce boilerplate, enable inline function definitions, and are essential for modern C++ programming with STL algorithms.",
-    whereUse: "STL algorithms, callbacks, event handlers, sorting predicates, and any scenario requiring small, one-time-use functions.",
+    definition: "Lambda expressions create anonymous functions inline. They are concise and commonly used with STL algorithms and callbacks.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Lambdas use [] capture list, () parameters, and {} body. Capture modes: [=] value, [&] reference, [x] specific variable. Can be stored in auto or std::function.",
+    explanation: "Lambdas use [] for capture, () for parameters, and {} for the body. [=] captures by value, [&] by reference. Store them in auto or std::function.",
     examples: [
       {
         title: "Basic Lambda",
@@ -2503,34 +2351,26 @@ int main() {
       }
     ],
     keyPoints: [
-      "[] capture list, () parameters, {} body",
+      "[] capture, () parameters, {} body",
       "[=] captures by value, [&] by reference",
-      "Can be stored in auto or std::function",
-      "Essential for STL algorithm predicates",
-      "Can be immediately invoked (IIFE)"
+      "Essential for STL algorithm predicates"
     ],
     commonMistakes: [
-      "Capturing by reference when value needed",
-      "Forgetting capture list",
-      "Using captured values after destruction",
-      "Too complex lambdas reducing readability",
-      "Missing const in capture list"
+      "Capturing by reference when value is needed",
+      "Forgetting the capture list"
     ],
     proTips: [
       "Keep lambdas small and focused",
-      "Use capture-by-reference for modifications",
-      "Use auto for lambda type deduction",
-      "Name complex lambdas for reuse",
-      "Use constexpr lambdas (C++17)"
+      "Use auto for lambda type deduction"
     ]
   },
 
   namespaces: {
-    definition: "Namespaces in C++ organize code into logical groups to prevent name conflicts. They provide a way to scope declarations and avoid naming collisions in large projects.",
-    whyUse: "Namespaces prevent naming conflicts, organize code logically, and provide qualified names for clarity in large codebases.",
-    whereUse: "Library development, large projects, avoiding global namespace pollution, and organizing related declarations.",
+    definition: "Namespaces organize code into logical groups and prevent name conflicts in large projects or when combining multiple libraries.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Namespaces use namespace keyword. using namespace imports names. Qualified names use ::. Nested namespaces (C++17) use namespace A::B. Anonymous namespaces provide internal linkage.",
+    explanation: "Use the namespace keyword to define a namespace and :: for qualified names. using namespace imports all names. C++17 supports nested namespaces with A::B syntax.",
     examples: [
       {
         title: "Basic Namespace",
@@ -2614,33 +2454,25 @@ int main() {
     ],
     keyPoints: [
       "Namespaces group related declarations",
-      "Qualified names use :: operator",
-      "using namespace imports all names",
-      "Nested namespaces (C++17) for hierarchy",
-      "Anonymous namespaces for internal linkage"
+      "Use :: for qualified names",
+      "Avoid using namespace in headers"
     ],
     commonMistakes: [
-      "Using namespace in headers",
-      "Polluting global namespace",
-      "Name hiding in nested namespaces",
-      "Circular namespace dependencies",
-      "Overuse of using directives"
+      "Using namespace in headers pollutes global scope",
+      "Name hiding in nested namespaces"
     ],
     proTips: [
-      "Avoid using namespace in headers",
       "Use namespace aliases for long names",
-      "Keep namespaces focused and cohesive",
-      "Use unnamed namespaces for internal linkage",
-      "Use qualified names for clarity"
+      "Use unnamed namespaces for internal linkage"
     ]
   },
 
   move: {
-    definition: "Move semantics (C++11) transfer resources from one object to another without copying. Rvalue references and move constructors enable efficient resource transfer.",
-    whyUse: "Move semantics eliminate unnecessary copies, improve performance, and enable transferring ownership of resources like memory, file handles, and network connections.",
-    whereUse: "Container operations, returning objects from functions, transferring resource ownership, and optimizing performance-critical code.",
+    definition: "Move semantics transfer resources from one object to another without copying. Rvalue references and move constructors make this efficient.",
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: "Rvalue references (&&) bind to temporary objects. Move constructors transfer resources. std::move converts lvalue to rvalue. Perfect forwarding preserves value categories.",
+    explanation: "Use && for rvalue references. std::move converts an lvalue to an rvalue. Move constructors transfer ownership of resources. Perfect forwarding preserves value categories in templates.",
     examples: [
       {
         title: "Basic Move",
@@ -2758,25 +2590,17 @@ int main() {
       }
     ],
     keyPoints: [
-      "Rvalue references (&&) enable move semantics",
-      "std::move converts lvalue to rvalue",
-      "Move constructor transfers resources",
-      "Move assignment transfers and cleans up",
-      "Perfect forwarding preserves value category"
+      "std::move converts lvalue to rvalue for efficient transfer",
+      "Move constructor transfers ownership without copying",
+      "Use noexcept for move operations"
     ],
     commonMistakes: [
-      "Using moved-from object",
-      "Missing move constructor/assignment",
-      "Not checking self-assignment",
-      "Moving const objects",
-      "Forgetting to nullify source"
+      "Using an object after it has been moved",
+      "Not checking for self-assignment in move assignment"
     ],
     proTips: [
       "Use std::move for efficient transfers",
-      "Implement both copy and move when needed",
-      "Use noexcept for move operations",
-      "Understand when move is automatic",
-      "Use move semantics with smart pointers"
+      "Implement both copy and move when needed"
     ]
   }
 }

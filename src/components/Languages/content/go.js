@@ -1,8 +1,8 @@
 const go = {
   intro: {
     definition: 'Go (Golang) is an open-source programming language created at Google. It is designed for simplicity, efficiency, and concurrent programming.',
-    whyUse: 'Go offers fast compilation, built-in concurrency, garbage collection, and a simple syntax that scales to large codebases.',
-    whereUse: 'Used for cloud services, DevOps tools, web servers, microservices, networking, and system programming.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
     explanation: 'Go uses a clean, minimal syntax with static typing. It compiles to machine code and includes goroutines for concurrency.',
     examples: [
@@ -54,29 +54,23 @@ func main() {
     keyPoints: [
       'Statically typed with type inference',
       'Compiled language with fast build times',
-      'Built-in concurrency with goroutines',
-      'Garbage collected for memory safety',
       'Simple, minimal syntax'
     ],
     commonMistakes: [
       'Not handling errors properly',
-      'Using goroutines without synchronization',
-      'Confusing short declaration (:=) with assignment (=)',
-      'Not using the standard library effectively'
+      'Confusing short declaration (:=) with assignment (=)'
     ],
     proTips: [
       'Use gofmt to format code automatically',
-      'Leverage the standard library before adding dependencies',
-      'Use go vet for static analysis',
       'Keep functions small and focused'
     ]
   },
 
   setup: {
     definition: 'Setting up a Go development environment involves installing Go, configuring GOPATH, and setting up your editor.',
-    whyUse: 'A proper setup enables efficient Go development with tooling, testing, and dependency management.',
-    whereUse: 'Required for any Go development project.',
-    syntax: 'go version',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Install Go from golang.org, configure environment variables, and set up your editor with Go support.',
     examples: [
       {
@@ -131,29 +125,23 @@ func main() {
     keyPoints: [
       'Download from golang.org',
       'Use go mod for dependency management',
-      'go run for running, go build for compiling',
-      'go fmt for formatting code',
-      'go test for running tests'
+      'go run for running, go build for compiling'
     ],
     commonMistakes: [
       'Not setting GOPATH correctly',
-      'Not using Go modules',
-      'Not organizing project properly',
-      'Forgetting to run go mod tidy'
+      'Not using Go modules'
     ],
     proTips: [
       'Use Go modules for dependency management',
-      'Set up editor with gopls language server',
-      'Use go generate for code generation',
-      'Keep dependencies minimal'
+      'Set up editor with gopls language server'
     ]
   },
 
   variables: {
     definition: 'Go variables are explicitly typed or inferred using :=. Go supports multiple variable declarations and has both short and long form declarations.',
-    whyUse: 'Variables store data and state. Go\'s type system ensures memory safety and efficiency.',
-    whereUse: 'Used throughout Go programs for storing data, references, and state.',
-    syntax: 'var name type = value or name := value',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go uses var for explicit declaration and := for short declaration with type inference. Variables must be used or compilation fails.',
     examples: [
       {
@@ -211,29 +199,23 @@ func main() {
     keyPoints: [
       'var for explicit declaration',
       ':= for short declaration with inference',
-      'Variables must be used or compilation fails',
-      'Constants are declared with const',
-      'Package-level variables can be undeclared'
+      'Variables must be used or compilation fails'
     ],
     commonMistakes: [
       'Not using a variable (compilation error)',
-      'Using := in wrong scope',
-      'Confusing var with :=',
-      'Forgetting that constants are immutable'
+      'Using := in wrong scope'
     ],
     proTips: [
       'Use := for local variables',
-      'Use var for package-level variables',
-      'Declare variables close to first use',
       'Use iota for enum-like constants'
     ]
   },
 
   strings: {
     definition: 'Go strings are immutable sequences of bytes. The strings package provides extensive string manipulation functions.',
-    whyUse: 'Strings are essential for text processing, I/O, and data manipulation in Go.',
-    whereUse: 'Used for text processing, network protocols, file operations, and data serialization.',
-    syntax: 'str := "Hello"',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go strings are immutable UTF-8 encoded byte sequences. Use the strings package for operations.',
     examples: [
       {
@@ -291,29 +273,23 @@ func main() {
     keyPoints: [
       'Strings are immutable',
       'Use strings package for operations',
-      'UTF-8 encoding by default',
-      'Use []byte for mutability',
-      'String concatenation creates new strings'
+      'UTF-8 encoding by default'
     ],
     commonMistakes: [
       'Trying to modify strings directly',
-      'Not handling Unicode properly',
-      'Using + for string concatenation in loops',
-      'Forgetting strings are UTF-8'
+      'Not handling Unicode properly'
     ],
     proTips: [
       'Use strings.Builder for concatenation',
-      'Use []byte for mutable byte sequences',
-      'Use fmt.Sprintf for formatted strings',
-      'Use strconv for type conversions'
+      'Use fmt.Sprintf for formatted strings'
     ]
   },
 
   operators: {
     definition: 'Go provides standard arithmetic, comparison, logical, and bitwise operators. Go also has channel operators for concurrency.',
-    whyUse: 'Operators enable performing calculations, comparisons, and logical operations on data.',
-    whereUse: 'Used throughout Go for math, comparisons, logical operations, and channel communication.',
-    syntax: 'operand operator operand',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go supports standard operators plus channel send (<-) and receive (<-) operators.',
     examples: [
       {
@@ -363,29 +339,23 @@ func main() {
     keyPoints: [
       'Standard arithmetic operators',
       'Comparison operators return bool',
-      'Logical operators use short-circuit evaluation',
-      '<- for channel operations',
-      'Bitwise operators for bit manipulation'
+      '<- for channel operations'
     ],
     commonMistakes: [
       'Integer division truncating results',
-      'Using = instead of == in comparisons',
-      'Not handling division by zero',
-      'Confusing && with &'
+      'Using = instead of == in comparisons'
     ],
     proTips: [
       'Use parentheses for clarity',
-      'Understand operator precedence',
-      'Use bitwise operators for flags',
-      'Use channel operators carefully'
+      'Use bitwise operators for flags'
     ]
   },
 
   conditionals: {
     definition: 'Go supports if, else if, else, and switch statements for conditional execution. Go does not have a ternary operator.',
-    whyUse: 'Conditionals enable decision-making in programs based on data or state.',
-    whereUse: 'Used for input validation, error handling, and controlling program flow.',
-    syntax: 'if condition { } else if condition { } else { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go conditionals do not use parentheses. Switch statements support multiple values and type switches.',
     examples: [
       {
@@ -444,30 +414,24 @@ func main() {
     ],
     keyPoints: [
       'if does not require parentheses',
-      'else if and else are optional',
       'switch supports multiple values per case',
-      'fallthrough keyword for fallthrough',
       'switch with no condition is like if-else chain'
     ],
     commonMistakes: [
-      'Forgetting break in switch cases',
       'Using parentheses in if conditions',
-      'Not handling all cases in switch',
-      'Using fallthrough when not needed'
+      'Not handling all cases in switch'
     ],
     proTips: [
       'Use switch for multiple conditions',
-      'Use switch without condition for if-else chains',
-      'Consider using defer for cleanup',
       'Use early returns for guard clauses'
     ]
   },
 
   loops: {
     definition: 'Go has only one loop construct: the for loop. It can be used as a traditional for, while, or infinite loop.',
-    whyUse: 'Loops enable iteration over collections, repeating tasks, and implementing algorithms.',
-    whereUse: 'Used for processing arrays, reading input, and implementing algorithms.',
-    syntax: 'for init; condition; post { } or for condition { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go\'s for loop is versatile. It can iterate over slices with range, run with just a condition, or be an infinite loop.',
     examples: [
       {
@@ -513,29 +477,23 @@ func main() {
     keyPoints: [
       'for is the only loop construct',
       'for init; condition; post { } for traditional',
-      'for condition { } for while loop',
-      'for { } for infinite loop',
       'for i, v := range collection for iteration'
     ],
     commonMistakes: [
       'Infinite loops from incorrect conditions',
-      'Not using range for collection iteration',
-      'Confusing = and == in conditions',
-      'Not handling loop variable scope'
+      'Not using range for collection iteration'
     ],
     proTips: [
       'Use range for iterating over collections',
-      'Use break and continue for loop control',
-      'Consider using goroutines for parallel iteration',
-      'Keep loops simple and focused'
+      'Use break and continue for loop control'
     ]
   },
 
   functions: {
     definition: 'Go functions are first-class citizens. They can return multiple values, be passed as arguments, and support closures.',
-    whyUse: 'Functions enable code reuse, modularity, and separation of concerns.',
-    whereUse: 'Used to encapsulate functionality, create reusable logic, and structure applications.',
-    syntax: 'func name(params) (returnTypes) { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go functions support multiple return values, named return values, and variadic parameters.',
     examples: [
       {
@@ -598,29 +556,23 @@ func main() {
     keyPoints: [
       'Functions can return multiple values',
       'Named return values',
-      'Variadic parameters with ...',
-      'Functions are first-class citizens',
-      'Closures can capture variables'
+      'Variadic parameters with ...'
     ],
     commonMistakes: [
       'Not handling error return values',
-      'Confusing value and pointer receivers',
-      'Not using named return values when helpful',
       'Forgetting that functions are pass-by-value'
     ],
     proTips: [
       'Use error handling pattern consistently',
-      'Keep functions small and focused',
-      'Use defer for cleanup',
-      'Consider using closures for callbacks'
+      'Use defer for cleanup'
     ]
   },
 
   pointers: {
     definition: 'Go has pointers that allow referencing memory addresses. Unlike C, Go does not have pointer arithmetic.',
-    whyUse: 'Pointers enable efficient data sharing, in-place modifications, and avoiding copies of large data.',
-    whereUse: 'Used for modifying values in place, avoiding copies, and implementing data structures.',
-    syntax: 'ptr := &value or *ptr',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go supports pointers but no pointer arithmetic. Use & for address, * for dereferencing.',
     examples: [
       {
@@ -682,29 +634,23 @@ func main() {
     keyPoints: [
       '& gets address of value',
       '* dereferences pointer',
-      'No pointer arithmetic',
-      'nil is the zero value for pointers',
-      'New() allocates and returns pointer'
+      'No pointer arithmetic'
     ],
     commonMistakes: [
       'Dereferencing nil pointer',
-      'Not initializing pointer before use',
-      'Confusing pointer with value',
-      'Forgetting to handle nil pointers'
+      'Not initializing pointer before use'
     ],
     proTips: [
       'Use pointers for large structs',
-      'Use pointer receivers for methods that modify state',
-      'Check for nil before dereferencing',
-      'Use new() for allocating'
+      'Check for nil before dereferencing'
     ]
   },
 
   structs: {
     definition: 'Go structs are composite types that group named fields. They are the building blocks for creating complex data types.',
-    whyUse: 'Structs enable creating custom types with related fields, implementing OOP concepts, and organizing data.',
-    whereUse: 'Used to model real-world entities, create data structures, and implement methods.',
-    syntax: 'type StructName struct { Field Type }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Structs are value types. They can have methods, be passed by value or pointer, and support embedding.',
     examples: [
       {
@@ -776,29 +722,23 @@ func main() {
     keyPoints: [
       'Structs are value types',
       'Methods can be defined on structs',
-      'Pointer receivers for modification',
-      'Struct embedding for composition',
-      'Zero value is meaningful'
+      'Struct embedding for composition'
     ],
     commonMistakes: [
       'Confusing value and pointer receivers',
-      'Not using pointer for modification',
-      'Overcomplicating struct hierarchy',
-      'Forgetting zero value initialization'
+      'Not using pointer for modification'
     ],
     proTips: [
       'Use composition over inheritance',
-      'Use pointer receivers for methods that modify state',
-      'Keep structs small and focused',
-      'Use struct tags for metadata'
+      'Use pointer receivers for methods that modify state'
     ]
   },
 
   slices: {
     definition: 'Go slices are dynamic, flexible views of underlying arrays. They are reference types and can grow and shrink as needed.',
-    whyUse: 'Slices provide efficient, flexible collections without the fixed size limitations of arrays.',
-    whereUse: 'Used for dynamic collections, buffers, and any scenario requiring variable-length sequences.',
-    syntax: 'slice := []type{values}',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Slices have length and capacity. They reference underlying arrays and can be resliced.',
     examples: [
       {
@@ -851,29 +791,23 @@ func main() {
     keyPoints: [
       'Slices are reference types',
       'append() adds elements',
-      'len() and cap() for length/capacity',
-      'make() creates slices with capacity',
-      'copy() copies slices'
+      'len() and cap() for length/capacity'
     ],
     commonMistakes: [
       'Modifying slice affects underlying array',
-      'Not handling append return value',
-      'Forgetting slice capacity',
-      'Race conditions on slices'
+      'Not handling append return value'
     ],
     proTips: [
       'Use make() for pre-allocated capacity',
-      'Use append() for dynamic growth',
-      'Be aware of slice aliasing',
-      'Consider using sync.Pool for buffers'
+      'Be aware of slice aliasing'
     ]
   },
 
   maps: {
     definition: 'Go maps are hash tables that store key-value pairs. They are reference types and provide fast lookups.',
-    whyUse: 'Maps provide efficient key-based storage and retrieval, essential for data modeling and lookups.',
-    whereUse: 'Used for configuration, data modeling, caching, and mapping relationships.',
-    syntax: 'map := make(map[KeyType]ValueType)',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Maps are unordered collections. They are reference types and must be initialized before use.',
     examples: [
       {
@@ -933,29 +867,23 @@ func main() {
     keyPoints: [
       'Maps are reference types',
       'make() initializes maps',
-      'delete() removes entries',
-      'comma-ok idiom for checking existence',
-      'Maps are unordered'
+      'comma-ok idiom for checking existence'
     ],
     commonMistakes: [
       'Using uninitialized map',
-      'Not checking map existence',
-      'Assuming map order',
-      'Concurrent map access'
+      'Not checking map existence'
     ],
     proTips: [
       'Use make() for initialization',
-      'Use comma-ok for existence check',
-      'Use sync.Map for concurrent access',
-      'Consider using struct keys'
+      'Use comma-ok for existence check'
     ]
   },
 
   arrays: {
     definition: 'Go arrays are fixed-size, value-type collections of elements. They are rarely used directly; slices are preferred.',
-    whyUse: 'Arrays provide fixed-size, efficient storage. Slices built on arrays provide flexibility.',
-    whereUse: 'Used as building blocks for slices, fixed-size buffers, and performance-critical code.',
-    syntax: 'var arr [size]type',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Arrays are value types with fixed size. They are copied when assigned or passed to functions.',
     examples: [
       {
@@ -1009,29 +937,23 @@ func main() {
     keyPoints: [
       'Fixed size at compile time',
       'Value type (copied on assignment)',
-      'Zero value is meaningful',
-      'Use slices for dynamic collections',
-      'Use [...] for compiler-counted arrays'
+      'Use slices for dynamic collections'
     ],
     commonMistakes: [
       'Using arrays instead of slices',
-      'Not handling zero values',
-      'Confusing arrays with slices',
       'Forgetting arrays are value types'
     ],
     proTips: [
       'Use slices for most use cases',
-      'Use arrays for fixed-size buffers',
-      'Consider performance implications',
-      'Use slice expressions on arrays'
+      'Use arrays for fixed-size buffers'
     ]
   },
 
   interfaces: {
     definition: 'Go interfaces define sets of methods that a type must implement. They are satisfied implicitly without explicit declaration.',
-    whyUse: 'Interfaces enable polymorphism, loose coupling, and testing by defining behavior contracts.',
-    whereUse: 'Used for creating flexible APIs, dependency injection, and testing.',
-    syntax: 'type InterfaceName interface { Method(params) returnType }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go interfaces are satisfied implicitly. Any type with the required methods implements the interface.',
     examples: [
       {
@@ -1114,29 +1036,23 @@ func main() {
     keyPoints: [
       'Interfaces are satisfied implicitly',
       'Empty interface accepts any type',
-      'Interfaces are reference types',
-      'Use interfaces for flexibility',
       'Keep interfaces small'
     ],
     commonMistakes: [
       'Making interfaces too large',
-      'Not using interfaces for testing',
-      'Confusing interfaces with abstract classes',
-      'Forgetting nil interface handling'
+      'Not using interfaces for testing'
     ],
     proTips: [
       'Keep interfaces small (1-3 methods)',
-      'Define interfaces where they are used',
-      'Use interfaces for dependency injection',
       'Accept interfaces, return structs'
     ]
   },
 
   errors: {
     definition: 'Go uses error values for error handling. The error interface is built into the language.',
-    whyUse: 'Explicit error handling makes code more robust and predictable.',
-    whereUse: 'Used everywhere for handling failures, invalid input, and exceptional conditions.',
-    syntax: 'if err != nil { return err }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go functions return error as last value. Callers must check for errors explicitly.',
     examples: [
       {
@@ -1222,29 +1138,23 @@ func main() {
     keyPoints: [
       'error is an interface',
       'Return error as last value',
-      'Check err != nil',
-      'Use fmt.Errorf with %w for wrapping',
-      'Use errors.Is and errors.As for checking'
+      'Use fmt.Errorf with %w for wrapping'
     ],
     commonMistakes: [
       'Ignoring errors',
-      'Using panic for errors',
-      'Not wrapping errors',
-      'Using string comparison for errors'
+      'Using panic for errors'
     ],
     proTips: [
       'Handle errors immediately',
-      'Wrap errors with context',
-      'Use custom error types',
-      'Use sentinel errors for known conditions'
+      'Wrap errors with context'
     ]
   },
 
   goroutines: {
     definition: 'Goroutines are lightweight threads managed by the Go runtime. They enable concurrent execution with minimal overhead.',
-    whyUse: 'Goroutines provide efficient concurrency for I/O-bound and CPU-bound tasks.',
-    whereUse: 'Used for concurrent web servers, parallel processing, and asynchronous operations.',
-    syntax: 'go function()',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Goroutines are cheaper than OS threads. They communicate via channels.',
     examples: [
       {
@@ -1320,29 +1230,23 @@ func main() {
     keyPoints: [
       'go keyword starts goroutine',
       'Goroutines are lightweight',
-      'Use channels for communication',
-      'Use WaitGroup for synchronization',
-      'Main goroutine must wait for others'
+      'Use channels for communication'
     ],
     commonMistakes: [
       'Race conditions on shared data',
-      'Not waiting for goroutines',
-      'Goroutine leaks',
-      'Overusing goroutines'
+      'Not waiting for goroutines'
     ],
     proTips: [
       'Use channels for communication',
-      'Use WaitGroup for synchronization',
-      'Limit goroutine count with semaphores',
       'Use context for cancellation'
     ]
   },
 
   channels: {
     definition: 'Channels are typed conduits for communicating between goroutines. They enable safe data sharing without explicit locks.',
-    whyUse: 'Channels provide safe, synchronized communication between concurrent goroutines.',
-    whereUse: 'Used for inter-goroutine communication, work distribution, and event-driven programming.',
-    syntax: 'ch := make(chan type)',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Channels can be buffered or unbuffered. They support send (<-) and receive operations.',
     examples: [
       {
@@ -1409,29 +1313,23 @@ func main() {
     keyPoints: [
       'Unbuffered channels synchronize',
       'Buffered channels have capacity',
-      'Send (<-) and receive (<-) operations',
-      'close() to signal no more data',
-      'range iterates over channel'
+      'close() to signal no more data'
     ],
     commonMistakes: [
       'Deadlock from unbuffered sends',
-      'Not closing channels',
-      'Sending on closed channel',
-      'Buffer overflow'
+      'Sending on closed channel'
     ],
     proTips: [
       'Use unbuffered for synchronization',
-      'Use buffered for decoupling',
-      'Close channels when done sending',
       'Use select for multiple channels'
     ]
   },
 
   select: {
     definition: 'The select statement chooses which channel operation to execute when multiple are ready. It enables multiplexing channel communications.',
-    whyUse: 'Select enables handling multiple channel operations simultaneously, implementing timeouts, and non-blocking operations.',
-    whereUse: 'Used for timeout handling, non-blocking operations, and multiplexing channel communications.',
-    syntax: 'select { case <-ch1: case ch2 <- val: }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Select blocks until one case is ready, then executes that case. Multiple ready cases are chosen randomly.',
     examples: [
       {
@@ -1518,29 +1416,23 @@ func main() {
     keyPoints: [
       'Choose ready channel operation',
       'default case for non-blocking',
-      'time.After for timeouts',
-      'Multiple ready cases chosen randomly',
-      'Can be used in for loops'
+      'time.After for timeouts'
     ],
     commonMistakes: [
       'Forgetting default case',
-      'Not handling timeout',
-      'Overcomplicating select',
-      'Race conditions in select'
+      'Not handling timeout'
     ],
     proTips: [
       'Use select for timeouts',
-      'Use default for non-blocking',
-      'Use time.After for deadline',
-      'Keep select cases simple'
+      'Use default for non-blocking'
     ]
   },
 
   http: {
     definition: 'Go has a powerful net/http package for building HTTP servers and clients. It provides both low-level and high-level APIs.',
-    whyUse: 'The standard library provides production-ready HTTP support without external dependencies.',
-    whereUse: 'Used for building web servers, APIs, microservices, and HTTP clients.',
-    syntax: 'http.HandleFunc("/", handler)',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go\'s HTTP package supports handlers, middleware, TLS, and client-server architecture.',
     examples: [
       {
@@ -1621,29 +1513,23 @@ func main() {
     keyPoints: [
       'http.HandleFunc registers handlers',
       'http.ListenAndServe starts server',
-      'http.Client for HTTP requests',
-      'Supports middleware and routing',
-      'Built-in JSON encoding/decoding'
+      'http.Client for HTTP requests'
     ],
     commonMistakes: [
       'Not closing response bodies',
-      'Not setting timeouts',
-      'Not handling errors properly',
-      'Forgetting Content-Type header'
+      'Not setting timeouts'
     ],
     proTips: [
       'Use http.Server for production',
-      'Set proper timeouts',
-      'Use middleware for cross-cutting concerns',
-      'Consider using gorilla/mux for routing'
+      'Set proper timeouts'
     ]
   },
 
   packages: {
     definition: 'Go packages organize code into reusable modules. Each directory is a package, and packages can be imported by other packages.',
-    whyUse: 'Packages enable code organization, encapsulation, and reuse.',
-    whereUse: 'Used for organizing code, creating libraries, and structuring applications.',
-    syntax: 'package main',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Go packages are directories with Go files. The package name must match the directory name.',
     examples: [
       {
@@ -1691,29 +1577,23 @@ func main() {
     keyPoints: [
       'Package declaration at top of file',
       'Directory name is package name',
-      'Import packages with import',
-      'Exported names start with uppercase',
-      'Unexported names start with lowercase'
+      'Exported names start with uppercase'
     ],
     commonMistakes: [
       'Not matching package name with directory',
-      'Importing circular dependencies',
-      'Not exporting needed functions',
-      'Forgetting package declaration'
+      'Importing circular dependencies'
     ],
     proTips: [
       'Keep packages focused',
-      'Use internal packages for private code',
-      'Use meaningful package names',
-      'Avoid circular dependencies'
+      'Use meaningful package names'
     ]
   },
 
   defer: {
     definition: 'Go\'s defer statement schedules a function call to be executed after the surrounding function returns. Deferred calls are executed in LIFO order.',
-    whyUse: 'Defer ensures cleanup code runs regardless of how a function exits, making resource management safer.',
-    whereUse: 'Used for closing files, releasing locks, and cleanup operations.',
-    syntax: 'defer function()',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Defer executes when the surrounding function returns. Multiple defers run in reverse order (LIFO).',
     examples: [
       {
@@ -1770,29 +1650,23 @@ func main() {
     keyPoints: [
       'Deferred functions execute after return',
       'LIFO order for multiple defers',
-      'Arguments evaluated immediately',
-      'Used for cleanup operations',
-      'Common with Close(), Unlock(), etc.'
+      'Used for cleanup operations'
     ],
     commonMistakes: [
       'Assuming defer runs immediately',
-      'Not understanding argument evaluation',
-      'Using defer in loops',
-      'Forgetting multiple defers run in LIFO'
+      'Using defer in loops'
     ],
     proTips: [
       'Use defer for resource cleanup',
-      'Keep defer simple',
-      'Be aware of defer timing',
-      'Use defer for unlocking mutexes'
+      'Keep defer simple'
     ]
   },
 
   context: {
     definition: 'Go context carries cancellation signals, deadlines, and request-scoped values across API boundaries and goroutines.',
-    whyUse: 'Context enables graceful cancellation, timeout handling, and passing request-scoped data.',
-    whereUse: 'Used in HTTP handlers, database queries, and any operation that should be cancellable.',
-    syntax: 'ctx, cancel := context.WithCancel(parent)',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Context propagates cancellation and deadlines. It\'s passed as first parameter to functions.',
     examples: [
       {
@@ -1873,22 +1747,16 @@ func main() {
     ],
     keyPoints: [
       'Context carries cancellation signals',
-      'WithCancel for manual cancellation',
       'WithTimeout for automatic timeout',
-      'WithValue for request-scoped data',
       'Pass context as first parameter'
     ],
     commonMistakes: [
       'Storing context in struct',
-      'Not calling cancel',
-      'Passing nil context',
-      'Using context for unrelated data'
+      'Not calling cancel'
     ],
     proTips: [
       'Always pass context as first parameter',
-      'Always call cancel when done',
-      'Use context for cancellation',
-      'Avoid storing context in structs'
+      'Always call cancel when done'
     ]
   }
 }

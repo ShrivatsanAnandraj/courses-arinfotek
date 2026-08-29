@@ -1,10 +1,10 @@
 const csharp = {
   intro: {
-    definition: 'C# is a modern, object-oriented, and type-safe programming language developed by Microsoft. It runs on the .NET platform and is used for building Windows applications, web apps, games (Unity), and enterprise software.',
-    whyUse: 'C# combines the power of C++ with the simplicity of Visual Basic. It offers strong typing, garbage collection, LINQ, async/await patterns, and extensive framework support through .NET.',
-    whereUse: 'Desktop apps (WPF, WinForms), web development (ASP.NET), game development (Unity), mobile apps (Xamarin/MAUI), cloud services (Azure), and enterprise systems.',
+    definition: 'C# is a modern, object-oriented programming language developed by Microsoft. It runs on .NET and is used for building Windows apps, web apps, games with Unity, and enterprise software.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: 'C# uses C-style syntax with curly braces for code blocks, semicolons to end statements, and follows object-oriented principles with classes, inheritance, and interfaces.',
+    explanation: 'C# uses C-style syntax with curly braces and semicolons. It follows object-oriented principles with classes, inheritance, and interfaces.',
     examples: [
       {
         title: 'Hello World',
@@ -47,30 +47,24 @@ class Program {
     keyPoints: [
       'C# is statically typed with type inference support',
       'Uses .NET runtime for memory management and garbage collection',
-      'Supports LINQ for querying collections',
-      'Has built-in async/await for asynchronous programming',
       'Cross-platform through .NET Core/.NET 5+'
     ],
     commonMistakes: [
       'Confusing = (assignment) with == (comparison)',
-      'Not handling null references properly',
-      'Forgetting to initialize variables before use',
-      'Overusing var when type is not obvious'
+      'Not handling null references properly'
     ],
     proTips: [
       'Use string interpolation ($"...") instead of concatenation',
-      'Prefer var when the type is obvious from the right side',
-      'Use null-conditional operators (?.) for null safety',
       'Enable nullable reference types in modern C#'
     ]
   },
 
   setup: {
-    definition: 'Setting up a C# development environment requires installing .NET SDK and choosing a code editor or IDE for development.',
-    whyUse: 'A proper setup enables you to compile, run, and debug C# applications efficiently with IntelliSense support and project management.',
-    whereUse: 'Visual Studio (full IDE), Visual Studio Code (lightweight), or JetBrains Rider for cross-platform development.',
+    definition: 'Setting up a C# development environment requires installing .NET SDK and choosing a code editor or IDE.',
+    whyUse: null,
+    whereUse: null,
     syntax: null,
-    explanation: 'Install .NET SDK from Microsoft, then use either Visual Studio for full IDE experience or VS Code with C# extension for lightweight development.',
+    explanation: 'Install .NET SDK from Microsoft, then use Visual Studio for full IDE experience or VS Code with C# extension for lightweight development.',
     examples: [
       {
         title: 'Install .NET SDK',
@@ -102,10 +96,8 @@ dotnet new list`,
         code: `using System;
 class Program {
     static void Main(string[] args) {
-        // Program entry point
         Console.WriteLine("Project is set up!");
         
-        // Command line arguments
         if (args.Length > 0) {
             Console.WriteLine($"Arguments: {string.Join(", ", args)}");
         }
@@ -117,30 +109,24 @@ class Program {
     keyPoints: [
       'Install .NET SDK from dotnet.microsoft.com',
       'Use "dotnet new" to create projects from templates',
-      'Use "dotnet run" to compile and execute',
-      'VS Code requires C# extension for IntelliSense',
-      'Visual Studio provides full debugging support'
+      'Use "dotnet run" to compile and execute'
     ],
     commonMistakes: [
       'Not installing the correct .NET version',
-      'Forgetting to restore NuGet packages',
-      'Using wrong project template for requirements',
-      'Not setting up proper build configurations'
+      'Forgetting to restore NuGet packages'
     ],
     proTips: [
       'Use global.json to pin .NET SDK version',
-      'Create solution files for multi-project solutions',
-      'Use NuGet package manager for dependencies',
-      'Set up launch.json in VS Code for debugging'
+      'Create solution files for multi-project solutions'
     ]
   },
 
   variables: {
     definition: 'Variables in C# are named storage locations that hold data values. C# is statically typed, meaning variable types must be declared or inferred at compile time.',
-    whyUse: 'Variables allow programs to store, retrieve, and manipulate data. Type safety prevents runtime errors and improves code reliability.',
-    whereUse: 'Every C# program uses variables for storing values, references, and state throughout application execution.',
-    syntax: 'type variableName = value;',
-    explanation: 'C# supports value types (int, double, bool), reference types (string, object), and allows type inference with the var keyword.',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
+    explanation: 'C# supports value types like int, double, and bool, reference types like string and object, and allows type inference with the var keyword.',
     examples: [
       {
         title: 'Variable Declaration',
@@ -192,31 +178,24 @@ class Program {
     ],
     keyPoints: [
       'Use var for type inference when type is obvious',
-      'const for compile-time constants, readonly for runtime constants',
-      'Initialize variables before use',
-      'Follow naming conventions (camelCase for locals, PascalCase for members)',
-      'Use appropriate data types for memory efficiency'
+      'const for compile-time constants, readonly for runtime constants'
     ],
     commonMistakes: [
       'Using var for unclear types',
-      'Not initializing variables',
-      'Mixing up const and readonly',
-      'Overflowing numeric types with large values'
+      'Mixing up const and readonly'
     ],
     proTips: [
       'Use meaningful variable names',
-      'Prefer int over long for small numbers',
-      'Use decimal for financial calculations',
-      'Declare variables close to first use'
+      'Use decimal for financial calculations'
     ]
   },
 
   strings: {
     definition: 'Strings in C# are immutable sequences of Unicode characters. The string class provides extensive methods for text manipulation.',
-    whyUse: 'Strings are essential for text processing, user input/output, data serialization, and communication between systems.',
-    whereUse: 'Used everywhere for displaying messages, processing user input, file operations, network communication, and data storage.',
-    syntax: 'string variableName = "value";',
-    explanation: 'C# strings are immutable, meaning once created, they cannot be modified. String operations create new string instances. Use StringBuilder for frequent modifications.',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
+    explanation: 'C# strings are immutable, meaning once created they cannot be modified. String operations create new string instances. Use StringBuilder for frequent modifications.',
     examples: [
       {
         title: 'String Operations',
@@ -242,10 +221,7 @@ class Program {
         string name = "Alice";
         int age = 28;
         
-        // String interpolation
         string s1 = $"Name: {name}, Age: {age}";
-        
-        // Composite formatting
         string s2 = string.Format("Name: {0}, Age: {1}", name, age);
         
         Console.WriteLine(s1);
@@ -276,29 +252,23 @@ class Program {
     keyPoints: [
       'Strings are immutable - operations create new strings',
       'Use StringBuilder for frequent string modifications',
-      'String interpolation ($"...") is preferred for formatting',
-      'Use Contains(), StartsWith(), EndsWith() for searching',
-      'String.Join() combines array elements efficiently'
+      'String interpolation ($"...") is preferred for formatting'
     ],
     commonMistakes: [
-      'Modifying strings in loops (use StringBuilder)',
-      'Not handling null strings',
-      'Using == instead of string.Equals() for comparison',
-      'Forgetting strings are case-sensitive by default'
+      'Modifying strings in loops - use StringBuilder instead',
+      'Not handling null strings'
     ],
     proTips: [
       'Use string interpolation over concatenation',
-      'Use StringPool or string.Intern() for repeated strings',
-      'Prefer StringBuilder for loops with many concatenations',
-      'Use StringComparison parameters for culture-aware comparisons'
+      'Prefer StringBuilder for loops with many concatenations'
     ]
   },
 
   operators: {
-    definition: 'Operators in C# are symbols that perform operations on variables and values. C# supports arithmetic, comparison, logical, assignment, and other operator types.',
-    whyUse: 'Operators enable performing calculations, comparisons, and logical operations on data, forming the basis of program logic.',
-    whereUse: 'Used throughout C# programs for math operations, conditional checks, bit manipulation, and type operations.',
-    syntax: 'operand operator operand',
+    definition: 'Operators in C# are symbols that perform operations on variables and values. C# supports arithmetic, comparison, logical, and assignment operators.',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'C# provides comprehensive operator support including arithmetic (+, -, *, /), comparison (==, !=, <, >), logical (&&, ||, !), and bitwise operators.',
     examples: [
       {
@@ -354,29 +324,23 @@ class Program {
     keyPoints: [
       'Arithmetic operators follow standard math precedence',
       '&& and || use short-circuit evaluation',
-      '?? is null coalescing, ?. is null-conditional',
-      'is operator checks type compatibility',
-      'as operator performs safe type conversion'
+      '?? is null coalescing, ?. is null-conditional'
     ],
     commonMistakes: [
       'Integer division truncating decimal results',
-      'Not using parentheses for complex expressions',
-      'Confusing = (assignment) with == (comparison)',
-      'Ignoring operator precedence'
+      'Confusing = (assignment) with == (comparison)'
     ],
     proTips: [
       'Use checked/unchecked for overflow control',
-      'Use pattern matching with is operator',
-      'Use switch expressions for complex logic',
-      'Be aware of implicit type conversions'
+      'Use switch expressions for complex logic'
     ]
   },
 
   conditionals: {
     definition: 'Conditional statements in C# allow programs to execute different code paths based on conditions. They include if, else if, else, switch, and ternary operator.',
-    whyUse: 'Conditionals enable decision-making in programs, allowing different actions based on data values, user input, or program state.',
-    whereUse: 'Used for input validation, feature toggles, error handling, and controlling program flow throughout applications.',
-    syntax: 'if (condition) { statement } else if (condition) { statement } else { statement }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'C# evaluates conditions as boolean values. switch statements work with discrete values. The ternary operator provides concise conditional expressions.',
     examples: [
       {
@@ -446,29 +410,23 @@ class Program {
     keyPoints: [
       'if conditions must evaluate to bool',
       'switch requires break or return in each case',
-      'switch expressions provide concise syntax in C# 8+',
-      'Ternary operator is great for simple conditionals',
-      'Pattern matching works with switch statements'
+      'Ternary operator is great for simple conditionals'
     ],
     commonMistakes: [
       'Missing break statements in switch cases',
-      'Using assignment (=) instead of comparison (==)',
-      'Not handling all possible cases',
-      'Overusing nested if statements'
+      'Using assignment (=) instead of comparison (==)'
     ],
     proTips: [
       'Use switch expressions for cleaner code',
-      'Consider using dictionary for many conditions',
-      'Guard clauses reduce nesting',
-      'Use pattern matching for type checks'
+      'Guard clauses reduce nesting'
     ]
   },
 
   loops: {
     definition: 'Loops in C# allow repeated execution of code blocks. C# supports for, while, do-while, foreach, and LINQ for iteration.',
-    whyUse: 'Loops enable processing collections, repeating tasks, and implementing algorithms that require iteration.',
-    whereUse: 'Used for processing arrays/collections, reading files line by line, implementing game loops, and data processing.',
-    syntax: 'for (init; condition; update) { statement }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'C# provides multiple loop types for different scenarios: for for known iterations, foreach for collections, while for condition-based, do-while for at least one execution.',
     examples: [
       {
@@ -521,29 +479,23 @@ class Program {
     keyPoints: [
       'for loop: init; condition; update structure',
       'foreach: best for collections without modification',
-      'while: checks condition before each iteration',
-      'do-while: executes at least once',
       'break exits loop, continue skips to next iteration'
     ],
     commonMistakes: [
       'Infinite loops from incorrect conditions',
-      'Modifying collection during foreach',
-      'Off-by-one errors in loop bounds',
-      'Using wrong loop type for the task'
+      'Modifying collection during foreach'
     ],
     proTips: [
       'Use LINQ for complex collection operations',
-      'Prefer foreach for simple collection iteration',
-      'Use for loop when index is needed',
-      'Consider parallel loops for performance'
+      'Use for loop when index is needed'
     ]
   },
 
   arrays: {
     definition: 'Arrays in C# are fixed-size collections of elements of the same type. They provide fast indexed access but cannot be resized after creation.',
-    whyUse: 'Arrays offer efficient storage and retrieval of elements with O(1) access time. They are the foundation for other collection types.',
-    whereUse: 'Used when fixed-size, high-performance collections are needed, and as building blocks for lists, matrices, and buffers.',
-    syntax: 'type[] arrayName = new type[size];',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'C# arrays are zero-indexed, fixed-size, and can be single-dimensional, multi-dimensional, or jagged.',
     examples: [
       {
@@ -602,29 +554,23 @@ class Program {
     keyPoints: [
       'Arrays are fixed-size after creation',
       'Zero-based indexing',
-      'Use Array class methods for operations',
-      'Multi-dimensional arrays use commas',
-      'Jagged arrays are arrays of arrays'
+      'Use Array class methods for operations'
     ],
     commonMistakes: [
       'IndexOutOfRangeException from invalid index',
-      'Not checking array bounds before access',
-      'Confusing arrays with lists (different capabilities)',
-      'Forgetting arrays are reference types'
+      'Confusing arrays with lists'
     ],
     proTips: [
       'Use List<T> when size needs to change',
-      'Use Span<T> for performance-critical scenarios',
-      'Prefer array initialization syntax for clarity',
       'Use Array.Empty<T>() for empty arrays'
     ]
   },
 
   methods: {
     definition: 'Methods in C# are blocks of code that perform specific tasks. They can accept parameters, return values, and are the building blocks of object-oriented programming.',
-    whyUse: 'Methods promote code reuse, modularity, and separation of concerns. They make code more organized and maintainable.',
-    whereUse: 'Used to encapsulate functionality, create reusable logic, implement business rules, and structure applications.',
-    syntax: 'accessModifier returnType MethodName(parameters) { statement }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Methods have access modifiers, return types, names, parameters, and bodies. They can be static, instance, async, or generic.',
     examples: [
       {
@@ -687,30 +633,24 @@ class Program {
     ],
     keyPoints: [
       'Methods must have return type (void for none)',
-      'Parameters can have default values',
       'out parameters must be assigned in method',
-      'ref parameters must be initialized before passing',
-      'static methods belong to class, not instance'
+      'ref parameters must be initialized before passing'
     ],
     commonMistakes: [
       'Not returning a value from non-void methods',
-      'Confusing ref with out parameters',
-      'Overusing static methods',
-      'Creating too many parameters'
+      'Confusing ref with out parameters'
     ],
     proTips: [
       'Keep methods small and focused',
-      'Use meaningful method names',
-      'Consider using tuples for multiple returns',
       'Use expression-bodied members for simple methods'
     ]
   },
 
   classes: {
     definition: 'Classes in C# are blueprint templates for creating objects. They encapsulate data (fields) and behavior (methods) into a single unit.',
-    whyUse: 'Classes enable object-oriented programming, providing encapsulation, inheritance, and polymorphism for building complex applications.',
-    whereUse: 'Used to model real-world entities, create reusable components, and structure applications with clear responsibilities.',
-    syntax: 'class ClassName { fields; methods; }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Classes define the structure and behavior of objects. They can have constructors, fields, properties, methods, and nested types.',
     examples: [
       {
@@ -798,29 +738,23 @@ class Program {
     keyPoints: [
       'Classes are reference types',
       'Constructors initialize objects',
-      'Static members belong to the class, not instances',
-      'Access modifiers control visibility',
-      'Classes can implement interfaces'
+      'Static members belong to the class, not instances'
     ],
     commonMistakes: [
       'Not initializing required fields',
-      'Confusing value and reference types',
-      'Overcomplicating class hierarchies',
-      'Violating single responsibility principle'
+      'Confusing value and reference types'
     ],
     proTips: [
       'Use properties instead of public fields',
-      'Prefer composition over inheritance',
-      'Implement IDisposable for cleanup',
-      'Use records for immutable data types'
+      'Prefer composition over inheritance'
     ]
   },
 
   properties: {
     definition: 'Properties in C# provide a flexible mechanism to read, write, or compute the values of private fields. They act as public interfaces for class data.',
-    whyUse: 'Properties provide data encapsulation with validation, computed values, and notification support while maintaining a clean API.',
-    whereUse: 'Used to expose class data safely, implement validation logic, compute derived values, and support data binding.',
-    syntax: 'public type PropertyName { get; set; }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Properties can have get and/or set accessors. Auto-implemented properties, read-only properties, and properties with validation are common patterns.',
     examples: [
       {
@@ -891,29 +825,23 @@ class Program {
     keyPoints: [
       'Auto-properties: public int X { get; set; }',
       'Read-only: public int X { get; }',
-      'Init-only: public int X { get; init; }',
-      'Expression-bodied: public int X => 42;',
-      'Properties can have different access levels'
+      'Init-only: public int X { get; init; }'
     ],
     commonMistakes: [
       'Not validating property values',
-      'Creating properties with too much logic',
-      'Confusing properties with fields',
-      'Forgetting to implement INotifyPropertyChanged'
+      'Confusing properties with fields'
     ],
     proTips: [
       'Use init-only for immutable objects',
-      'Consider using records for data classes',
-      'Use property patterns in switch expressions',
       'Keep property logic simple'
     ]
   },
 
   inheritance: {
     definition: 'Inheritance in C# allows creating new classes based on existing classes. A derived class inherits fields, properties, and methods from a base class.',
-    whyUse: 'Inheritance promotes code reuse, establishes relationships between types, and enables polymorphism for flexible code design.',
-    whereUse: 'Used to create specialized versions of existing classes, build class hierarchies, and implement interface contracts.',
-    syntax: 'class DerivedClass : BaseClass { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'C# supports single inheritance with multiple interface implementation. Use virtual/override for polymorphism, abstract for incomplete base classes.',
     examples: [
       {
@@ -998,30 +926,24 @@ class Program {
     ],
     keyPoints: [
       'C# supports single inheritance only',
-      'Use interfaces for multiple contract implementation',
       'virtual allows overriding, override changes behavior',
-      'abstract cannot be instantiated',
-      'base关键字访问父类成员'
+      'abstract cannot be instantiated'
     ],
     commonMistakes: [
       'Creating deep inheritance hierarchies',
-      'Not calling base constructor',
-      'Hiding base members with new keyword',
-      'Tight coupling between base and derived classes'
+      'Not calling base constructor'
     ],
     proTips: [
       'Prefer composition over inheritance',
-      'Use abstract classes for partial implementations',
-      'Consider using interfaces for polymorphism',
       'Keep inheritance hierarchies shallow'
     ]
   },
 
   interfaces: {
     definition: 'Interfaces in C# define contracts that classes or structs can implement. They specify methods, properties, events, or indexers that implementing types must provide.',
-    whyUse: 'Interfaces enable polymorphism, loose coupling, and testing. They define capabilities without implementation details.',
-    whereUse: 'Used for defining service contracts, enabling dependency injection, creating plug-in architectures, and unit testing.',
-    syntax: 'interface IInterfaceName { void Method(); }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Interfaces contain only definitions, not implementations. A class can implement multiple interfaces, providing a form of multiple inheritance.',
     examples: [
       {
@@ -1105,29 +1027,23 @@ class Program {
     keyPoints: [
       'Interfaces define contracts, not implementations',
       'A class can implement multiple interfaces',
-      'Interfaces can have default implementations (C# 8+)',
-      'Interface names start with capital I',
-      'Interfaces promote loose coupling'
+      'Interface names start with capital I'
     ],
     commonMistakes: [
       'Adding implementation to interfaces',
-      'Not implementing all interface members',
-      'Using interfaces when classes would be better',
-      'Creating too many interfaces'
+      'Not implementing all interface members'
     ],
     proTips: [
       'Keep interfaces small and focused',
-      'Use interface segregation principle',
-      'Prefer interface-based design',
-      'Use default interface methods for backwards compatibility'
+      'Use interface segregation principle'
     ]
   },
 
   generics: {
     definition: 'Generics in C# allow creating classes, methods, and interfaces with type parameters. They enable writing reusable code that works with any type.',
-    whyUse: 'Generics provide type safety, performance benefits, and code reuse. They eliminate boxing/unboxing and enable compile-time type checking.',
-    whereUse: 'Used in collections, data structures, algorithms, and anywhere type-agnostic code is needed.',
-    syntax: 'class GenericClass<T> { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Generics use type parameters (T, K, V) that are replaced with specific types at compile time. They support constraints for limiting acceptable types.',
     examples: [
       {
@@ -1198,29 +1114,23 @@ class Program {
     keyPoints: [
       'Type parameters enable type-safe reusable code',
       'Constraints: where T : class, struct, new(), etc.',
-      'Generics avoid boxing for value types',
-      'Can have multiple type parameters',
-      'Generic interfaces and methods are powerful'
+      'Generics avoid boxing for value types'
     ],
     commonMistakes: [
       'Overusing generic constraints',
-      'Not considering performance implications',
-      'Creating overly complex generic types',
-      'Forgetting type inference'
+      'Creating overly complex generic types'
     ],
     proTips: [
       'Use meaningful type parameter names (T, TKey, TValue)',
-      'Prefer generics over object for type safety',
-      'Use generic math for numeric operations',
-      'Consider using Source Generators for advanced scenarios'
+      'Prefer generics over object for type safety'
     ]
   },
 
   linq: {
     definition: 'LINQ (Language Integrated Query) provides a unified syntax for querying and manipulating data from various sources including collections, databases, and XML.',
-    whyUse: 'LINQ simplifies data operations with expressive query syntax, reduces boilerplate code, and provides consistent APIs across data sources.',
-    whereUse: 'Used for filtering, sorting, transforming collections, querying databases with Entity Framework, and processing XML/JSON.',
-    syntax: 'var result = from item in collection where condition select item;',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'LINQ offers query syntax (SQL-like) and method syntax (lambda-based). Both compile to the same intermediate representation.',
     examples: [
       {
@@ -1298,29 +1208,23 @@ class Program {
     keyPoints: [
       'Where() filters elements',
       'Select() transforms elements',
-      'OrderBy()/OrderByDescending() sorts',
-      'GroupBy() groups elements',
       'LINQ is deferred execution until enumeration'
     ],
     commonMistakes: [
       'Not understanding deferred execution',
-      'Querying large datasets without filtering first',
-      'Not using appropriate LINQ method',
       'Forgetting to call ToList() when needed'
     ],
     proTips: [
       'Use method syntax for simple queries',
-      'Use query syntax for complex joins',
-      'Chain operations for readability',
-      'Use AsParallel() for parallel processing'
+      'Use query syntax for complex joins'
     ]
   },
 
   async: {
     definition: 'Asynchronous programming in C# uses async/await keywords to handle operations that may take time, like I/O or network requests, without blocking the main thread.',
-    whyUse: 'Async improves application responsiveness, resource utilization, and user experience by keeping the UI responsive during long operations.',
-    whereUse: 'Used for file I/O, database queries, HTTP requests, and any operation that may block.',
-    syntax: 'async Task MethodAsync() { await SomeAsyncOperation(); }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Methods marked async can use await to pause execution until an async operation completes. The await keyword resumes execution after the operation finishes.',
     examples: [
       {
@@ -1381,29 +1285,23 @@ class Program {
     keyPoints: [
       'async methods return Task or Task<T>',
       'await pauses execution without blocking',
-      'Use Task.WhenAll() for parallel operations',
-      'Async methods should be awaited to avoid warnings',
-      'Use ConfigureAwait(false) in library code'
+      'Use Task.WhenAll() for parallel operations'
     ],
     commonMistakes: [
       'Using .Result or .Wait() causing deadlocks',
-      'Not awaiting async methods',
-      'Using async void (except for event handlers)',
-      'Forgetting ConfigureAwait(false)'
+      'Using async void except for event handlers'
     ],
     proTips: [
       'Avoid async void methods',
-      'Use ValueTask for hot paths',
-      'Implement IAsyncDisposable for cleanup',
       'Use cancellation tokens for cancellation'
     ]
   },
 
   events: {
     definition: 'Events in C# are a mechanism for a class to notify other classes when something of interest happens. They follow the publish-subscribe pattern.',
-    whyUse: 'Events enable loose coupling between components, allowing objects to communicate without direct references.',
-    whereUse: 'Used in UI programming, callbacks, observer pattern, and decoupled architecture designs.',
-    syntax: 'public event EventHandler MyEvent;',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Events use delegates to define event handler signatures. Publishers raise events, subscribers handle them.',
     examples: [
       {
@@ -1456,30 +1354,24 @@ class Program {
     ],
     keyPoints: [
       'Events use delegates for type-safe callbacks',
-      'Use EventArgs and EventHandler<T> patterns',
-      'Events can only be raised from declaring class',
       'Use ?.Invoke() for null-safe invocation',
       'Events support multiple subscribers'
     ],
     commonMistakes: [
       'Not checking for null before invoking',
-      'Forgetting to unsubscribe from events',
-      'Creating memory leaks with event subscriptions',
-      'Using events when delegates would be simpler'
+      'Forgetting to unsubscribe from events'
     ],
     proTips: [
       'Use weak events to prevent memory leaks',
-      'Consider using IObservable<T> for complex scenarios',
-      'Unsubscribe when no longer needed',
-      'Use event handlers for UI event patterns'
+      'Unsubscribe when no longer needed'
     ]
   },
 
   exceptions: {
     definition: 'Exceptions in C# are runtime errors that occur during program execution. C# provides try-catch-finally blocks to handle exceptions gracefully.',
-    whyUse: 'Exception handling allows programs to recover from errors, log issues, and provide meaningful feedback to users.',
-    whereUse: 'Used everywhere for error handling, input validation, resource cleanup, and maintaining application stability.',
-    syntax: 'try { } catch (ExceptionType ex) { } finally { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'The try block contains code that might throw exceptions. Catch blocks handle specific exception types. Finally ensures cleanup code runs.',
     examples: [
       {
@@ -1562,29 +1454,23 @@ class Program {
     keyPoints: [
       'Try-catch blocks handle runtime exceptions',
       'Finally runs regardless of exceptions thrown',
-      'Custom exceptions provide meaningful error info',
-      'When filters add conditions to catch blocks',
-      'Exception logging is important for debugging'
+      'Custom exceptions provide meaningful error info'
     ],
     commonMistakes: [
       'Catching generic Exception without specificity',
-      'Swallowing exceptions silently',
-      'Using exceptions for flow control',
-      'Not cleaning up resources in finally'
+      'Swallowing exceptions silently'
     ],
     proTips: [
       'Be specific with exception types',
-      'Use exception filters for better performance',
-      'Log exceptions with full context',
-      'Consider using Result pattern instead of exceptions'
+      'Log exceptions with full context'
     ]
   },
 
   lambda: {
     definition: 'Lambda expressions in C# are anonymous functions that can contain expressions or statements. They are used to create delegates or expression trees.',
-    whyUse: 'Lambdas provide concise syntax for inline function definitions, making code more readable for short operations.',
-    whereUse: 'Used with LINQ queries, event handlers, callbacks, and anywhere a delegate is expected.',
-    syntax: '(parameters) => expression or (parameters) => { statements }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Lambdas are shorthand for anonymous methods. They capture variables from their enclosing scope (closures).',
     examples: [
       {
@@ -1641,30 +1527,24 @@ class Program {
     ],
     keyPoints: [
       '=> is the lambda operator',
-      'Single expression lambdas are concise',
-      'Multi-statement lambdas use curly braces',
       'Lambdas capture enclosing scope variables',
       'Use Func for return values, Action for void'
     ],
     commonMistakes: [
-      'Confusing lambda with expression body',
       'Capturing loop variables incorrectly',
-      'Overcomplicating lambda expressions',
-      'Forgetting type inference'
+      'Overcomplicating lambda expressions'
     ],
     proTips: [
       'Keep lambdas small and focused',
-      'Use local variables for clarity',
-      'Consider named methods for complex logic',
-      'Use expression trees for IQueryable'
+      'Use local variables for clarity'
     ]
   },
 
   enums: {
     definition: 'Enums in C# are value types that define a set of named constants. They improve code readability by replacing magic numbers with meaningful names.',
-    whyUse: 'Enums make code more readable, maintainable, and type-safe by providing named constants for related values.',
-    whereUse: 'Used for state machines, configuration options, status codes, and anywhere a fixed set of values is needed.',
-    syntax: 'enum Status { Active, Inactive, Pending }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Enums are backed by integer types (default int). Each member has an associated numeric value, and enums can have methods.',
     examples: [
       {
@@ -1729,29 +1609,23 @@ class Program {
     keyPoints: [
       'Enums are strongly typed constants',
       'Default underlying type is int',
-      '[Flags] attribute for bitwise operations',
-      'Enum.Parse() converts strings to enums',
-      'Enum.GetValues() gets all enum values'
+      '[Flags] attribute for bitwise operations'
     ],
     commonMistakes: [
       'Not handling invalid enum values',
-      'Forgetting default value is 0',
-      'Not using [Flags] for bitwise combinations',
-      'Hardcoding enum values instead of names'
+      'Forgetting default value is 0'
     ],
     proTips: [
       'Use enums for fixed sets of options',
-      'Consider using enum for switch statements',
-      'Use [Description] attribute for display names',
-      'Use generic Enum.Parse<T>() for type safety'
+      'Use [Description] attribute for display names'
     ]
   },
 
   nullable: {
     definition: 'Nullable types in C# allow value types to represent null. The nullable reference types feature (C# 8+) helps prevent null reference exceptions.',
-    whyUse: 'Nullable types make nullability explicit in the type system, improving code safety and reducing null-related bugs.',
-    whereUse: 'Used for optional database fields, API responses, and anywhere a value might be absent.',
-    syntax: 'int? nullableInt = null;',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Nullable value types use ? suffix. Nullable reference types use annotations to indicate nullability in the type system.',
     examples: [
       {
@@ -1819,29 +1693,23 @@ class Program {
     keyPoints: [
       'int? is shorthand for Nullable<int>',
       'Use ?. for null-conditional access',
-      'Use ?? for null coalescing',
-      'Use ?.Invoke() for null-conditional invocation',
-      'Nullable reference types are compile-time only'
+      'Use ?? for null coalescing'
     ],
     commonMistakes: [
       'Not checking HasValue before accessing Value',
-      'Ignoring nullable warnings',
-      'Forgetting ?? for default values',
-      'Not using nullable annotations'
+      'Ignoring nullable warnings'
     ],
     proTips: [
       'Enable nullable reference types project-wide',
-      'Use ! operator to suppress warnings when sure',
-      'Consider using ValidateNotNull attributes',
       'Use pattern matching with null checks'
     ]
   },
 
   unity: {
     definition: 'Unity is a game engine that uses C# for scripting. It provides tools for 2D/3D game development, VR/AR, and interactive applications.',
-    whyUse: 'Unity with C# enables rapid game development with a visual editor, cross-platform deployment, and extensive asset store.',
-    whereUse: 'Used for creating video games, simulations, architectural visualizations, and interactive experiences.',
-    syntax: 'public class MonoBehaviour : MonoBehaviour { }',
+    whyUse: null,
+    whereUse: null,
+    syntax: null,
     explanation: 'Unity scripts inherit from MonoBehaviour. They use lifecycle methods like Start(), Update(), and OnDestroy() for game logic.',
     examples: [
       {
@@ -1907,21 +1775,15 @@ public class GameManager : MonoBehaviour {
     keyPoints: [
       'Scripts inherit from MonoBehaviour',
       'Start() is called once at initialization',
-      'Update() is called every frame',
-      'Use GetComponent<T>() to access components',
-      'Use coroutines for time-based operations'
+      'Update() is called every frame'
     ],
     commonMistakes: [
       'Putting game logic in Update() when Start() suffices',
-      'Not caching component references',
-      'Using SendMessage() instead of direct references',
-      'Not handling object pooling for frequent instantiation'
+      'Not caching component references'
     ],
     proTips: [
       'Cache GetComponent calls in Start()',
-      'Use ScriptableObjects for data',
-      'Implement object pooling for bullets/particles',
-      'Use Unity Analytics for player behavior insights'
+      'Use ScriptableObjects for data'
     ]
   }
 }
