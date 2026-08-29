@@ -22,10 +22,10 @@ export default async function handler(req, res) {
     java: { language: 'java', versionIndex: '4' },
     c: { language: 'c', versionIndex: '5' },
     cpp: { language: 'cpp', versionIndex: '5' },
-    csharp: { language: 'csharp', versionIndex: '4' },
+    csharp: { language: 'csharp', versionIndex: '6' },
     ruby: { language: 'ruby', versionIndex: '4' },
     go: { language: 'go', versionIndex: '3' },
-    kotlin: { language: 'kotlin', versionIndex: '4' },
+    kotlin: { language: 'kotlin', versionIndex: '5' },
     typescript: { language: 'typescript', versionIndex: '1' },
     html: { language: 'html', versionIndex: '0' },
     css: { language: 'css', versionIndex: '0' },
@@ -36,6 +36,16 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: `Unsupported language: ${language}` })
   }
 
+  let script = code
+
+  if (language === 'csharp' && !code.includes('class ')) {
+    script = `class Program { static void Main() { ${code} } }`
+  }
+
+  if (language === 'kotlin' && !code.includes('fun main') && !code.includes('class ')) {
+    script = `fun main() { ${code} }`
+  }
+
   try {
     const response = await fetch('https://api.jdoodle.com/v1/execute', {
       method: 'POST',
@@ -43,7 +53,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         clientId,
         clientSecret,
-        script: code,
+        script,
         language: langConfig.language,
         versionIndex: langConfig.versionIndex,
       }),
