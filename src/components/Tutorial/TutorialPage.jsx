@@ -7,8 +7,6 @@ import { topicContent } from '../Languages/content'
 import LanguageLogo from '../Languages/LanguageLogos'
 import { defaultCode } from '../Languages/defaultCode'
 
-const PISTON_LANG = { python: 'python', javascript: 'javascript', java: 'java', c: 'c', cpp: 'cpp', csharp: 'csharp', ruby: 'ruby', go: 'go', kotlin: 'kotlin', typescript: 'typescript', html: 'html', css: 'css' }
-
 function getDefaultCode(lang, topicId) {
   return defaultCode[lang]?.[topicId] || defaultCode[lang]?.intro || `// ${lang} code\nconsole.log("Hello!")`
 }
@@ -94,27 +92,17 @@ export default function TutorialPage() {
     setIsRunning(true)
     setOutput('Running...')
     try {
-      const res = await fetch('https://emkc.org/piston/api/execute', {
+      const res = await fetch('/api/execute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          language: PISTON_LANG[language] || 'javascript',
-          version: 'latest',
-          files: [{ content: code }]
-        })
+        body: JSON.stringify({ language, code })
       })
-      if (!res.ok) {
-        const errText = await res.text()
-        throw new Error(`API error (${res.status}): ${errText.slice(0, 200)}`)
-      }
       const result = await res.json()
-      const runOutput = result.run?.output || ''
-      const compileErr = result.compile?.stderr || ''
-      if (compileErr && !runOutput) {
-        setOutput(`Compile Error:\n${compileErr}`)
-      } else {
-        setOutput(runOutput || 'No output')
+      if (!res.ok) {
+        throw new Error(result.error || `API error (${res.status})`)
       }
+      const output = result.output || result.error || 'No output'
+      setOutput(output)
     } catch (e) {
       setOutput(`Error: ${e.message}`)
     } finally {
@@ -335,7 +323,7 @@ export default function TutorialPage() {
               <div className="flex-1 min-h-0">
                 <Editor
                   height="100%"
-                  language={PISTON_LANG[language] || 'javascript'}
+                  language={language === 'csharp' ? 'csharp' : language === 'cpp' ? 'cpp' : language}
                   value={code}
                   onChange={v => setCode(v || '')}
                   theme="vs-dark"
