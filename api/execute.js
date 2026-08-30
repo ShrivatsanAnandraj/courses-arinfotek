@@ -3,12 +3,49 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { language, code } = req.body
+  const { language, code, executor } = req.body
 
   if (!language || !code) {
     return res.status(400).json({ error: 'Language and code are required' })
   }
 
+  // OneCompiler API for Python advanced execution
+  if (executor === 'onecompiler' || (language === 'python' && executor === 'onecompiler')) {
+    const apiKey = process.env.ONECOMPILER_API_KEY
+    if (!apiKey) {
+      return res.status(500).json({ error: 'OneCompiler API key not configured' })
+    }
+
+    try {
+      const response = await fetch('https://api.onecompiler.com/v1/run', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey
+        },
+        body: JSON.stringify({
+          language: 'python',
+          stdin: '',
+          files: [{ name: 'main.py', content: code }]
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.status === 'success') {
+        return res.status(200).json({
+          output: result.stdout || '',
+          error: result.stderr || result.exception || '',
+        })
+      } else {
+        return res.status(400).json({ error: result.stderr || result.exception || 'Execution failed' })
+      }
+    } catch (error) {
+      return res.status(500).json({ error: `OneCompiler error: ${error.message}` })
+    }
+  }
+
+  // JDoodle for other languages
   const clientId = process.env.JDOODLE_CLIENT_ID
   const clientSecret = process.env.JDOODLE_CLIENT_SECRET
 

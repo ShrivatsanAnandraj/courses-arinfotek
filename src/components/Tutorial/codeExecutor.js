@@ -147,41 +147,15 @@ sys.stdout = StringIO()
 }
 
 async function executePythonViaOneCompiler(code) {
-  const apiKey = import.meta.env.VITE_ONECOMPILER_API_KEY
-  if (!apiKey) {
-    return {
-      output: '',
-      error: 'OneCompiler API key not configured. Set VITE_ONECOMPILER_API_KEY in .env'
-    }
-  }
-
   try {
-    const res = await fetch('https://api.onecompiler.com/v1/run', {
+    const res = await fetch('/api/execute', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': apiKey
-      },
-      body: JSON.stringify({
-        language: 'python',
-        stdin: '',
-        files: [{ name: 'main.py', content: code }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ language: 'python', code, executor: 'onecompiler' })
     })
-
-    if (!res.ok) {
-      const errText = await res.text()
-      return { output: '', error: `OneCompiler API error (${res.status}): ${errText}` }
-    }
-
     const result = await res.json()
-    const stdout = result.stdout || ''
-    const stderr = result.stderr || ''
-
-    if (stderr && !stdout) {
-      return { output: '', error: stderr }
-    }
-    return { output: stdout || 'Code executed successfully.', error: stderr }
+    if (!res.ok) throw new Error(result.error || `API error (${res.status})`)
+    return { output: result.output || result.error || 'No output', error: result.error || '' }
   } catch (e) {
     return { output: '', error: `OneCompiler API error: ${e.message}` }
   }
