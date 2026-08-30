@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { Code, LogOut, User, Home } from 'lucide-react'
+import { Code, LogOut, User, Home, Cloud } from 'lucide-react'
 
 export default function Header() {
   const { user, logout } = useAuth()
@@ -37,6 +37,13 @@ export default function Header() {
             >
               <Code size={14} />
               Workspace
+            </Link>
+            <Link
+              to="/cloud"
+              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 rounded-full hover:bg-white hover:shadow-md transition flex items-center gap-1"
+            >
+              <Cloud size={14} />
+              Cloud
             </Link>
             <Link
               to="/dashboard"
