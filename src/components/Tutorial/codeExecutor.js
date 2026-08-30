@@ -1,3 +1,44 @@
+// Python modules/patterns that don't work in Pyodide (browser Wasm)
+const UNSUPPORTED_PYTHON_PATTERNS = [
+  'import os', 'from os',
+  'import subprocess', 'from subprocess',
+  'import socket', 'from socket',
+  'import sqlite3', 'from sqlite3',
+  'import threading', 'from threading',
+  'import multiprocessing', 'from multiprocessing',
+  'import ctypes', 'from ctypes',
+  'import cffi', 'from cffi',
+  'import pip', 'from pip',
+  'import setuptools', 'from setuptools',
+  'import _thread', 'from _thread',
+  'import tkinter', 'from tkinter',
+  'import django', 'from django',
+  'import flask', 'from flask',
+  'import requests', 'from requests',
+  'import urllib', 'from urllib',
+  'import http', 'from http',
+  'import ftplib', 'from ftplib',
+  'import smtplib', 'from smtplib',
+  'import imaplib', 'from imaplib',
+  'import poplib', 'from poplib',
+  'import xmlrpc', 'from xmlrpc',
+  'import asyncio', 'from asyncio',
+  'import signal', 'from signal',
+  'import mmap', 'from mmap',
+]
+
+function needsServerExecution(code) {
+  // Check for unsupported module imports
+  if (UNSUPPORTED_PYTHON_PATTERNS.some(pattern => code.includes(pattern))) {
+    return true
+  }
+  // Check for file I/O operations using open()
+  if (/\bopen\s*\(/.test(code)) {
+    return true
+  }
+  return false
+}
+
 let pyodideInstance = null
 let pyodideLoading = false
 
@@ -105,6 +146,47 @@ sys.stdout = StringIO()
   }
 }
 
+async function executePythonViaOneCompiler(code) {
+  const apiKey = import.meta.env.VITE_ONECOMPILER_API_KEY
+  if (!apiKey) {
+    return {
+      output: '',
+      error: 'OneCompiler API key not configured. Set VITE_ONECOMPILER_API_KEY in .env'
+    }
+  }
+
+  try {
+    const res = await fetch('https://onecompiler.com/api/v1/run', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Token': apiKey
+      },
+      body: JSON.stringify({
+        language: 'python',
+        stdin: '',
+        files: [{ name: 'main.py', content: code }]
+      })
+    })
+
+    if (!res.ok) {
+      const errText = await res.text()
+      return { output: '', error: `OneCompiler API error (${res.status}): ${errText}` }
+    }
+
+    const result = await res.json()
+    const stdout = result.stdout || ''
+    const stderr = result.stderr || ''
+
+    if (stderr && !stdout) {
+      return { output: '', error: stderr }
+    }
+    return { output: stdout || 'Code executed successfully.', error: stderr }
+  } catch (e) {
+    return { output: '', error: `OneCompiler API error: ${e.message}` }
+  }
+}
+
 function executeHTML(code) {
   return { output: '__HTML_PREVIEW__', html: code, error: '' }
 }
@@ -149,6 +231,9 @@ export function isBrowserLanguage(lang) {
 export async function executeCode(language, code) {
   switch (language) {
     case 'python':
+      if (needsServerExecution(code)) {
+        return executePythonViaOneCompiler(code)
+      }
       return executePython(code)
     case 'javascript':
       return executeJavaScript(code)
