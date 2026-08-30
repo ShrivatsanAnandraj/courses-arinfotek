@@ -60,9 +60,9 @@ function App() {
           <Route path="/workspace" element={<ProtectedRoute><Workspace /></ProtectedRoute>} />
           <Route path="/workspace/:language" element={<ProtectedRoute><Workspace /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
-          <Route path="/cloud" element={<ProtectedRoute><CloudHome /></ProtectedRoute>} />
-          <Route path="/cloud/:courseId" element={<ProtectedRoute><CloudLesson /></ProtectedRoute>} />
-          <Route path="/cloud/:courseId/:lessonId" element={<ProtectedRoute><CloudLesson /></ProtectedRoute>} />
+          <Route path="/cloud" element={<CloudHome />} />
+          <Route path="/cloud/:courseId" element={<CloudLesson />} />
+          <Route path="/cloud/:courseId/:lessonId" element={<CloudLesson />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
