@@ -156,11 +156,11 @@ async function executePythonViaOneCompiler(code) {
   }
 
   try {
-    const res = await fetch('https://onecompiler.com/api/v1/run', {
+    const res = await fetch('https://api.onecompiler.com/v1/run', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Auth-Token': apiKey
+        'X-API-Key': apiKey
       },
       body: JSON.stringify({
         language: 'python',
