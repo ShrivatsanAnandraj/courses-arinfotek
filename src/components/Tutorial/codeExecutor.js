@@ -1,3 +1,44 @@
+// Python modules/patterns that don't work in Pyodide (browser Wasm)
+const UNSUPPORTED_PYTHON_PATTERNS = [
+  'import os', 'from os',
+  'import subprocess', 'from subprocess',
+  'import socket', 'from socket',
+  'import sqlite3', 'from sqlite3',
+  'import threading', 'from threading',
+  'import multiprocessing', 'from multiprocessing',
+  'import ctypes', 'from ctypes',
+  'import cffi', 'from cffi',
+  'import pip', 'from pip',
+  'import setuptools', 'from setuptools',
+  'import _thread', 'from _thread',
+  'import tkinter', 'from tkinter',
+  'import django', 'from django',
+  'import flask', 'from flask',
+  'import requests', 'from requests',
+  'import urllib', 'from urllib',
+  'import http', 'from http',
+  'import ftplib', 'from ftplib',
+  'import smtplib', 'from smtplib',
+  'import imaplib', 'from imaplib',
+  'import poplib', 'from poplib',
+  'import xmlrpc', 'from xmlrpc',
+  'import asyncio', 'from asyncio',
+  'import signal', 'from signal',
+  'import mmap', 'from mmap',
+]
+
+function needsServerExecution(code) {
+  // Check for unsupported module imports
+  if (UNSUPPORTED_PYTHON_PATTERNS.some(pattern => code.includes(pattern))) {
+    return true
+  }
+  // Check for file I/O operations using open()
+  if (/\bopen\s*\(/.test(code)) {
+    return true
+  }
+  return false
+}
+
 let pyodideInstance = null
 let pyodideLoading = false
 
@@ -105,6 +146,21 @@ sys.stdout = StringIO()
   }
 }
 
+async function executePythonViaOneCompiler(code) {
+  try {
+    const res = await fetch('/api/execute', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ language: 'python', code, executor: 'onecompiler' })
+    })
+    const result = await res.json()
+    if (!res.ok) throw new Error(result.error || `API error (${res.status})`)
+    return { output: result.output || result.error || 'No output', error: result.error || '' }
+  } catch (e) {
+    return { output: '', error: `OneCompiler API error: ${e.message}` }
+  }
+}
+
 function executeHTML(code) {
   return { output: '__HTML_PREVIEW__', html: code, error: '' }
 }
@@ -149,6 +205,9 @@ export function isBrowserLanguage(lang) {
 export async function executeCode(language, code) {
   switch (language) {
     case 'python':
+      if (needsServerExecution(code)) {
+        return executePythonViaOneCompiler(code)
+      }
       return executePython(code)
     case 'javascript':
       return executeJavaScript(code)

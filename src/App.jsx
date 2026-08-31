@@ -8,6 +8,8 @@ import HomePage from './components/Home/HomePage'
 import TutorialPage from './components/Tutorial/TutorialPage'
 import Workspace from './components/Workspace/Workspace'
 import StudentDashboard from './components/Dashboard/StudentDashboard'
+import CloudHome from './components/Cloud/CloudHome'
+import CloudLesson from './components/Cloud/CloudLesson'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -58,6 +60,9 @@ function App() {
           <Route path="/workspace" element={<ProtectedRoute><Workspace /></ProtectedRoute>} />
           <Route path="/workspace/:language" element={<ProtectedRoute><Workspace /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+          <Route path="/cloud" element={<CloudHome />} />
+          <Route path="/cloud/:courseId" element={<CloudLesson />} />
+          <Route path="/cloud/:courseId/:lessonId" element={<CloudLesson />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
