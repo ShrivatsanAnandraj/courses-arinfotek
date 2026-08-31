@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Code, Rocket, BookOpen } from 'lucide-react'
+import { Code, Rocket, BookOpen, Cloud } from 'lucide-react'
 import { languages } from '../Languages/languages'
 import LanguageLogo from '../Languages/LanguageLogos'
 
@@ -48,6 +48,53 @@ export default function HomePage() {
                 <p className="text-xs text-slate-500 line-clamp-2 text-center">{lang.shortDescription}</p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 px-4 bg-gradient-to-br from-orange-50 to-amber-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-800 mb-2">Cloud Computing Certifications</h2>
+            <p className="text-slate-500">Master AWS from fundamentals to professional level</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link to="/cloud/cloud-practitioner" className="group bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-400 hover:-translate-y-1">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-xl flex items-center justify-center text-white text-2xl">☁️</div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm sm:text-base">Cloud Practitioner</h3>
+                  <p className="text-xs text-slate-500">CLF-C02 | Beginner</p>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">Cloud computing fundamentals and AWS basics</p>
+            </Link>
+            <Link to="/cloud/cloud-developer" className="group bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100 hover:border-blue-400 hover:-translate-y-1">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white text-2xl">💻</div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm sm:text-base">Cloud Developer</h3>
+                  <p className="text-xs text-slate-500">DVA-C02 | Intermediate</p>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">Building and deploying cloud-native applications</p>
+            </Link>
+            <Link to="/cloud/solutions-architect-associate" className="group bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-400 hover:-translate-y-1">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-2xl">🏗️</div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm sm:text-base">Solutions Architect</h3>
+                  <p className="text-xs text-slate-500">SAA-C03 | Intermediate</p>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500">Designing cost-optimized, resilient architectures</p>
+            </Link>
+          </div>
+          <div className="text-center mt-6">
+            <Link to="/cloud" className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition shadow-lg shadow-orange-500/25">
+              <Cloud size={18} />
+              View All Certifications
+            </Link>
           </div>
         </div>
       </section>
