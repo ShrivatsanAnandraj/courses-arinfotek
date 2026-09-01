@@ -445,7 +445,7 @@ export const cloudPractitioner = {
             'Supported runtimes: Python, Node.js, Java, Go, .NET, Ruby, custom'
           ],
           examples: [
-            { title: 'Lambda Function', code: '# Python Lambda Function\nimport json\n\ndef lambda_handler(event, context):\n    name = event.get('name', 'World')\n    return {\n        'statusCode': 200,\n        'body': json.dumps({\n            'message': f'Hello, {name}!'\n        })\n    }\n\n# Triggered by:\n- API Gateway (HTTP requests)\n- S3 (object uploads)\n- DynamoDB (table changes)\n- SQS (message queue)\n- CloudWatch (scheduled)\n- IoT (device events)' }
+            { title: 'Lambda Function', code: `# Python Lambda Function\nimport json\n\ndef lambda_handler(event, context):\n    name = event.get('name', 'World')\n    return {\n        'statusCode': 200,\n        'body': json.dumps({\n            'message': f'Hello, {name}!'\n        })\n    }\n\n# Triggered by:\n- API Gateway (HTTP requests)\n- S3 (object uploads)\n- DynamoDB (table changes)\n- SQS (message queue)\n- CloudWatch (scheduled)\n- IoT (device events)` }
           ],
           proTips: [
             'Lambda is great for APIs, data processing, and scheduled tasks',
