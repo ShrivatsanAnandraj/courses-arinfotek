@@ -66,6 +66,7 @@ export default async function handler(req, res) {
     typescript: { language: 'typescript', versionIndex: '1' },
     html: { language: 'html', versionIndex: '0' },
     css: { language: 'css', versionIndex: '0' },
+    bash: { language: 'bash', versionIndex: '0' },
   }
 
   const langConfig = languageMap[language]

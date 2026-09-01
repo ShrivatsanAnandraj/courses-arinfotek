@@ -10,6 +10,7 @@ import csharp from './csharp'
 import ruby from './ruby'
 import typescript from './typescript'
 import go from './go'
+import linux from './linux'
 
 export const topicContent = {
   python,
@@ -23,5 +24,6 @@ export const topicContent = {
   csharp,
   ruby,
   typescript,
-  go
+  go,
+  linux
 }

@@ -217,6 +217,8 @@ export async function executeCode(language, code) {
       return executeHTML(code)
     case 'css':
       return executeCSS(code)
+    case 'linux':
+      return executeViaJDoodle('bash', code)
     default:
       return executeViaJDoodle(language, code)
   }

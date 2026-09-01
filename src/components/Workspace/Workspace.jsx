@@ -18,7 +18,8 @@ const LANGUAGE_MAP = {
   ruby: 'ruby',
   kotlin: 'kotlin',
   typescript: 'typescript',
-  go: 'go'
+  go: 'go',
+  linux: 'shell'
 }
 
 const DEFAULT_CODE = {
@@ -33,7 +34,8 @@ const DEFAULT_CODE = {
   ruby: `# Write your Ruby code here\nputs "Hello, World!"`,
   kotlin: `fun main() {\n    println("Hello, World!")\n}`,
   typescript: `// Write your TypeScript code here\nconsole.log("Hello, World!");`,
-  go: `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}`
+  go: `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}`,
+  linux: `#!/bin/bash\necho "Hello from Linux!"\nwhoami\nhostname`
 }
 
 export default function Workspace() {
@@ -143,7 +145,7 @@ export default function Workspace() {
     const extensions = {
       python: '.py', javascript: '.js', html: '.html', css: '.css',
       java: '.java', c: '.c', cpp: '.cpp', csharp: '.cs',
-      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go'
+      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go', linux: '.sh'
     }
     const ext = extensions[currentLanguage] || '.txt'
     const blob = new Blob([code], { type: 'text/plain' })

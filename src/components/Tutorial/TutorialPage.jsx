@@ -317,7 +317,7 @@ export default function TutorialPage() {
               <div className="flex-1 min-h-0">
                 <Editor
                   height="100%"
-                  language={language === 'csharp' ? 'csharp' : language === 'cpp' ? 'cpp' : language}
+                  language={language === 'csharp' ? 'csharp' : language === 'cpp' ? 'cpp' : language === 'linux' ? 'shell' : language}
                   value={code}
                   onChange={v => setCode(v || '')}
                   theme="vs-dark"

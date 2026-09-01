@@ -375,5 +375,25 @@ export const languages = [
       { id: 'defer', title: 'Defer, Panic, Recover', category: 'Advanced', content: 'defer for cleanup, panic for unrecoverable errors, and recover for graceful handling.' },
       { id: 'context', title: 'Context Package', category: 'Advanced', content: 'Context for cancellation, deadlines, and passing values across goroutines.' }
     ]
+  },
+  {
+    id: 'linux',
+    name: 'Linux',
+    color: '#F7A41D',
+    logoColor: '#F7A41D',
+    shortDescription: 'System administration (Ubuntu & RHEL)',
+    description: 'Learn Linux system administration hands-on with Ubuntu (Debian-based, apt) and Red Hat Enterprise Linux (RHEL-based, dnf): the shell, files, users, permissions, packages, processes, services, networking and security.',
+    topics: [
+      { id: 'intro', title: 'Introduction to Linux', category: 'Fundamentals', content: 'What Linux is, the kernel, and the difference between Ubuntu and RHEL.' },
+      { id: 'shell', title: 'The Shell & Essential Commands', category: 'Command Line', content: 'pwd, ls, cd, echo, man, and getting help in a Bash shell.' },
+      { id: 'files', title: 'Files & Directories', category: 'Command Line', content: 'Create, copy, move, and delete files and folders; view file contents.' },
+      { id: 'users', title: 'Users & Groups', category: 'Administration', content: 'Manage users and groups, sudo, and passwords on Ubuntu and RHEL.' },
+      { id: 'permissions', title: 'Permissions & Ownership', category: 'Administration', content: 'rwx permissions, chmod, chown, and umask.' },
+      { id: 'packages', title: 'Package Management', category: 'Administration', content: 'Install and update software with apt (Ubuntu) and dnf (RHEL).' },
+      { id: 'processes', title: 'Processes & Services', category: 'Administration', content: 'View and control processes (ps, top, kill) and manage services with systemd.' },
+      { id: 'networking', title: 'Networking & Firewall', category: 'Administration', content: 'ip, ping, ss, and firewalls: ufw (Ubuntu) and firewalld (RHEL).' },
+      { id: 'security', title: 'Security & Access', category: 'Security', content: 'SSH, sudoers, firewall rules, and basic hardening for both distros.' },
+      { id: 'scripting', title: 'Shell Scripting', category: 'Automation', content: 'Automate admin tasks with Bash scripts, variables, loops and cron.' }
+    ]
   }
 ]

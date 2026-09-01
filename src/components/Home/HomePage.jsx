@@ -18,7 +18,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
               <BookOpen size={18} />
-              <span className="text-sm font-medium">12 Languages</span>
+              <span className="text-sm font-medium">Languages + Linux</span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
               <Code size={18} />

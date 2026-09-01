@@ -258,5 +258,17 @@ export const defaultCode = {
     select_ch: 'package main\nimport "fmt"\nfunc main() {\n    ch1 := make(chan string, 1)\n    ch2 := make(chan string, 1)\n    ch1 <- "one"\n    ch2 <- "two"\n    select {\n    case msg := <-ch1: fmt.Println(msg)\n    case msg := <-ch2: fmt.Println(msg)\n    }\n}',
     context: 'package main\nimport (\n    "context"\n    "fmt"\n)\nfunc main() {\n    ctx := context.Background()\n    fmt.Println(ctx)\n}',
     packages: 'package main\nimport (\n    "fmt"\n    "strings"\n)\nfunc main() {\n    fmt.Println(strings.ToUpper("hello"))\n}',
+  },
+  linux: {
+    intro: 'whoami\nhostname\nuname -a',
+    shell: 'pwd\nls -la\necho "Hello from Bash"\nhostname',
+    files: 'mkdir -p /tmp/backups\ncd /tmp/backups\necho "log line" > app.log\ncp app.log app-copy.log\nls -la',
+    users: 'sudo useradd -m -s /bin/bash jane\nsudo groupadd developers\nsudo usermod -aG developers jane\nid jane',
+    permissions: 'mkdir -p /tmp/perms\ntouch /tmp/perms/script.sh\nchmod 755 /tmp/perms/script.sh\nls -l /tmp/perms/script.sh',
+    packages: 'sudo apt update\nsudo apt install -y htop\n# RHEL: sudo dnf install -y htop',
+    processes: 'ps aux | head -n 5\nsudo systemctl status sshd\n# RHEL uses sshd; Ubuntu uses ssh',
+    networking: 'ip addr\nping -c 2 8.8.8.8\nss -tulpn',
+    security: 'sudo -l\nsudo cat /etc/ssh/sshd_config | grep -i permitroot\n# then: test config + restart ssh',
+    scripting: '#!/bin/bash\nBACKUP_DIR="/backups"\nmkdir -p "$BACKUP_DIR"\ntar -czf "$BACKUP_DIR/$(date +%F)-etc.tgz" /etc\necho "Backup saved to $BACKUP_DIR"',
   }
 }
