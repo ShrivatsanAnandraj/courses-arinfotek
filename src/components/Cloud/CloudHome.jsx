@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ArrowLeft, BookOpen, Clock, Cloud as CloudIcon, Award } from 'lucide-react'
 
 const courses = [
   {
@@ -8,7 +9,7 @@ const courses = [
     level: 'Beginner',
     lessons: 25,
     hours: 15,
-    color: 'from-orange-500 to-yellow-500',
+    color: 'from-primary to-primary-dark',
     icon: '☁️',
     description: 'Cloud computing fundamentals and AWS basics'
   },
@@ -60,65 +61,78 @@ const courses = [
 
 export default function CloudHome() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-[calc(100vh-120px)] bg-slate-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-orange-600 via-red-600 to-purple-600 py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">AWS Cloud Computing Certifications</h1>
-          <p className="text-xl text-orange-100 mb-6">
-            Master AWS from fundamentals to professional level. 5 certification paths. 155 lessons. 145+ hours.
-          </p>
-          <div className="flex justify-center gap-8 text-orange-100">
-            <div className="text-center">
-              <div className="text-3xl font-bold">5</div>
-              <div className="text-sm">Certifications</div>
+      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          <Link to="/home" className="inline-flex items-center gap-1 text-blue-200 hover:text-white mb-4 transition text-sm">
+            <ArrowLeft size={14} /> Back to Home
+          </Link>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 rounded-xl bg-white/15 flex items-center justify-center">
+              <CloudIcon size={34} className="text-white" />
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">155</div>
-              <div className="text-sm">Lessons</div>
+            <div>
+              <h1 className="text-3xl font-black">AWS Cloud Certifications</h1>
+              <p className="text-blue-200">5 certification paths · 155 lessons · 145+ hours</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">145+</div>
-              <div className="text-sm">Hours</div>
+          </div>
+          <div className="flex flex-wrap gap-4 text-white">
+            <div className="bg-white/15 rounded-lg px-4 py-2 text-center min-w-[90px]">
+              <div className="text-2xl font-black">5</div>
+              <div className="text-xs text-blue-200">Certifications</div>
+            </div>
+            <div className="bg-white/15 rounded-lg px-4 py-2 text-center min-w-[90px]">
+              <div className="text-2xl font-black">155</div>
+              <div className="text-xs text-blue-200">Lessons</div>
+            </div>
+            <div className="bg-white/15 rounded-lg px-4 py-2 text-center min-w-[90px]">
+              <div className="text-2xl font-black">145+</div>
+              <div className="text-xs text-blue-200">Hours</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Certification Paths */}
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-8 text-center">Certification Paths</h2>
-        <div className="space-y-6">
-          {courses.map((course, index) => (
+      <div className="max-w-5xl mx-auto px-4 py-10">
+        <h2 className="text-2xl font-black text-slate-800 mb-6 flex items-center gap-2">
+          <Award size={22} className="text-primary" /> Certification Paths
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {courses.map((course) => (
             <Link
               key={course.id}
               to={`/cloud/${course.id}`}
-              className="block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-orange-500 transition-all hover:shadow-lg hover:shadow-orange-500/10"
+              className="block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition group"
             >
-              <div className="flex items-center gap-6">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${course.color} flex items-center justify-center text-3xl flex-shrink-0`}>
-                  {course.icon}
+              <div className={`h-1.5 bg-gradient-to-r ${course.color}`} />
+              <div className="p-5">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${course.color} flex items-center justify-center text-xl flex-shrink-0`}>
+                    {course.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-slate-800 group-hover:text-primary transition truncate">{course.title}</h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="px-1.5 py-0.5 text-[11px] rounded bg-primary/10 text-primary font-mono font-semibold">
+                        {course.code}
+                      </span>
+                      <span className={`px-1.5 py-0.5 text-[11px] rounded font-semibold ${
+                        course.level === 'Beginner' ? 'bg-green-100 text-green-700' :
+                        course.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-red-100 text-red-700'
+                      }`}>
+                        {course.level}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-xl font-bold">{course.title}</h3>
-                    <span className="px-2 py-0.5 text-xs rounded bg-orange-500/20 text-orange-300 font-mono">
-                      {course.code}
-                    </span>
-                    <span className={`px-2 py-0.5 text-xs rounded ${
-                      course.level === 'Beginner' ? 'bg-green-500/20 text-green-300' :
-                      course.level === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-300' :
-                      'bg-red-500/20 text-red-300'
-                    }`}>
-                      {course.level}
-                    </span>
-                  </div>
-                  <p className="text-gray-400 mb-3">{course.description}</p>
-                  <div className="flex items-center gap-6 text-sm text-gray-500">
-                    <span>📚 {course.lessons} lessons</span>
-                    <span>⏱️ {course.hours} hours</span>
-                    <span>→</span>
-                  </div>
+                <p className="text-sm text-slate-500 mb-4 min-h-[40px]">{course.description}</p>
+                <div className="flex items-center gap-4 text-xs text-slate-500 border-t border-slate-100 pt-3">
+                  <span className="flex items-center gap-1"><BookOpen size={13} /> {course.lessons} lessons</span>
+                  <span className="flex items-center gap-1"><Clock size={13} /> {course.hours} hours</span>
+                  <span className="ml-auto text-primary font-bold group-hover:translate-x-0.5 transition">→</span>
                 </div>
               </div>
             </Link>
@@ -127,38 +141,38 @@ export default function CloudHome() {
       </div>
 
       {/* Certification Roadmap */}
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-8 text-center">Recommended Path</h2>
-        <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+      <div className="max-w-5xl mx-auto px-4 py-8 pb-14">
+        <h2 className="text-2xl font-black text-slate-800 mb-6 text-center">Recommended Path</h2>
+        <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-4">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold">1</span>
+              <span className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold flex-shrink-0">1</span>
               <div>
-                <div className="font-bold">Cloud Practitioner</div>
-                <div className="text-sm text-gray-400">Foundations</div>
+                <div className="font-bold text-slate-800">Cloud Practitioner</div>
+                <div className="text-sm text-slate-500">Foundations</div>
               </div>
             </div>
-            <div className="text-gray-600">→</div>
+            <div className="text-slate-300 hidden lg:block">→</div>
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">2</span>
+              <span className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold flex-shrink-0">2</span>
               <div>
-                <div className="font-bold">Cloud Developer</div>
-                <div className="text-sm text-gray-400">or</div>
+                <div className="font-bold text-slate-800">Cloud Developer</div>
+                <div className="text-sm text-slate-500">or</div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center font-bold">2</span>
+              <span className="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold flex-shrink-0">2</span>
               <div>
-                <div className="font-bold">Solutions Architect</div>
-                <div className="text-sm text-gray-400">Associate</div>
+                <div className="font-bold text-slate-800">Solutions Architect</div>
+                <div className="text-sm text-slate-500">Associate</div>
               </div>
             </div>
-            <div className="text-gray-600">→</div>
+            <div className="text-slate-300 hidden lg:block">→</div>
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center font-bold">3</span>
+              <span className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold flex-shrink-0">3</span>
               <div>
-                <div className="font-bold">DevOps Engineer</div>
-                <div className="text-sm text-gray-400">or Professional</div>
+                <div className="font-bold text-slate-800">DevOps Engineer</div>
+                <div className="text-sm text-slate-500">or Professional</div>
               </div>
             </div>
           </div>
