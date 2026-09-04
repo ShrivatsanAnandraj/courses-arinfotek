@@ -10,6 +10,7 @@ import Workspace from './components/Workspace/Workspace'
 import StudentDashboard from './components/Dashboard/StudentDashboard'
 import CloudHome from './components/Cloud/CloudHome'
 import CloudLesson from './components/Cloud/CloudLesson'
+import AdminPage from './components/Admin/AdminPage'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -63,6 +64,7 @@ function App() {
           <Route path="/cloud" element={<CloudHome />} />
           <Route path="/cloud/:courseId" element={<CloudLesson />} />
           <Route path="/cloud/:courseId/:lessonId" element={<CloudLesson />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

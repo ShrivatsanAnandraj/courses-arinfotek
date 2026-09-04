@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Editor from '@monaco-editor/react'
-import { Play, ChevronRight, ChevronDown, BookOpen, ArrowLeft, CheckCircle, Terminal, X, RotateCcw, Loader2, Eye } from 'lucide-react'
+import { Play, ChevronRight, ChevronDown, BookOpen, ArrowLeft, CheckCircle, Terminal, X, RotateCcw, Loader2, Eye, Lock } from 'lucide-react'
 import { languages } from '../Languages/languages'
 import { topicContent } from '../Languages/content'
 import LanguageLogo from '../Languages/LanguageLogos'
 import { defaultCode } from '../Languages/defaultCode'
 import { executeCode, isBrowserLanguage } from './codeExecutor'
+import { useAuth } from '../../contexts/AuthContext'
 
 function getDefaultCode(lang, topicId) {
   return defaultCode[lang]?.[topicId] || defaultCode[lang]?.intro || `// ${lang} code\nconsole.log("Hello!")`
@@ -14,6 +15,7 @@ function getDefaultCode(lang, topicId) {
 
 export default function TutorialPage() {
   const { language } = useParams()
+  const { user, hasAccess } = useAuth()
   const lang = languages.find(l => l.id === language)
   const content = topicContent[language]
 
@@ -49,6 +51,25 @@ export default function TutorialPage() {
     )
   }
 
+  if (!hasAccess(lang.id)) {
+    return (
+      <div className="min-h-[calc(100vh-120px)] flex items-center justify-center">
+        <div className="text-center bg-white rounded-2xl shadow-md p-10 max-w-md">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl mb-4">
+            <Lock className="text-primary" size={28} />
+          </div>
+          <h2 className="text-xl font-black text-slate-800 mb-2">Course not activated</h2>
+          <p className="text-slate-500 mb-4">
+            {lang.name} has not been activated for your account yet. Please contact your administrator.
+          </p>
+          <Link to="/home" className="inline-block px-5 py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition">
+            Back to Home
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   const categories = {}
   lang.topics.forEach(t => {
     if (!categories[t.category]) categories[t.category] = []
@@ -67,6 +88,15 @@ export default function TutorialPage() {
       : [...completedTopics, topicId]
     setCompletedTopics(newCompleted)
     localStorage.setItem(`codelearn_progress_${language}`, JSON.stringify(newCompleted))
+
+    if (user && user.id) {
+      const completed = newCompleted.includes(topicId)
+      fetch(`/api/progress?user_id=${user.id}&language=${encodeURIComponent(language)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic: topicId, completed })
+      }).catch(err => console.error('Save progress error:', err))
+    }
   }
 
   const toggleCategory = (cat) => {

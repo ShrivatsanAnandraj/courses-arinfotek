@@ -36,9 +36,21 @@ const statements = [
     code_runs INT DEFAULT 0,
     last_active TIMESTAMPTZ DEFAULT NOW()
   )`,
+  `CREATE TABLE IF NOT EXISTS user_activations (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    course VARCHAR(50) NOT NULL,
+    set_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(user_id, course)
+  )`,
   `CREATE INDEX IF NOT EXISTS idx_saved_files_user_id ON saved_files(user_id)`,
   `CREATE INDEX IF NOT EXISTS idx_progress_user_id ON progress(user_id)`,
-  `CREATE INDEX IF NOT EXISTS idx_stats_user_id ON stats(user_id)`
+  `CREATE INDEX IF NOT EXISTS idx_stats_user_id ON stats(user_id)`,
+  `DO $$ BEGIN
+     IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='role') THEN
+       ALTER TABLE users ADD COLUMN role VARCHAR(20) DEFAULT 'student';
+     END IF;
+   END $$;`
 ]
 
 async function migrate() {

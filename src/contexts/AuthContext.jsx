@@ -53,8 +53,36 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('codelearn_user')
   }
 
+  const persistUser = (u) => {
+    setUser(u)
+    localStorage.setItem('codelearn_user', JSON.stringify(u))
+  }
+
+  const hasAccess = (course) => {
+    if (!user) return false
+    const activated = Array.isArray(user.activated) ? user.activated : []
+    return activated.includes(course)
+  }
+
+  const refreshActivations = async () => {
+    if (!user) return
+    try {
+      const res = await fetch(`/api/auth?user_id=${user.id}`, { method: 'GET' })
+      const data = await res.json()
+      if (res.ok && Array.isArray(data.activated)) {
+        persistUser({ ...user, activated: data.activated })
+      }
+    } catch (error) {
+      console.error('Refresh activations error:', error)
+    }
+  }
+
+  const setActivated = (courses) => {
+    if (user) persistUser({ ...user, activated: courses || [] })
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, hasAccess, refreshActivations, setActivated }}>
       {children}
     </AuthContext.Provider>
   )

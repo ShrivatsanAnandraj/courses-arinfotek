@@ -2,8 +2,31 @@ import { neon } from '@neondatabase/serverless'
 
 const sql = neon(process.env.DATABASE_URL)
 
+async function getActivations(userId) {
+  try {
+    const rows = await sql`SELECT course FROM user_activations WHERE user_id = ${userId}`
+    return rows.map(r => r.course)
+  } catch (error) {
+    console.error('Fetch activations error:', error)
+    return []
+  }
+}
+
 export default async function handler(req, res) {
   const { method } = req
+  const { user_id } = req.query
+
+  if (method === 'GET') {
+    try {
+      const id = parseInt(user_id, 10)
+      if (!id) return res.status(400).json({ error: 'user_id is required' })
+      const activated = await getActivations(id)
+      return res.status(200).json({ activated })
+    } catch (error) {
+      console.error('Get activations error:', error)
+      return res.status(500).json({ error: 'Failed to fetch activations' })
+    }
+  }
 
   if (method === 'POST') {
     const { action, username, email, password } = req.body
@@ -25,7 +48,7 @@ export default async function handler(req, res) {
         await sql`INSERT INTO stats (user_id) VALUES (${user.id})`
 
         return res.status(201).json({ 
-          user: { id: user.id, username: user.username, email: user.email } 
+          user: { id: user.id, username: user.username, email: user.email, activated: [] } 
         })
       } catch (error) {
         console.error('Signup error:', error)
@@ -47,8 +70,10 @@ export default async function handler(req, res) {
 
         await sql`UPDATE stats SET last_active = NOW() WHERE user_id = ${user.id}`
 
+        const activated = await getActivations(user.id)
+
         return res.status(200).json({ 
-          user: { id: user.id, username: user.username, email: user.email } 
+          user: { id: user.id, username: user.username, email: user.email, activated } 
         })
       } catch (error) {
         console.error('Login error:', error)

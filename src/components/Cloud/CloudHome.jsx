@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, BookOpen, Clock, Cloud as CloudIcon, Award } from 'lucide-react'
+import { ArrowLeft, BookOpen, Clock, Cloud as CloudIcon, Award, Lock } from 'lucide-react'
+import { useAuth } from '../../contexts/AuthContext'
 
 const courses = [
   {
@@ -60,6 +61,27 @@ const courses = [
 ]
 
 export default function CloudHome() {
+  const { user, hasAccess } = useAuth()
+
+  if (!user || !hasAccess('cloud')) {
+    return (
+      <div className="min-h-[calc(100vh-120px)] bg-slate-50 flex items-center justify-center">
+        <div className="text-center bg-white rounded-2xl shadow-md p-10 max-w-md">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl mb-4">
+            <Lock className="text-primary" size={28} />
+          </div>
+          <h2 className="text-xl font-black text-slate-800 mb-2">Cloud not activated</h2>
+          <p className="text-slate-500 mb-4">
+            Cloud Computing has not been activated for your account yet. Please contact your administrator.
+          </p>
+          <Link to="/home" className="inline-block px-5 py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition">
+            Back to Home
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-[calc(100vh-120px)] bg-slate-50">
       {/* Hero Section */}

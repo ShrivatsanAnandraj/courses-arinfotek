@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, BookOpen, ChevronRight } from 'lucide-react'
+import { ArrowLeft, BookOpen, ChevronRight, Lock } from 'lucide-react'
 import { cloudPractitioner } from '../../data/cloud/cloudPractitioner'
+import { useAuth } from '../../contexts/AuthContext'
 
 const courses = {
   'cloud-practitioner': cloudPractitioner
@@ -9,8 +10,28 @@ const courses = {
 
 export default function CloudLesson() {
   const { courseId, lessonId } = useParams()
+  const { user, hasAccess } = useAuth()
   const course = courses[courseId]
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  if (!user || !hasAccess('cloud')) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center bg-white rounded-2xl shadow-md p-10 max-w-md">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl mb-4">
+            <Lock className="text-primary" size={28} />
+          </div>
+          <h2 className="text-xl font-black text-slate-800 mb-2">Cloud not activated</h2>
+          <p className="text-slate-500 mb-4">
+            Cloud Computing has not been activated for your account yet. Please contact your administrator.
+          </p>
+          <Link to="/home" className="inline-block px-5 py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition">
+            Back to Home
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   if (!course) {
     return (
