@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, ArrowLeft, ChevronDown, ChevronUp, Loader2, RefreshCw, Users, LogOut } from 'lucide-react'
+import { ShieldCheck, ArrowLeft, ChevronDown, ChevronUp, Loader2, RefreshCw, Users, LogOut, Trash2 } from 'lucide-react'
 import { languages } from '../Languages/languages'
 import LanguageLogo from '../Languages/LanguageLogos'
 
@@ -54,10 +54,11 @@ function PasswordGate({ onAuth }) {
   )
 }
 
-function StudentRow({ student, options, onSave }) {
+function StudentRow({ student, options, onSave, onRemove }) {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState([])
   const [saving, setSaving] = useState(false)
+  const [removing, setRemoving] = useState(false)
 
   const openEditor = () => {
     setSelected([...(student.activations || [])])
@@ -73,6 +74,12 @@ function StudentRow({ student, options, onSave }) {
     await onSave(student.id, selected)
     setSaving(false)
     setOpen(false)
+  }
+
+  const remove = () => {
+    if (!window.confirm(`Are you sure you want to remove this account (${username})?`)) return
+    setRemoving(true)
+    onRemove(student.id).finally(() => setRemoving(false))
   }
 
   const completedCount = Object.values(student.progress || {}).reduce((a, b) => a + b, 0)
@@ -91,6 +98,14 @@ function StudentRow({ student, options, onSave }) {
               <div className="font-bold text-slate-800">{username}</div>
               <div className="text-xs text-slate-500">{student.email}</div>
             </div>
+            <button
+              onClick={remove}
+              disabled={removing}
+              title={`Remove ${username}`}
+              className="ml-auto shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition disabled:opacity-50"
+            >
+              <Trash2 size={15} />
+            </button>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -208,6 +223,21 @@ export default function AdminPage() {
     setStudents(data.students || [])
   }
 
+  const removeStudent = async (userId) => {
+    try {
+      const res = await fetch('/api/admin_users', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': key },
+        body: JSON.stringify({ user_id: userId })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to remove')
+      setStudents(data.students || [])
+    } catch (e) {
+      alert(e.message)
+    }
+  }
+
   if (!key) return <PasswordGate onAuth={setKey} />
 
   return (
@@ -260,7 +290,7 @@ export default function AdminPage() {
         ) : (
           <div className="space-y-3">
             {students.map(s => (
-              <StudentRow key={s.id} student={s} options={options} onSave={saveActivations} />
+              <StudentRow key={s.id} student={s} options={options} onSave={saveActivations} onRemove={removeStudent} />
             ))}
           </div>
         )}

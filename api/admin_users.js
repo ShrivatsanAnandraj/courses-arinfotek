@@ -71,5 +71,23 @@ export default async function handler(req, res) {
     }
   }
 
+  if (method === 'DELETE') {
+    const { user_id } = req.body || {}
+    if (!user_id) {
+      return res.status(400).json({ error: 'user_id is required' })
+    }
+    try {
+      const result = await sql`DELETE FROM users WHERE id = ${user_id} RETURNING id`
+      if (result.length === 0) {
+        return res.status(404).json({ error: 'Student not found' })
+      }
+      const students = await listStudents()
+      return res.status(200).json({ ok: true, students })
+    } catch (error) {
+      console.error('Admin delete student error:', error)
+      return res.status(500).json({ error: 'Failed to delete student' })
+    }
+  }
+
   return res.status(405).json({ error: 'Method not allowed' })
 }
