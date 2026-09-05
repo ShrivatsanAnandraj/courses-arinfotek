@@ -52,7 +52,7 @@ export default function Footer() {
                 <li><a href="https://arinfotek.co.in/#projects" className="hover:text-white transition">Innovation Labs</a></li>
                 <li><a href="https://assessment.arinfotek.co.in" className="hover:text-white transition">Assessment</a></li>
                 <li>
-                  <button onClick={openAdmin} className="inline-flex items-center gap-1.5 hover:text-white transition">
+                  <button onClick={openAdmin} className="inline-flex items-center gap-1.5 text-primary hover:text-blue-900 transition font-semibold">
                     <ShieldCheck size={14} /> Admin
                   </button>
                 </li>
