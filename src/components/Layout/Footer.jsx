@@ -33,7 +33,6 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <img src="/arinfotek_logo.png" alt="AR INFOTEK" className="h-8 w-auto object-contain brightness-0 invert mb-3" />
               <p className="text-sm text-slate-300 leading-relaxed">Practical, mentor-led online IT training to accelerate your career.</p>
             </div>
             <div>

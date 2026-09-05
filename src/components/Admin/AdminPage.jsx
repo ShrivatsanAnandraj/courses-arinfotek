@@ -60,7 +60,7 @@ function StudentRow({ student, options, onSave }) {
   const [saving, setSaving] = useState(false)
 
   const openEditor = () => {
-    setSelected([...student.activations])
+    setSelected([...(student.activations || [])])
     setOpen(true)
   }
 
@@ -75,7 +75,9 @@ function StudentRow({ student, options, onSave }) {
     setOpen(false)
   }
 
-  const completedCount = Object.values(student.progress).reduce((a, b) => a + b, 0)
+  const completedCount = Object.values(student.progress || {}).reduce((a, b) => a + b, 0)
+
+  const username = student.username || student.email?.split('@')[0] || 'Student'
 
   return (
     <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
@@ -83,10 +85,10 @@ function StudentRow({ student, options, onSave }) {
         <div className="flex-1 min-w-[200px]">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center font-black text-primary">
-              {student.username.slice(0, 2).toUpperCase()}
+              {username.slice(0, 2).toUpperCase()}
             </div>
             <div>
-              <div className="font-bold text-slate-800">{student.username}</div>
+              <div className="font-bold text-slate-800">{username}</div>
               <div className="text-xs text-slate-500">{student.email}</div>
             </div>
           </div>
@@ -144,11 +146,11 @@ function StudentRow({ student, options, onSave }) {
 
           <div className="mt-4 pt-4 border-t border-slate-100">
             <h4 className="text-sm font-bold text-slate-700 mb-2">Progress by Course</h4>
-            {Object.keys(student.progress).length === 0 ? (
+            {Object.keys(student.progress || {}).length === 0 ? (
               <p className="text-xs text-slate-400">No progress recorded yet.</p>
             ) : (
               <div className="flex flex-wrap gap-2">
-                {Object.entries(student.progress).map(([course, count]) => {
+                {Object.entries(student.progress || {}).map(([course, count]) => {
                   const full = languages.find(l => l.id === course)
                   const label = course === 'cloud' ? 'Cloud' : (full?.name || course)
                   return (

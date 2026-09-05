@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import Header from './components/Layout/Header'
 import Footer from './components/Layout/Footer'
@@ -49,6 +49,9 @@ function PublicRoute({ children }) {
 }
 
 function App() {
+  const location = useLocation()
+  const showFooter = location.pathname === '/home' || location.pathname === '/admin'
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       <Header />
@@ -69,7 +72,7 @@ function App() {
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </main>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   )
 }
