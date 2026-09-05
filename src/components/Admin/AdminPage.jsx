@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, ArrowLeft, Loader2, RefreshCw, Users, LogOut, Trash2, ClipboardList } from 'lucide-react'
+import { ShieldCheck, ArrowLeft, Loader2, RefreshCw, Users, LogOut, Trash2, ClipboardList, Bell, ShieldAlert } from 'lucide-react'
 import { languages } from '../Languages/languages'
 
 const ADMIN_PASSWORD = 'arinfotek'
@@ -360,8 +360,34 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [section, setSection] = useState('students')
+  const [flags, setFlags] = useState([])
 
   const options = useMemo(() => COURSE_OPTIONS, [])
+
+  const fetchFlags = async () => {
+    try {
+      const res = await fetch('/api/tabflags?action=list')
+      const data = await res.json()
+      if (res.ok) setFlags(data.flags || [])
+    } catch {}
+  }
+
+  useEffect(() => {
+    fetchFlags()
+    const id = setInterval(fetchFlags, 5000)
+    return () => clearInterval(id)
+  }, [])
+
+  const approveFlag = async (id) => {
+    try {
+      const res = await fetch('/api/tabflags?action=resolve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      })
+      if (res.ok) setFlags(prev => prev.filter(f => f.id !== id))
+    } catch {}
+  }
 
   const load = async () => {
     if (!key) return
@@ -440,6 +466,46 @@ export default function AdminPage() {
       </div>
 
       <div className="max-w-7xl mx-auto py-6 px-4">
+        {flags.length > 0 && (
+          <div className="mb-4 bg-red-50 border border-red-200 rounded-2xl p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-black text-red-700 flex items-center gap-2">
+                <Bell size={16} /> Tab Change Alerts ({flags.length})
+              </h3>
+              <button
+                onClick={fetchFlags}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white border border-red-200 text-red-600 hover:bg-red-100 transition"
+              >
+                <RefreshCw size={12} /> Refresh
+              </button>
+            </div>
+            <div className="space-y-2">
+              {flags.map(flag => (
+                <div key={flag.id} className="flex flex-wrap items-center gap-3 bg-white rounded-xl border border-red-100 p-3">
+                  <div className="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center shrink-0">
+                    <ShieldAlert size={18} className="text-red-500" />
+                  </div>
+                  <div className="flex-1 min-w-[200px]">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-primary text-white text-xs font-bold rounded-lg px-2.5 py-1 font-mono">{flag.test_code}</span>
+                      <span className="text-sm font-bold text-slate-800">{flag.student_name}</span>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Reg ID: <span className="font-mono">{flag.student_register_id}</span> &middot; {flag.reason} &middot; {new Date(flag.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => approveFlag(flag.id)}
+                    className="shrink-0 px-4 py-2 rounded-lg text-xs font-bold bg-green-500 text-white hover:bg-green-600 transition"
+                  >
+                    Continue
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex items-center gap-2 mb-4 bg-white rounded-xl shadow-sm border border-slate-100 p-1 w-fit">
           <button
             onClick={() => setSection('students')}
@@ -452,6 +518,11 @@ export default function AdminPage() {
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition ${section === 'tests' ? 'bg-primary text-white shadow' : 'text-slate-600 hover:bg-slate-100'}`}
           >
             <ClipboardList size={15} /> Tests
+            {flags.length > 0 && (
+              <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-red-500 text-white text-[10px] font-black align-middle">
+                {flags.length}
+              </span>
+            )}
           </button>
         </div>
 
