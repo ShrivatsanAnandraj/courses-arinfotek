@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Code, Rocket, BookOpen, Cloud, Server, Lock } from 'lucide-react'
 import { languages } from '../Languages/languages'
@@ -5,8 +6,12 @@ import LanguageLogo from '../Languages/LanguageLogos'
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function HomePage() {
-  const { user, hasAccess } = useAuth()
+  const { user, hasAccess, refreshActivations } = useAuth()
   const activated = Array.isArray(user?.activated) ? user.activated : []
+
+  useEffect(() => {
+    refreshActivations()
+  }, [])
 
   const gridLangs = languages.filter(l => l.id !== 'linux' && activated.includes(l.id))
   const extras = [

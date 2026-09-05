@@ -1,8 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, ArrowLeft, ChevronDown, ChevronUp, Loader2, RefreshCw, Users, LogOut, Trash2 } from 'lucide-react'
+import { ShieldCheck, ArrowLeft, Loader2, RefreshCw, Users, LogOut, Trash2 } from 'lucide-react'
 import { languages } from '../Languages/languages'
-import LanguageLogo from '../Languages/LanguageLogos'
 
 const ADMIN_PASSWORD = 'arinfotek'
 const COURSE_OPTIONS = [
@@ -98,14 +97,6 @@ function StudentRow({ student, options, onSave, onRemove }) {
               <div className="font-bold text-slate-800">{username}</div>
               <div className="text-xs text-slate-500">{student.email}</div>
             </div>
-            <button
-              onClick={remove}
-              disabled={removing}
-              title={`Remove ${username}`}
-              className="ml-auto shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition disabled:opacity-50"
-            >
-              <Trash2 size={15} />
-            </button>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -121,7 +112,7 @@ function StudentRow({ student, options, onSave, onRemove }) {
             onClick={openEditor}
             className="px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary-dark transition"
           >
-            Manage Courses
+            View
           </button>
         </div>
       </div>
@@ -135,28 +126,28 @@ function StudentRow({ student, options, onSave, onRemove }) {
               <button
                 key={opt.id}
                 onClick={() => toggle(opt.id)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold border transition text-left ${
+                className={`px-3 py-2 rounded-lg text-xs font-semibold border transition text-center ${
                   selected.includes(opt.id)
                     ? 'bg-primary text-white border-primary'
                     : 'bg-white text-slate-600 border-slate-200 hover:border-primary/40'
                 }`}
               >
-                {opt.type === 'language' ? (
-                  <LanguageLogo lang={opt.id} size={18} />
-                ) : (
-                  <ShieldCheck size={18} />
-                )}
                 <span className="truncate">{opt.name}</span>
               </button>
             ))}
           </div>
-          <div className="flex justify-end gap-2">
-            <button onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">
-              Cancel
+          <div className="flex flex-wrap justify-between gap-2">
+            <button onClick={remove} disabled={removing} className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition disabled:opacity-60">
+              <Trash2 size={14} /> {removing ? 'Removing...' : 'Remove Account'}
             </button>
-            <button onClick={save} disabled={saving} className="px-5 py-2 bg-accent text-white text-sm font-bold rounded-lg hover:opacity-90 transition disabled:opacity-60">
-              {saving ? 'Saving...' : 'Save Courses'}
-            </button>
+            <div className="flex gap-2">
+              <button onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                Cancel
+              </button>
+              <button onClick={save} disabled={saving} className="px-5 py-2 bg-accent text-white text-sm font-bold rounded-lg hover:opacity-90 transition disabled:opacity-60">
+                {saving ? 'Saving...' : 'Save Courses'}
+              </button>
+            </div>
           </div>
 
           <div className="mt-4 pt-4 border-t border-slate-100">
