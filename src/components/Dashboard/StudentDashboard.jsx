@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { BookOpen, Code, Clock, Trophy, Folder, ArrowRight, TrendingUp } from 'lucide-react'
+import { BookOpen, Code, Clock, Trophy, Folder, ArrowRight, TrendingUp, Award } from 'lucide-react'
 import { languages } from '../Languages/languages'
 
 export default function StudentDashboard() {
@@ -14,6 +14,7 @@ export default function StudentDashboard() {
   })
   const [savedFiles, setSavedFiles] = useState([])
   const [progress, setProgress] = useState({})
+  const [testScores, setTestScores] = useState([])
 
   useEffect(() => {
     // Load stats from localStorage
@@ -43,6 +44,14 @@ export default function StudentDashboard() {
     })
     setProgress(allProgress)
   }, [])
+
+  useEffect(() => {
+    if (!user?.username) return
+    fetch('/api/attempts?username=' + encodeURIComponent(user.username))
+      .then(r => r.json())
+      .then(data => setTestScores(data.attempts || []))
+      .catch(() => {})
+  }, [user])
 
   const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600)
@@ -101,6 +110,47 @@ export default function StudentDashboard() {
             <p className="text-2xl font-black text-slate-800">{languagesStarted}</p>
             <p className="text-sm text-slate-500">Languages Started</p>
           </div>
+        </div>
+
+        {/* My Test Scores */}
+        <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-bold text-slate-800 flex items-center gap-2">
+              <Award size={18} className="text-primary" />
+              My Test Scores
+            </h2>
+            <Link to="/tests" className="text-sm text-primary font-bold hover:underline flex items-center gap-1">
+              View All Tests <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          {testScores.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-slate-500 mb-4">You haven't taken any tests yet</p>
+              <Link
+                to="/tests"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-dark transition"
+              >
+                Go to Tests
+              </Link>
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {testScores.map((t) => {
+                const pct = Math.round((t.score / t.total) * 100)
+                return (
+                  <div key={t.test_id} className="p-4 bg-slate-50 rounded-xl">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="bg-primary text-white text-[11px] font-bold rounded-lg px-2 py-0.5 font-mono">{t.test_code}</span>
+                      <span className={`text-[11px] font-bold rounded-lg px-2 py-0.5 ${pct >= 40 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>{pct}%</span>
+                    </div>
+                    <p className="text-sm font-bold text-slate-800 truncate">{t.title}</p>
+                    <p className="text-xs text-slate-500 mt-1">Score: {t.score}/{t.total} &middot; {new Date(t.submitted_at).toLocaleDateString()}</p>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">

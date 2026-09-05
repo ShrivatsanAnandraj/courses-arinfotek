@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import { ClipboardList, Clock, Loader2, PlayCircle } from 'lucide-react'
+import { ClipboardList, Clock, Loader2, PlayCircle, RotateCcw, Award } from 'lucide-react'
 
 const ASSESSMENT_URL = import.meta.env.VITE_ASSESSMENT_URL || 'https://assessment.arinfotek.co.in'
 
@@ -20,6 +20,7 @@ function parseTopics(topics) {
 export default function TestsPage() {
   const { user, refreshActivations } = useAuth()
   const [tests, setTests] = useState([])
+  const [attempts, setAttempts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -33,15 +34,19 @@ export default function TestsPage() {
         return
       }
       try {
-        const res = await fetch('/api/tests?action=list&courses=' + encodeURIComponent(courses.join(',')))
-        const data = await res.json()
-        if (res.ok) {
-          setTests(data.tests || [])
-        } else {
-          setError(data.error || 'Failed to load tests')
+        const testsRes = await fetch('/api/tests?action=list&courses=' + encodeURIComponent(courses.join(',')))
+        const testsData = await testsRes.json()
+        if (!testsRes.ok) throw new Error(testsData.error || 'Failed to load tests')
+        setTests(testsData.tests || [])
+
+        let attemptsData = { attempts: [] }
+        if (user?.username) {
+          const attemptsRes = await fetch('/api/attempts?username=' + encodeURIComponent(user.username))
+          attemptsData = await attemptsRes.json()
         }
-      } catch {
-        setError('Failed to connect. Please try again.')
+        setAttempts(attemptsData.attempts || [])
+      } catch (e) {
+        setError(e.message || 'Failed to load tests')
       } finally {
         setLoading(false)
       }
@@ -91,6 +96,8 @@ export default function TestsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {tests.map((test) => {
               const topics = parseTopics(test.topics)
+              const attempt = attempts.find(a => a.test_code === test.test_code)
+              const percentage = attempt ? Math.round((attempt.score / attempt.total) * 100) : 0
               return (
                 <div key={test.id} className="bg-white rounded-2xl shadow-md border border-slate-100 p-5 flex flex-col">
                   <div className="flex items-start justify-between gap-3 mb-3">
@@ -99,6 +106,11 @@ export default function TestsPage() {
                         <span className="bg-primary text-white text-xs font-bold rounded-lg px-2.5 py-1 font-mono">{test.test_code}</span>
                         {(test.level || '') && (
                           <span className="bg-slate-100 text-slate-600 text-xs font-semibold rounded-lg px-2 py-1">{test.level}</span>
+                        )}
+                        {attempt && (
+                          <span className={`text-xs font-bold rounded-lg px-2 py-1 ${percentage >= 40 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
+                            {percentage}%
+                          </span>
                         )}
                       </div>
                       <h3 className="text-base font-bold text-slate-800 truncate">{test.title}</h3>
@@ -119,12 +131,33 @@ export default function TestsPage() {
                     {test.duration_minutes} minutes
                   </div>
 
+                  {attempt && (
+                    <div className="mb-4 bg-green-50 border border-green-200 rounded-xl px-3 py-2 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm font-bold text-green-700">
+                        <Award size={15} />
+                        Score: {attempt.score}/{attempt.total}
+                      </div>
+                      <span className="text-xs text-green-600">
+                        {new Date(attempt.submitted_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                  )}
+
                   <button
                     onClick={() => takeTest(test)}
                     className="mt-auto w-full py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-accent to-orange-600 text-white shadow-lg hover:shadow-orange-200 transition flex items-center justify-center gap-2"
                   >
-                    <PlayCircle size={16} />
-                    Take Test
+                    {attempt ? (
+                      <>
+                        <RotateCcw size={16} />
+                        Retake Test
+                      </>
+                    ) : (
+                      <>
+                        <PlayCircle size={16} />
+                        Take Test
+                      </>
+                    )}
                   </button>
                 </div>
               )
