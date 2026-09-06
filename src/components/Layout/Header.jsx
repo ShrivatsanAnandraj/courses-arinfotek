@@ -1,11 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { useTheme } from '../../contexts/ThemeContext'
-import { Code, LogOut, User, Home, ClipboardList, Sun, Moon } from 'lucide-react'
+import { Code, LogOut, User, Home, ClipboardList } from 'lucide-react'
 
 export default function Header() {
   const { user, logout } = useAuth()
-  const { theme, toggleTheme } = useTheme()
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -14,7 +12,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
         <Link to={user ? '/home' : '/login'} className="flex items-center hover:opacity-90 transition">
           <img
@@ -25,7 +23,7 @@ export default function Header() {
         </Link>
         
         {user && (
-          <nav className="hidden md:flex items-center gap-1 bg-slate-50 dark:bg-slate-800 p-1 rounded-full border border-slate-100 dark:border-slate-700">
+          <nav className="hidden md:flex items-center gap-1 bg-slate-50 p-1 rounded-full border border-slate-100">
             <Link
               to="/home"
               className="px-4 py-1.5 text-xs lg:text-sm font-bold text-primary rounded-full hover:bg-white hover:shadow-md transition flex items-center gap-1"
@@ -35,21 +33,21 @@ export default function Header() {
             </Link>
             <Link
               to="/workspace"
-              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 rounded-full hover:bg-white dark:hover:text-white hover:shadow-md transition flex items-center gap-1"
+              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 rounded-full hover:bg-white hover:shadow-md transition flex items-center gap-1"
             >
               <Code size={14} />
               Workspace
             </Link>
             <Link
               to="/tests"
-              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 rounded-full hover:bg-white dark:hover:text-white hover:shadow-md transition flex items-center gap-1"
+              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 rounded-full hover:bg-white hover:shadow-md transition flex items-center gap-1"
             >
               <ClipboardList size={14} />
               Test
             </Link>
             <Link
               to="/dashboard"
-              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 rounded-full hover:bg-white dark:hover:text-white hover:shadow-md transition flex items-center gap-1"
+              className="px-4 py-1.5 text-xs lg:text-sm font-bold text-slate-600 rounded-full hover:bg-white hover:shadow-md transition flex items-center gap-1"
             >
               <User size={14} />
               Dashboard
@@ -58,16 +56,9 @@ export default function Header() {
         )}
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-          >
-            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
           {user ? (
             <>
-              <span className="hidden sm:block text-sm font-medium text-slate-600 dark:text-slate-300">
+              <span className="hidden sm:block text-sm font-medium text-slate-600">
                 Hi, {user.username}!
               </span>
               <button

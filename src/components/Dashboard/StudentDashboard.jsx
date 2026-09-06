@@ -65,7 +65,7 @@ export default function StudentDashboard() {
   const languagesStarted = Object.keys(progress).length
 
   return (
-    <div className="min-h-[calc(100vh-120px)] bg-slate-50 dark:bg-slate-900 py-8 px-4">
+    <div className="min-h-[calc(100vh-120px)] bg-slate-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Welcome Header */}
         <div className="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-6 sm:p-8 text-white mb-8">
@@ -79,43 +79,43 @@ export default function StudentDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md">
+          <div className="bg-white rounded-2xl p-6 shadow-md">
             <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
               <BookOpen className="text-primary" size={24} />
             </div>
-            <p className="text-2xl font-black text-slate-800 dark:text-slate-100">{stats.tutorialsCompleted}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Topics Completed</p>
+            <p className="text-2xl font-black text-slate-800">{stats.tutorialsCompleted}</p>
+            <p className="text-sm text-slate-500">Topics Completed</p>
           </div>
           
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md">
+          <div className="bg-white rounded-2xl p-6 shadow-md">
             <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4">
               <Code className="text-accent" size={24} />
             </div>
-            <p className="text-2xl font-black text-slate-800 dark:text-slate-100">{stats.codeRuns}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Code Runs</p>
+            <p className="text-2xl font-black text-slate-800">{stats.codeRuns}</p>
+            <p className="text-sm text-slate-500">Code Runs</p>
           </div>
           
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md">
+          <div className="bg-white rounded-2xl p-6 shadow-md">
             <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
               <Clock className="text-green-500" size={24} />
             </div>
-            <p className="text-2xl font-black text-slate-800 dark:text-slate-100">{formatTime(stats.totalTime)}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Time Spent</p>
+            <p className="text-2xl font-black text-slate-800">{formatTime(stats.totalTime)}</p>
+            <p className="text-sm text-slate-500">Time Spent</p>
           </div>
           
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md">
+          <div className="bg-white rounded-2xl p-6 shadow-md">
             <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-4">
               <TrendingUp className="text-purple-500" size={24} />
             </div>
-            <p className="text-2xl font-black text-slate-800 dark:text-slate-100">{languagesStarted}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Languages Started</p>
+            <p className="text-2xl font-black text-slate-800">{languagesStarted}</p>
+            <p className="text-sm text-slate-500">Languages Started</p>
           </div>
         </div>
 
         {/* My Test Scores */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+            <h2 className="font-bold text-slate-800 flex items-center gap-2">
               <Award size={18} className="text-primary" />
               My Test Scores
             </h2>
@@ -126,7 +126,7 @@ export default function StudentDashboard() {
 
           {testScores.length === 0 ? (
             <div className="text-center py-8">
-              <p className="text-slate-500 dark:text-slate-400 mb-4">You haven't taken any tests yet</p>
+              <p className="text-slate-500 mb-4">You haven't taken any tests yet</p>
               <Link
                 to="/tests"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-dark transition"
@@ -139,13 +139,13 @@ export default function StudentDashboard() {
               {testScores.map((t) => {
                 const pct = Math.round((t.score / t.total) * 100)
                 return (
-                  <div key={t.test_id} className="p-4 bg-slate-50 dark:bg-slate-700 rounded-xl">
+                  <div key={t.test_id} className="p-4 bg-slate-50 rounded-xl">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="bg-primary text-white text-[11px] font-bold rounded-lg px-2 py-0.5 font-mono">{t.test_code}</span>
-                      <span className={`text-[11px] font-bold rounded-lg px-2 py-0.5 ${pct >= 40 ? 'bg-green-100 text-green-700 dark:bg-green-900/60 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900/60 dark:text-red-300'}`}>{pct}%</span>
+                      <span className={`text-[11px] font-bold rounded-lg px-2 py-0.5 ${pct >= 40 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>{pct}%</span>
                     </div>
-                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">{t.title}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Score: {t.score}/{t.total} &middot; {new Date(t.submitted_at).toLocaleDateString()}</p>
+                    <p className="text-sm font-bold text-slate-800 truncate">{t.title}</p>
+                    <p className="text-xs text-slate-500 mt-1">Score: {t.score}/{t.total} &middot; {new Date(t.submitted_at).toLocaleDateString()}</p>
                   </div>
                 )
               })}
@@ -157,7 +157,7 @@ export default function StudentDashboard() {
           {/* Language Progress */}
           <div className="bg-white rounded-2xl shadow-md p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+              <h2 className="font-bold text-slate-800 flex items-center gap-2">
                 <Trophy size={18} className="text-accent" />
                 Language Progress
               </h2>
@@ -168,7 +168,7 @@ export default function StudentDashboard() {
             
             {Object.keys(progress).length === 0 ? (
               <div className="text-center py-8">
-                <p className="text-slate-500 dark:text-slate-400 mb-4">You haven't started any languages yet</p>
+                <p className="text-slate-500 mb-4">You haven't started any languages yet</p>
                 <Link
                   to="/home"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-dark transition"
@@ -184,22 +184,22 @@ export default function StudentDashboard() {
                     <Link
                       key={langId}
                       to={`/tutorial/${langId}`}
-                      className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-600 transition"
+                      className="block p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{lang?.icon}</span>
-                          <span className="font-bold text-slate-800 dark:text-slate-100">{lang?.name}</span>
+                          <span className="font-bold text-slate-800">{lang?.name}</span>
                         </div>
                         <span className="text-sm font-bold text-primary">{prog.percentage}%</span>
                       </div>
-                      <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
+                      <div className="w-full bg-slate-200 rounded-full h-2">
                         <div
                           className="bg-primary h-2 rounded-full transition-all duration-500"
                           style={{ width: `${prog.percentage}%` }}
                         />
                       </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      <p className="text-xs text-slate-500 mt-1">
                         {prog.completed} of {prog.total} topics completed
                       </p>
                     </Link>
@@ -212,7 +212,7 @@ export default function StudentDashboard() {
           {/* Saved Files */}
           <div className="bg-white rounded-2xl shadow-md p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+              <h2 className="font-bold text-slate-800 flex items-center gap-2">
                 <Folder size={18} className="text-primary" />
                 Saved Files
               </h2>
@@ -223,7 +223,7 @@ export default function StudentDashboard() {
             
             {savedFiles.length === 0 ? (
               <div className="text-center py-8">
-                <p className="text-slate-500 dark:text-slate-400 mb-4">No saved files yet</p>
+                <p className="text-slate-500 mb-4">No saved files yet</p>
                 <Link
                   to="/workspace"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl font-bold text-sm hover:bg-accent-dark transition"
@@ -239,13 +239,13 @@ export default function StudentDashboard() {
                     <Link
                       key={file.id}
                       to={`/workspace/${file.language}`}
-                      className="block p-3 bg-slate-50 dark:bg-slate-700 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-600 transition"
+                      className="block p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition"
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-xl">{lang?.icon || '📄'}</span>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-slate-800 dark:text-slate-100 text-sm truncate">{file.name}</p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                          <p className="font-medium text-slate-800 text-sm truncate">{file.name}</p>
+                          <p className="text-xs text-slate-500">
                             {lang?.name} • {new Date(file.createdAt).toLocaleDateString()}
                           </p>
                         </div>
@@ -254,7 +254,7 @@ export default function StudentDashboard() {
                   )
                 })}
                 {savedFiles.length > 5 && (
-                  <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+                  <p className="text-center text-sm text-slate-500">
                     + {savedFiles.length - 5} more files
                   </p>
                 )}
@@ -265,7 +265,7 @@ export default function StudentDashboard() {
 
         {/* Quick Actions */}
         <div className="mt-8 bg-white rounded-2xl shadow-md p-6">
-          <h2 className="font-bold text-slate-800 dark:text-slate-100 mb-4">Quick Actions</h2>
+          <h2 className="font-bold text-slate-800 mb-4">Quick Actions</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             <Link
               to="/home"
@@ -275,8 +275,8 @@ export default function StudentDashboard() {
                 <BookOpen className="text-primary" size={20} />
               </div>
               <div>
-                <p className="font-bold text-slate-800 dark:text-slate-100 text-sm">Browse Languages</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Explore available courses</p>
+                <p className="font-bold text-slate-800 text-sm">Browse Languages</p>
+                <p className="text-xs text-slate-500">Explore available courses</p>
               </div>
             </Link>
             
@@ -288,8 +288,8 @@ export default function StudentDashboard() {
                 <Code className="text-accent" size={20} />
               </div>
               <div>
-                <p className="font-bold text-slate-800 dark:text-slate-100 text-sm">Open Workspace</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Start coding now</p>
+                <p className="font-bold text-slate-800 text-sm">Open Workspace</p>
+                <p className="text-xs text-slate-500">Start coding now</p>
               </div>
             </Link>
             
@@ -301,8 +301,8 @@ export default function StudentDashboard() {
                 <TrendingUp className="text-green-500" size={20} />
               </div>
               <div>
-                <p className="font-bold text-slate-800 dark:text-slate-100 text-sm">View Stats</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Track your progress</p>
+                <p className="font-bold text-slate-800 text-sm">View Stats</p>
+                <p className="text-xs text-slate-500">Track your progress</p>
               </div>
             </Link>
           </div>
