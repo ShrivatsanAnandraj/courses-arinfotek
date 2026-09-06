@@ -288,7 +288,7 @@ export default function Workspace() {
             ) : (
               <div className="flex-1 min-h-0">
                 <pre className="flex-1 p-4 text-sm text-green-400 font-mono overflow-auto whitespace-pre-wrap h-full">
-                  {output || 'Click "Run" to execute your code...'}
+                  {pendingInput ? '' : (output || 'Click "Run" to execute your code...')}
                   {pendingInput && (
                     <ConsoleInput
                       prompt={pendingInput.prompt}

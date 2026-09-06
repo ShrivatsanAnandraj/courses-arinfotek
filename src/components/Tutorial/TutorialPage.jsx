@@ -389,7 +389,7 @@ export default function TutorialPage() {
                 ) : (
                   <div className="flex-1 min-h-0">
                     <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 h-full whitespace-pre-wrap">
-                      {output || 'Click Run to execute your code...'}
+                      {pendingInput ? '' : (output || 'Click Run to execute your code...')}
                       {pendingInput && (
                         <ConsoleInput
                           prompt={pendingInput.prompt}
