@@ -23,6 +23,21 @@ export default async function handler(req, res) {
       return res.status(200).json({ tests });
     }
 
+    if (action === 'attempts') {
+      const { username } = req.query;
+      if (!username) {
+        return res.status(400).json({ error: 'username is required' });
+      }
+      const attempts = await sql`
+        SELECT DISTINCT ON (a.test_id) a.test_id, a.score, a.total, a.submitted_at, t.title, t.test_code, t.subject, t.course
+        FROM attempts a
+        JOIN tests t ON a.test_id = t.id
+        WHERE a.student_register_id = ${username}
+        ORDER BY a.test_id, a.submitted_at DESC
+      `;
+      return res.status(200).json({ attempts });
+    }
+
     if (!code) {
       return res.status(400).json({ error: 'Test code is required' });
     }

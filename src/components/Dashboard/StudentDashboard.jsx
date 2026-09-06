@@ -47,7 +47,7 @@ export default function StudentDashboard() {
 
   useEffect(() => {
     if (!user?.username) return
-    fetch('/api/attempts?username=' + encodeURIComponent(user.username))
+    fetch('/api/tests?action=attempts&username=' + encodeURIComponent(user.username))
       .then(r => r.json())
       .then(data => setTestScores(data.attempts || []))
       .catch(() => {})

@@ -41,7 +41,7 @@ export default function TestsPage() {
 
         let attemptsData = { attempts: [] }
         if (user?.username) {
-          const attemptsRes = await fetch('/api/attempts?username=' + encodeURIComponent(user.username))
+          const attemptsRes = await fetch('/api/tests?action=attempts&username=' + encodeURIComponent(user.username))
           attemptsData = await attemptsRes.json()
         }
         setAttempts(attemptsData.attempts || [])
