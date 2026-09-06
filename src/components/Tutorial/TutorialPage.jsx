@@ -6,7 +6,8 @@ import { languages } from '../Languages/languages'
 import { topicContent } from '../Languages/content'
 import LanguageLogo from '../Languages/LanguageLogos'
 import { defaultCode } from '../Languages/defaultCode'
-import { executeCode, isBrowserLanguage } from './codeExecutor'
+import { executeCode, isBrowserLanguage, setInputHandler, clearPendingInputs } from './codeExecutor'
+import ConsoleInput from './ConsoleInput'
 import { useAuth } from '../../contexts/AuthContext'
 
 function getDefaultCode(lang, topicId) {
@@ -39,6 +40,12 @@ export default function TutorialPage() {
     }
     return cats
   })
+  const [pendingInput, setPendingInput] = useState(null)
+
+  useEffect(() => {
+    setInputHandler((prompt, resolve) => setPendingInput({ prompt, resolve }))
+    return () => setInputHandler(null)
+  }, [])
 
   if (!lang) {
     return (
@@ -112,6 +119,8 @@ export default function TutorialPage() {
   }
 
   const runCode = async () => {
+    setPendingInput(null)
+    clearPendingInputs()
     setIsRunning(true)
     setOutput('Running...')
     setHtmlPreview('')
@@ -378,9 +387,17 @@ export default function TutorialPage() {
                     </pre>
                   </div>
                 ) : (
-                  <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 flex-1">
-                    {output || 'Click Run to execute your code...'}
-                  </pre>
+                  <div className="flex-1 min-h-0 flex flex-col">
+                    <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 flex-1 whitespace-pre-wrap">
+                      {output || 'Click Run to execute your code...'}
+                    </pre>
+                    {pendingInput && (
+                      <ConsoleInput
+                        prompt={pendingInput.prompt}
+                        onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
+                      />
+                    )}
+                  </div>
                 )}
               </div>
             </div>

@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 import Editor from '@monaco-editor/react'
 import { Play, Save, FolderOpen, Trash2, Plus, ArrowLeft, Terminal, X, Download, Eye, Code2 } from 'lucide-react'
 import { languages } from '../Languages/languages'
 import LanguageLogo from '../Languages/LanguageLogos'
-import { executeCode } from '../Tutorial/codeExecutor'
+import { executeCode, setInputHandler, clearPendingInputs } from '../Tutorial/codeExecutor'
+import ConsoleInput from '../Tutorial/ConsoleInput'
 
 const LANGUAGE_MAP = {
   python: 'python',
@@ -64,8 +65,14 @@ export default function Workspace() {
   const [currentFile, setCurrentFile] = useState(null)
   const [fileName, setFileName] = useState('')
   const [showFileModal, setShowFileModal] = useState(false)
+  const [pendingInput, setPendingInput] = useState(null)
   const editorRef = useRef(null)
   const previewRef = useRef(null)
+
+  useEffect(() => {
+    setInputHandler((prompt, resolve) => setPendingInput({ prompt, resolve }))
+    return () => setInputHandler(null)
+  }, [])
 
   const currentLanguage = selectedLanguage || 'javascript'
   const lang = languages.find(l => l.id === currentLanguage)
@@ -83,6 +90,8 @@ export default function Workspace() {
   }
 
   const runCode = async () => {
+    setPendingInput(null)
+    clearPendingInputs()
     setIsRunning(true)
     setOutput('Running...')
     setHtmlPreview('')
@@ -277,9 +286,17 @@ export default function Workspace() {
                 </pre>
               </div>
             ) : (
-              <pre className="flex-1 p-4 text-sm text-green-400 font-mono overflow-auto whitespace-pre-wrap">
-                {output || 'Click "Run" to execute your code...'}
-              </pre>
+              <div className="flex-1 min-h-0 flex flex-col">
+                <pre className="flex-1 p-4 text-sm text-green-400 font-mono overflow-auto whitespace-pre-wrap">
+                  {output || 'Click "Run" to execute your code...'}
+                </pre>
+                {pendingInput && (
+                  <ConsoleInput
+                    prompt={pendingInput.prompt}
+                    onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
+                  />
+                )}
+              </div>
             )}
           </div>
         )}

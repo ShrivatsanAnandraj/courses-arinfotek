@@ -63,13 +63,33 @@ async function loadPyodide() {
     })
   }
   pyodideInstance = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/' })
-  try {
-    pyodideInstance.setStdin({
-      stdin: () => window.prompt('Enter value:') || '',
-      isatty: () => true
-    })
-  } catch (e) { /* older/missing stdin provider — builtin override handles it */ }
   return pyodideInstance
+}
+
+let inputHandler = null
+const pendingInputResolvers = []
+
+export function setInputHandler(fn) {
+  inputHandler = fn
+}
+
+export function clearPendingInputs() {
+  while (pendingInputResolvers.length) {
+    pendingInputResolvers.shift()('')
+  }
+}
+
+function ensurePromptBridge() {
+  if (window.__codelearnPrompt) return
+  window.__codelearnPrompt = (prompt) => new Promise((resolve) => {
+    pendingInputResolvers.push(resolve)
+    if (typeof inputHandler === 'function') {
+      inputHandler(String(prompt) || '', (val) => resolve(val == null ? '' : String(val)))
+    } else {
+      const val = window.prompt(String(prompt) || 'Enter value:')
+      resolve(val == null ? '' : val)
+    }
+  })
 }
 
 function executeJavaScript(code) {
@@ -128,8 +148,10 @@ function executeTypeScript(code) {
 }
 
 async function executePython(code) {
+  let pyodide = null
   try {
-    const pyodide = await loadPyodide()
+    pyodide = await loadPyodide()
+    ensurePromptBridge()
     pyodide.runPython(`
 import sys
 from io import StringIO
@@ -137,27 +159,77 @@ import builtins
 from js import window
 _sys_stdout = sys.stdout
 sys.stdout = StringIO()
-def _pyodide_input(prompt=""):
-    if prompt:
-        sys.stdout.write(str(prompt))
-        sys.stdout.flush()
-    value = window.prompt(str(prompt) if prompt else 'Enter value:')
-    return value if value is not None else ''
-builtins.input = _pyodide_input
+async def _cookie_input(prompt=""):
+    res = await window.__codelearnPrompt(str(prompt) if prompt else '')
+    return str(res)
+builtins.input = _cookie_input
     `)
-    try {
-      pyodide.runPython(code)
-      const output = pyodide.runPython('sys.stdout.getvalue()')
+    pyodide.runPython(`
+import ast
+_code = ${JSON.stringify(code)}
+_src = ''
+_sy_err = ''
+try:
+    _tree = ast.parse(_code)
+    class _Find(ast.NodeVisitor):
+        def __init__(self):
+            self._async_names = set()
+        def _has_input(self, node):
+            return any(
+                isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == 'input'
+                for n in ast.walk(node)
+            )
+        def visit_FunctionDef(self, node):
+            if self._has_input(node):
+                self._async_names.add(node.name)
+            self.generic_visit(node)
+    _finder = _Find()
+    _finder.visit(_tree)
+    _async_names = _finder._async_names
+    class _T(ast.NodeTransformer):
+        def visit_Call(self, node):
+            node = self.generic_visit(node)
+            if isinstance(node.func, ast.Name):
+                if node.func.id == 'input' or node.func.id in _async_names:
+                    return ast.copy_location(ast.Await(value=node), node)
+            return node
+        def visit_FunctionDef(self, node):
+            node = self.generic_visit(node)
+            if node.name in _async_names:
+                new = ast.AsyncFunctionDef(
+                    name=node.name, args=node.args, body=node.body,
+                    decorator_list=node.decorator_list,
+                    returns=node.returns, type_comment=node.type_comment
+                )
+                ast.copy_location(new, node)
+                ast.fix_missing_locations(new)
+                return new
+            return node
+    _tree = _T().visit(_tree)
+    ast.fix_missing_locations(_tree)
+    _src = ast.unparse(_tree)
+except Exception as _e:
+    _sy_err = type(_e).__name__ + ': ' + str(_e)
+    `)
+    const syErr = pyodide.globals.get('_sy_err').toString()
+    if (syErr) {
       pyodide.runPython('sys.stdout = _sys_stdout')
-      return { output: output || 'Code executed successfully.', error: '' }
-    } catch (e) {
-      pyodide.runPython('sys.stdout = _sys_stdout')
-      const errMsg = e.message
-      const pyTrace = errMsg.includes('Traceback') ? errMsg : errMsg
-      return { output: '', error: pyTrace }
+      return { output: '', error: syErr }
     }
+    const src = pyodide.globals.get('_src').toString()
+    if (!src.trim()) {
+      pyodide.runPython('sys.stdout = _sys_stdout')
+      return { output: 'Code executed successfully.', error: '' }
+    }
+    const indented = src.split('\n').map(l => '    ' + l).join('\n')
+    await pyodide.runPythonAsync(`async def __codelearn_main():\n${indented}\nawait __codelearn_main()`)
+    const output = pyodide.runPython('sys.stdout.getvalue()')
+    pyodide.runPython('sys.stdout = _sys_stdout')
+    return { output: output || 'Code executed successfully.', error: '' }
   } catch (e) {
-    return { output: '', error: 'Python runtime error: ' + e.message }
+    try { pyodide && pyodide.runPython('sys.stdout = _sys_stdout') } catch (_) { /* ignore */ }
+    const errMsg = e.message || String(e)
+    return { output: '', error: errMsg }
   }
 }
 
