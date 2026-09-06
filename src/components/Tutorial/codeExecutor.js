@@ -63,6 +63,12 @@ async function loadPyodide() {
     })
   }
   pyodideInstance = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/' })
+  try {
+    pyodideInstance.setStdin({
+      stdin: () => window.prompt('Enter value:') || '',
+      isatty: () => true
+    })
+  } catch (e) { /* older/missing stdin provider — builtin override handles it */ }
   return pyodideInstance
 }
 
