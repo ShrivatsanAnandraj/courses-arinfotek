@@ -164,7 +164,7 @@ async def _cookie_input(prompt=""):
         sys.stdout.write(str(prompt))
         sys.stdout.flush()
     res = await window.__codelearnPrompt(str(prompt) if prompt else '')
-    sys.stdout.write(str(res) + '\n')
+    sys.stdout.write(str(res) + '\\n')
     return str(res)
 builtins.input = _cookie_input
     `)
