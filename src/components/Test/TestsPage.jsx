@@ -66,7 +66,7 @@ export default function TestsPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-120px)] bg-slate-50">
+    <div className="min-h-[calc(100vh-120px)] bg-slate-50 dark:bg-slate-900">
       <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-2xl font-black flex items-center gap-2">
@@ -85,12 +85,12 @@ export default function TestsPage() {
             <Loader2 className="animate-spin text-primary" size={32} />
           </div>
         ) : tests.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-md p-12 text-center">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-12 text-center">
+            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
               <ClipboardList size={28} className="text-slate-400" />
             </div>
-            <h2 className="text-lg font-black text-slate-800 mb-1">No tests assigned yet</h2>
-            <p className="text-sm text-slate-500">Your trainer has not added any tests for your course yet.</p>
+            <h2 className="text-lg font-black text-slate-800 dark:text-slate-100 mb-1">No tests assigned yet</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Your trainer has not added any tests for your course yet.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -99,22 +99,22 @@ export default function TestsPage() {
               const attempt = attempts.find(a => a.test_code === test.test_code)
               const percentage = attempt ? Math.round((attempt.score / attempt.total) * 100) : 0
               return (
-                <div key={test.id} className="bg-white rounded-2xl shadow-md border border-slate-100 p-5 flex flex-col">
+                <div key={test.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 p-5 flex flex-col">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="bg-primary text-white text-xs font-bold rounded-lg px-2.5 py-1 font-mono">{test.test_code}</span>
                         {(test.level || '') && (
-                          <span className="bg-slate-100 text-slate-600 text-xs font-semibold rounded-lg px-2 py-1">{test.level}</span>
+                          <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-lg px-2 py-1">{test.level}</span>
                         )}
                         {attempt && (
-                          <span className={`text-xs font-bold rounded-lg px-2 py-1 ${percentage >= 40 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
+                          <span className={`text-xs font-bold rounded-lg px-2 py-1 ${percentage >= 40 ? 'bg-green-100 text-green-700 dark:bg-green-900/60 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900/60 dark:text-red-300'}`}>
                             {percentage}%
                           </span>
                         )}
                       </div>
-                      <h3 className="text-base font-bold text-slate-800 truncate">{test.title}</h3>
-                      <p className="text-xs text-slate-500 mt-0.5 capitalize">{test.subject || test.course || 'General'}</p>
+                      <h3 className="text-base font-bold text-slate-800 dark:text-slate-100 truncate">{test.title}</h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 capitalize">{test.subject || test.course || 'General'}</p>
                     </div>
                   </div>
 
@@ -132,12 +132,12 @@ export default function TestsPage() {
                   </div>
 
                   {attempt && (
-                    <div className="mb-4 bg-green-50 border border-green-200 rounded-xl px-3 py-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-sm font-bold text-green-700">
+                    <div className="mb-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl px-3 py-2 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm font-bold text-green-700 dark:text-green-300">
                         <Award size={15} />
                         Score: {attempt.score}/{attempt.total}
                       </div>
-                      <span className="text-xs text-green-600">
+                      <span className="text-xs text-green-600 dark:text-green-400">
                         {new Date(attempt.submitted_at).toLocaleDateString()}
                       </span>
                     </div>

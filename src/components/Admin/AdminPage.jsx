@@ -76,8 +76,8 @@ function TestsAdmin({ options }) {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-5">
-        <h3 className="text-base font-black text-slate-800 mb-1">Create Test</h3>
+      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 p-5">
+        <h3 className="text-base font-black text-slate-800 dark:text-slate-100 mb-1">Create Test</h3>
         <p className="text-sm text-slate-500 mb-4">Enter the course details and test code, then build the question paper in the assessment page.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -86,7 +86,7 @@ function TestsAdmin({ options }) {
             <select
               value={course}
               onChange={(e) => setCourse(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             >
               {options.map(opt => (
                 <option key={opt.id} value={opt.id}>{opt.name}</option>
@@ -98,7 +98,7 @@ function TestsAdmin({ options }) {
             <select
               value={level}
               onChange={(e) => setLevel(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             >
               {LEVEL_OPTIONS.map(l => (
                 <option key={l} value={l}>{l}</option>
@@ -114,7 +114,7 @@ function TestsAdmin({ options }) {
             value={topics}
             onChange={(e) => setTopics(e.target.value)}
             placeholder="e.g. Arrays, Loops, Functions"
-            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
           />
         </div>
 
@@ -126,7 +126,7 @@ function TestsAdmin({ options }) {
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
               placeholder="e.g. PYT01"
-              className="flex-1 px-4 py-2.5 rounded-lg border border-slate-200 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="flex-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
             <button
               onClick={generateCode}
@@ -147,9 +147,9 @@ function TestsAdmin({ options }) {
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-5">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-black text-slate-800">Existing Tests</h3>
+<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 p-5">
+          <div className="flex items-center justify-between mb-4">
+          <h3 className="text-base font-black text-slate-800 dark:text-slate-100">Existing Tests</h3>
           <button onClick={load} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
             <RefreshCw size={13} /> Refresh
           </button>
@@ -166,11 +166,11 @@ function TestsAdmin({ options }) {
             {tests.map(t => {
               const topics = parseTopics(t.topics)
               return (
-                <div key={t.id} className="flex flex-wrap items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div key={t.id} className="flex flex-wrap items-center gap-3 bg-slate-50 dark:bg-slate-700 rounded-xl p-3 border border-slate-100 dark:border-slate-600">
                   <span className="bg-primary text-white text-xs font-bold rounded-lg px-2.5 py-1 font-mono">{t.test_code}</span>
                   <div className="flex-1 min-w-[160px]">
-                    <div className="text-sm font-bold text-slate-800">{t.title}</div>
-                    <div className="text-xs text-slate-500 capitalize">{t.subject || t.course} {t.level ? '· ' + t.level : ''}</div>
+                    <div className="text-sm font-bold text-slate-800 dark:text-slate-100">{t.title}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 capitalize">{t.subject || t.course} {t.level ? '· ' + t.level : ''}</div>
                     {topics.length > 0 && (
                       <div className="flex flex-wrap gap-1 mt-1">
                         {topics.map((topic, i) => (
@@ -204,13 +204,13 @@ function PasswordGate({ onAuth }) {
   }
 
   return (
-    <div className="min-h-[calc(100vh-120px)] bg-slate-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-8">
+    <div className="min-h-[calc(100vh-120px)] bg-slate-50 dark:bg-slate-900 flex items-center justify-center px-4">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl w-full max-w-sm p-8">
         <div className="flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl mb-4 mx-auto">
           <ShieldCheck className="text-primary" size={28} />
         </div>
-        <h1 className="text-xl font-black text-slate-800 text-center mb-1">Admin Access</h1>
-        <p className="text-sm text-slate-500 text-center mb-6">Enter the admin password to continue</p>
+        <h1 className="text-xl font-black text-slate-800 dark:text-slate-100 text-center mb-1">Admin Access</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 text-center mb-6">Enter the admin password to continue</p>
         <form onSubmit={submit}>
           <input
             type="password"
@@ -218,14 +218,14 @@ function PasswordGate({ onAuth }) {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Admin password"
             autoFocus
-            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary mb-2 text-slate-800"
+            className="w-full px-4 py-2.5 border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary mb-2 text-slate-800"
           />
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
           <button type="submit" className="w-full py-2.5 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition">
             Sign In
           </button>
         </form>
-        <Link to="/home" className="block text-center text-sm text-slate-500 hover:text-primary mt-4">
+        <Link to="/home" className="block text-center text-sm text-slate-500 dark:text-slate-400 hover:text-primary mt-4">
           ← Back to Home
         </Link>
       </div>
@@ -266,7 +266,7 @@ function StudentRow({ student, options, onSave, onRemove }) {
   const username = student.username || student.email?.split('@')[0] || 'Student'
 
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 overflow-hidden">
       <div className="flex flex-wrap items-center gap-3 p-4">
         <div className="flex-1 min-w-[200px]">
           <div className="flex items-center gap-3">
@@ -274,14 +274,14 @@ function StudentRow({ student, options, onSave, onRemove }) {
               {username.slice(0, 2).toUpperCase()}
             </div>
             <div>
-              <div className="font-bold text-slate-800">{username}</div>
-              <div className="text-xs text-slate-500">{student.email}</div>
+              <div className="font-bold text-slate-800 dark:text-slate-100">{username}</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">{student.email}</div>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <div className="text-center">
-            <div className="font-mono text-sm bg-slate-100 px-3 py-1 rounded">{student.password}</div>
+            <div className="font-mono text-sm bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded">{student.password}</div>
             <div className="text-[10px] text-slate-400 uppercase mt-0.5">Password</div>
           </div>
           <div className="text-center">
@@ -298,9 +298,9 @@ function StudentRow({ student, options, onSave, onRemove }) {
       </div>
 
       {open && (
-        <div className="px-4 pb-4 border-t border-slate-100 pt-4">
-          <h4 className="text-sm font-bold text-slate-700 mb-1">Assign Courses</h4>
-          <p className="text-xs text-slate-500 mb-3">Only activated courses will be visible to this student.</p>
+        <div className="px-4 pb-4 border-t border-slate-100 dark:border-slate-700 pt-4">
+          <h4 className="text-sm font-bold text-slate-700 dark:text-slate-200 mb-1">Assign Courses</h4>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">Only activated courses will be visible to this student.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2 mb-4">
             {options.map(opt => (
               <button
@@ -309,7 +309,7 @@ function StudentRow({ student, options, onSave, onRemove }) {
                 className={`px-3 py-2 rounded-lg text-xs font-semibold border transition text-center ${
                   selected.includes(opt.id)
                     ? 'bg-primary text-white border-primary'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-primary/40'
+                    : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:border-primary/40'
                 }`}
               >
                 <span className="truncate">{opt.name}</span>
@@ -317,11 +317,11 @@ function StudentRow({ student, options, onSave, onRemove }) {
             ))}
           </div>
           <div className="flex flex-wrap justify-between gap-2">
-            <button onClick={remove} disabled={removing} className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition disabled:opacity-60">
+            <button onClick={remove} disabled={removing} className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition disabled:opacity-60">
               <Trash2 size={14} /> {removing ? 'Removing...' : 'Remove Account'}
             </button>
             <div className="flex gap-2">
-              <button onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition">
+              <button onClick={() => setOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition">
                 Cancel
               </button>
               <button onClick={save} disabled={saving} className="px-5 py-2 bg-accent text-white text-sm font-bold rounded-lg hover:opacity-90 transition disabled:opacity-60">
@@ -439,7 +439,7 @@ export default function AdminPage() {
   if (!key) return <PasswordGate onAuth={setKey} />
 
   return (
-    <div className="min-h-[calc(100vh-120px)] bg-slate-50">
+    <div className="min-h-[calc(100vh-120px)] bg-slate-50 dark:bg-slate-900">
       <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-6 px-4">
         <div className="max-w-7xl mx-auto">
           <Link to="/home" className="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm mb-2 transition">
@@ -467,9 +467,9 @@ export default function AdminPage() {
 
       <div className="max-w-7xl mx-auto py-6 px-4">
         {flags.length > 0 && (
-          <div className="mb-4 bg-red-50 border border-red-200 rounded-2xl p-4">
+          <div className="mb-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-black text-red-700 flex items-center gap-2">
+              <h3 className="text-sm font-black text-red-700 dark:text-red-300 flex items-center gap-2">
                 <Bell size={16} /> Tab Change Alerts ({flags.length})
               </h3>
               <button
@@ -488,7 +488,7 @@ export default function AdminPage() {
                   <div className="flex-1 min-w-[200px]">
                     <div className="flex items-center gap-2">
                       <span className="bg-primary text-white text-xs font-bold rounded-lg px-2.5 py-1 font-mono">{flag.test_code}</span>
-                      <span className="text-sm font-bold text-slate-800">{flag.student_name}</span>
+                      <span className="text-sm font-bold text-slate-800 dark:text-slate-100">{flag.student_name}</span>
                     </div>
                     <p className="text-xs text-slate-500 mt-1">
                       Reg ID: <span className="font-mono">{flag.student_register_id}</span> &middot; {flag.reason}{flag.violation_count > 1 ? ` (${flag.violation_count} times)` : ''} &middot; {new Date(flag.created_at).toLocaleString()}
@@ -536,7 +536,7 @@ export default function AdminPage() {
         {section === 'students' && (
           <div>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-black text-slate-800 flex items-center gap-2">
+          <h2 className="text-lg font-black text-slate-800 dark:text-slate-100 flex items-center gap-2">
             <Users size={18} className="text-primary" /> Students ({students.length})
           </h2>
           <button onClick={load} className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
@@ -551,7 +551,7 @@ export default function AdminPage() {
             <Loader2 className="animate-spin text-primary" size={32} />
           </div>
         ) : students.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center text-slate-500">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-10 text-center text-slate-500 dark:text-slate-400">
             No students signed up yet.
           </div>
         ) : (
