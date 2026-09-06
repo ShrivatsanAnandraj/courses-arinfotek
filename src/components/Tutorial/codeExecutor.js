@@ -127,8 +127,17 @@ async function executePython(code) {
     pyodide.runPython(`
 import sys
 from io import StringIO
+import builtins
+from js import window
 _sys_stdout = sys.stdout
 sys.stdout = StringIO()
+def _pyodide_input(prompt=""):
+    if prompt:
+        sys.stdout.write(str(prompt))
+        sys.stdout.flush()
+    value = window.prompt(str(prompt) if prompt else 'Enter value:')
+    return value if value is not None else ''
+builtins.input = _pyodide_input
     `)
     try {
       pyodide.runPython(code)
