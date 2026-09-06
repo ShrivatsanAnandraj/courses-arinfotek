@@ -67,29 +67,32 @@ async function loadPyodide() {
 }
 
 let inputHandler = null
-const pendingInputResolvers = []
 
 export function setInputHandler(fn) {
   inputHandler = fn
 }
 
 export function clearPendingInputs() {
-  while (pendingInputResolvers.length) {
-    pendingInputResolvers.shift()('')
-  }
+  window.__codelearnValue = null
 }
 
 function ensurePromptBridge() {
-  if (window.__codelearnPrompt) return
-  window.__codelearnPrompt = (prompt) => new Promise((resolve) => {
-    pendingInputResolvers.push(resolve)
+  if (window.__codelearnSet) return
+  window.__codelearnValue = null
+  window.__codelearnSet = (prompt) => {
+    window.__codelearnValue = null
     if (typeof inputHandler === 'function') {
-      inputHandler(String(prompt) || '', (val) => resolve(val == null ? '' : String(val)))
+      inputHandler(String(prompt) || '', (val) => { window.__codelearnValue = String(val == null ? '' : val) })
     } else {
       const val = window.prompt(String(prompt) || 'Enter value:')
-      resolve(val == null ? '' : val)
+      window.__codelearnValue = val == null ? '' : val
     }
-  })
+  }
+  window.__codelearnPoll = () => {
+    const v = window.__codelearnValue
+    window.__codelearnValue = null
+    return v
+  }
 }
 
 function executeJavaScript(code) {
@@ -160,12 +163,17 @@ from js import window
 _sys_stdout = sys.stdout
 sys.stdout = StringIO()
 async def _cookie_input(prompt=""):
+    import asyncio
     if prompt:
         sys.stdout.write(str(prompt))
         sys.stdout.flush()
-    res = await window.__codelearnPrompt(str(prompt) if prompt else '')
-    sys.stdout.write(str(res) + '\\n')
-    return str(res)
+    window.__codelearnSet(str(prompt) if prompt else '')
+    while True:
+        _val = window.__codelearnPoll()
+        if _val is not None:
+            sys.stdout.write(_val + '\\n')
+            return _val
+        await asyncio.sleep(0.02)
 builtins.input = _cookie_input
     `)
     pyodide.runPython(`
@@ -190,6 +198,10 @@ try:
     _finder = _Find()
     _finder.visit(_tree)
     _async_names = _finder._async_names
+    _used_input = bool(_async_names) or any(
+        isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == 'input'
+        for n in ast.walk(_tree)
+    )
     class _T(ast.NodeTransformer):
         def visit_Call(self, node):
             node = self.generic_visit(node)
@@ -221,6 +233,18 @@ except Exception as _e:
       return { output: '', error: syErr }
     }
     const src = pyodide.globals.get('_src').toString()
+    const usedInput = Boolean(pyodide.globals.get('_used_input'))
+    if (!usedInput) {
+      try {
+        pyodide.runPython(code)
+        const output = pyodide.runPython('sys.stdout.getvalue()')
+        pyodide.runPython('sys.stdout = _sys_stdout')
+        return { output: output || 'Code executed successfully.', error: '' }
+      } catch (e) {
+        pyodide.runPython('sys.stdout = _sys_stdout')
+        return { output: '', error: e.message }
+      }
+    }
     if (!src.trim()) {
       pyodide.runPython('sys.stdout = _sys_stdout')
       return { output: 'Code executed successfully.', error: '' }

@@ -70,7 +70,7 @@ export default function Workspace() {
   const previewRef = useRef(null)
 
   useEffect(() => {
-    setInputHandler((prompt, resolve) => setPendingInput({ prompt, resolve }))
+    setInputHandler((prompt, resolve) => { setOutput(''); setPendingInput({ prompt, resolve }) })
     return () => setInputHandler(null)
   }, [])
 

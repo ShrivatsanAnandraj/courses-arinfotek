@@ -43,7 +43,7 @@ export default function TutorialPage() {
   const [pendingInput, setPendingInput] = useState(null)
 
   useEffect(() => {
-    setInputHandler((prompt, resolve) => setPendingInput({ prompt, resolve }))
+    setInputHandler((prompt, resolve) => { setOutput(''); setPendingInput({ prompt, resolve }) })
     return () => setInputHandler(null)
   }, [])
 
