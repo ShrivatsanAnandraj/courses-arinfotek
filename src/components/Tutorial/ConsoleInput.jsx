@@ -14,22 +14,17 @@ export default function ConsoleInput({ prompt, onSubmit }) {
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-2 border-t border-slate-700 bg-slate-900">
-      {prompt ? <span className="text-green-400 font-mono text-xs whitespace-pre-wrap shrink-0">{prompt}</span> : null}
+    <span className="whitespace-pre-wrap">
+      {prompt ? <span className="text-green-400">{prompt}</span> : null}
       <input
         ref={inputRef}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && submit()}
-        className="flex-1 min-w-0 bg-slate-950 text-green-400 font-mono text-xs px-2 py-1 rounded border border-slate-700 outline-none focus:border-primary"
-        placeholder="Type and press Enter"
+        size={Math.max(4, value.length + 1)}
+        className="bg-transparent text-green-400 font-mono text-xs outline-none border-0 p-0 m-0 caret-green-400"
+        aria-label="program input"
       />
-      <button
-        onClick={submit}
-        className="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded hover:bg-primary-dark shrink-0"
-      >
-        Enter
-      </button>
-    </div>
+    </span>
   )
 }

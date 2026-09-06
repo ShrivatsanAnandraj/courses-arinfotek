@@ -286,16 +286,16 @@ export default function Workspace() {
                 </pre>
               </div>
             ) : (
-              <div className="flex-1 min-h-0 flex flex-col">
-                <pre className="flex-1 p-4 text-sm text-green-400 font-mono overflow-auto whitespace-pre-wrap">
+              <div className="flex-1 min-h-0">
+                <pre className="flex-1 p-4 text-sm text-green-400 font-mono overflow-auto whitespace-pre-wrap h-full">
                   {output || 'Click "Run" to execute your code...'}
+                  {pendingInput && (
+                    <ConsoleInput
+                      prompt={pendingInput.prompt}
+                      onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
+                    />
+                  )}
                 </pre>
-                {pendingInput && (
-                  <ConsoleInput
-                    prompt={pendingInput.prompt}
-                    onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
-                  />
-                )}
               </div>
             )}
           </div>

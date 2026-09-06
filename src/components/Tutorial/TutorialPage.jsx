@@ -387,16 +387,16 @@ export default function TutorialPage() {
                     </pre>
                   </div>
                 ) : (
-                  <div className="flex-1 min-h-0 flex flex-col">
-                    <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 flex-1 whitespace-pre-wrap">
+                  <div className="flex-1 min-h-0">
+                    <pre className="p-3 text-xs text-green-400 font-mono overflow-auto bg-slate-950 h-full whitespace-pre-wrap">
                       {output || 'Click Run to execute your code...'}
+                      {pendingInput && (
+                        <ConsoleInput
+                          prompt={pendingInput.prompt}
+                          onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
+                        />
+                      )}
                     </pre>
-                    {pendingInput && (
-                      <ConsoleInput
-                        prompt={pendingInput.prompt}
-                        onSubmit={(value) => { const resolve = pendingInput.resolve; setPendingInput(null); resolve(value) }}
-                      />
-                    )}
                   </div>
                 )}
               </div>
