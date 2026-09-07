@@ -49,6 +49,21 @@ function TestsAdmin({ options }) {
 
   useEffect(() => { load() }, [])
 
+  const removeTest = async (t) => {
+    const title = t.title || t.test_code
+    if (!window.confirm(`Are you sure you want to remove "${title}"?\nThis will also delete its questions, attempts and tab-change alerts.`)) return
+    setMessage('')
+    try {
+      const res = await fetch('/api/tests?action=delete&id=' + encodeURIComponent(t.id))
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to delete test')
+      setMessage(`Test "${title}" removed.`)
+      load()
+    } catch (e) {
+      setMessage('Error: ' + (e.message || 'Failed to delete test.'))
+    }
+  }
+
   const generateCode = () => {
     const prefix = 'T' + String(Math.floor(Math.random() * 90) + 10)
     const suffix = String(Math.floor(Math.random() * 900) + 100)
@@ -179,6 +194,13 @@ function TestsAdmin({ options }) {
                       </div>
                     )}
                   </div>
+                  <button
+                    onClick={() => removeTest(t)}
+                    title="Remove test"
+                    className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-red-600 border border-red-200 hover:bg-red-50 transition"
+                  >
+                    <Trash2 size={13} /> Remove
+                  </button>
                 </div>
               )
             })}

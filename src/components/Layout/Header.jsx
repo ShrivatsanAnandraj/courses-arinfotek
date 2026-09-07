@@ -1,10 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { Code, LogOut, User, Home, ClipboardList } from 'lucide-react'
 
 export default function Header() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const isAdmin = location.pathname === '/admin'
 
   const handleLogout = () => {
     logout()
@@ -59,7 +61,7 @@ export default function Header() {
           {user ? (
             <>
               <span className="hidden sm:block text-sm font-medium text-slate-600">
-                Hi, {user.username}!
+                {isAdmin ? 'Hi, Admin!' : `Hi, ${user.username}!`}
               </span>
               <button
                 onClick={handleLogout}

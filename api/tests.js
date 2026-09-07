@@ -38,6 +38,22 @@ export default async function handler(req, res) {
       return res.status(200).json({ attempts });
     }
 
+    if (action === 'delete') {
+      const { id } = req.query;
+      if (!id) {
+        return res.status(400).json({ error: 'id is required' });
+      }
+      const found = await sql`SELECT id, test_code FROM tests WHERE id = ${Number(id)}`;
+      if (found.length === 0) {
+        return res.status(404).json({ error: 'Test not found' });
+      }
+      const code = found[0].test_code;
+      await sql`DELETE FROM attempts WHERE test_id = ${Number(id)}`;
+      await sql`DELETE FROM tab_flags WHERE test_code = ${code}`;
+      await sql`DELETE FROM tests WHERE id = ${Number(id)}`;
+      return res.status(200).json({ success: true });
+    }
+
     if (!code) {
       return res.status(400).json({ error: 'Test code is required' });
     }
