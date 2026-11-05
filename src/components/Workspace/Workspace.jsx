@@ -20,6 +20,7 @@ const LANGUAGE_MAP = {
   kotlin: 'kotlin',
   typescript: 'typescript',
   go: 'go',
+  postgresql: 'sql',
   linux: 'shell'
 }
 
@@ -36,6 +37,7 @@ const DEFAULT_CODE = {
   kotlin: `fun main() {\n    println("Hello, World!")\n}`,
   typescript: `// Write your TypeScript code here\nconsole.log("Hello, World!");`,
   go: `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}`,
+  postgresql: `-- Write your SQL here\nSELECT 'Hello, PostgreSQL!' AS greeting;`,
   linux: `#!/bin/bash\necho "Hello from Linux!"\nwhoami\nhostname`
 }
 
@@ -154,7 +156,7 @@ export default function Workspace() {
     const extensions = {
       python: '.py', javascript: '.js', html: '.html', css: '.css',
       java: '.java', c: '.c', cpp: '.cpp', csharp: '.cs',
-      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go', linux: '.sh'
+      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go', postgresql: '.sql', linux: '.sh'
     }
     const ext = extensions[currentLanguage] || '.txt'
     const blob = new Blob([code], { type: 'text/plain' })
