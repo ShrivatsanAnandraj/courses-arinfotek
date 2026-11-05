@@ -12,6 +12,8 @@ import typescript from './typescript'
 import go from './go'
 import linux from './linux'
 import postgresql from './postgresql'
+import nodejs from './nodejs'
+import react from './react'
 
 export const topicContent = {
   python,
@@ -27,5 +29,7 @@ export const topicContent = {
   typescript,
   go,
   linux,
-  postgresql
+  postgresql,
+  nodejs,
+  react
 }

@@ -21,7 +21,9 @@ const LANGUAGE_MAP = {
   typescript: 'typescript',
   go: 'go',
   postgresql: 'sql',
-  linux: 'shell'
+  linux: 'shell',
+  nodejs: 'javascript',
+  react: 'javascript'
 }
 
 const DEFAULT_CODE = {
@@ -38,7 +40,9 @@ const DEFAULT_CODE = {
   typescript: `// Write your TypeScript code here\nconsole.log("Hello, World!");`,
   go: `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}`,
   postgresql: `-- Write your SQL here\nSELECT 'Hello, PostgreSQL!' AS greeting;`,
-  linux: `#!/bin/bash\necho "Hello from Linux!"\nwhoami\nhostname`
+  linux: `#!/bin/bash\necho "Hello from Linux!"\nwhoami\nhostname`,
+  nodejs: `// Write your Node.js code here\nconsole.log("Hello, World!");\nconsole.log("Node version:", process.version);`,
+  react: `// Write your React component code here\nfunction App() {\n  return (\n    <div>\n      <h1>Hello, React!</h1>\n      <p>Start building your component</p>\n    </div>\n  );\n}\n\nexport default App;`
 }
 
 export default function Workspace() {
@@ -156,7 +160,8 @@ export default function Workspace() {
     const extensions = {
       python: '.py', javascript: '.js', html: '.html', css: '.css',
       java: '.java', c: '.c', cpp: '.cpp', csharp: '.cs',
-      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go', postgresql: '.sql', linux: '.sh'
+      ruby: '.rb', kotlin: '.kt', typescript: '.ts', go: '.go', postgresql: '.sql', linux: '.sh',
+      nodejs: '.js', react: '.jsx'
     }
     const ext = extensions[currentLanguage] || '.txt'
     const blob = new Blob([code], { type: 'text/plain' })

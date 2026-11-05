@@ -25,6 +25,9 @@ A comprehensive web application for learning programming languages, built with R
 11. TypeScript
 12. Go
 13. PostgreSQL
+14. Linux
+15. Node.js
+16. React
 
 ## Tech Stack
 

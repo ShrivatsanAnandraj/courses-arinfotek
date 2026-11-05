@@ -90,6 +90,22 @@ export default function LanguageLogo({ lang, size = 40 }) {
         <path d="M68 42 Q76 36 84 42" stroke="#336791" strokeWidth="3" fill="none" strokeLinecap="round"/>
       </svg>
     ),
+    nodejs: (
+      <svg viewBox="0 0 128 128" width={size} height={size}>
+        <path fill="#339933" d="M64 6 116 36v56L64 122 12 92V36z"/>
+        <text x="64" y="80" textAnchor="middle" fill="#fff" fontSize="44" fontWeight="bold" fontFamily="Arial, sans-serif">N</text>
+      </svg>
+    ),
+    react: (
+      <svg viewBox="0 0 128 128" width={size} height={size}>
+        <g fill="none" stroke="#61DAFB" strokeWidth="5">
+          <ellipse cx="64" cy="64" rx="56" ry="22"/>
+          <ellipse cx="64" cy="64" rx="56" ry="22" transform="rotate(60 64 64)"/>
+          <ellipse cx="64" cy="64" rx="56" ry="22" transform="rotate(120 64 64)"/>
+        </g>
+        <circle cx="64" cy="64" r="10" fill="#61DAFB"/>
+      </svg>
+    ),
     linux: (
       <svg viewBox="0 0 24 24" width={size} height={size}>
         <path

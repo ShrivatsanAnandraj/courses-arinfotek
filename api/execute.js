@@ -68,6 +68,8 @@ export default async function handler(req, res) {
     css: { language: 'css', versionIndex: '0' },
     bash: { language: 'bash', versionIndex: '0' },
     postgresql: { language: 'psql', versionIndex: '0' },
+    nodejs: { language: 'nodejs', versionIndex: '5' },
+    react: { language: 'reactjs', versionIndex: '0' },
   }
 
   const langConfig = languageMap[language]
